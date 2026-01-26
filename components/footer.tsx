@@ -50,8 +50,8 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-card/50 border-t border-border/50 backdrop-blur-sm">
-      <div className="container-tight py-16">
+    <footer className="relative bg-black/70 border-t border-border/50 backdrop-blur-sm">
+      <div className="container-tight py-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
@@ -158,7 +158,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="mt-8 pt-4 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} SLIC Media. All rights reserved.
           </p>

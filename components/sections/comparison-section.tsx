@@ -70,7 +70,7 @@ export function ComparisonSection() {
             {/* Table Header */}
             <div className="grid grid-cols-3 bg-secondary/50 text-sm font-medium">
               <div className="p-4 text-muted-foreground">Area</div>
-              <div className="p-4 text-muted-foreground border-x border-border/30">
+              <div className="p-4 text-muted-foreground border-x border-muted-foreground/30">
                 Traditional
               </div>
               <div className="p-4 text-primary">
@@ -80,9 +80,9 @@ export function ComparisonSection() {
             
             {/* Table Rows */}
             {comparisonData.map((row, index) => (
-              <div key={row.area} className={`grid grid-cols-3 text-sm ${index !== comparisonData.length - 1 ? 'border-b border-border/30' : ''}`}>
+              <div key={row.area} className={`grid grid-cols-3 text-sm ${index !== comparisonData.length - 1 ? 'border-b border-muted-foreground/30' : ''}`}>
                 <div className="p-4 font-medium text-foreground">{row.area}</div>
-                <div className="p-4 text-muted-foreground border-x border-border/30 flex items-start gap-2">
+                <div className="p-4 text-muted-foreground border-x border-muted-foreground/30 flex items-start gap-2">
                   <X className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                   <span>{row.traditional}</span>
                 </div>

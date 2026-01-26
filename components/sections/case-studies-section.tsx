@@ -80,8 +80,8 @@ export function CaseStudiesSection() {
                     </div>
                   </div>
                   <h3 className="font-display text-xl font-semibold mb-3 text-foreground">{study.title}</h3>
-                  <p className="text-muted-foreground text-sm flex-grow leading-relaxed">{study.description}</p>
-                  <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border/50">
+                  <p className="text-muted-foreground text-sm grow leading-relaxed">{study.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-4 pt-4 ">
                     {study.tags.map((tag) => (
                       <span
                         key={tag}

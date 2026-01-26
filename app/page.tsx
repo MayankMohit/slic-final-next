@@ -16,11 +16,11 @@ export default function HomePage() {
       <Navbar />
       <HeroSection />
       <TrustedBySection />
-      <CaseStudiesSection />
-      <AboutSection />
-      <TestimonialsSection />
       <ApproachSection />
+      <CaseStudiesSection />
+      <TestimonialsSection />
       <ComparisonSection />
+      <AboutSection />
       <FAQSection />
       <CTASection />
       <Footer />

@@ -41,7 +41,7 @@ export function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="faqs" className="section-padding bg-card/30 relative overflow-hidden">
+    <section id="faqs" className="section-padding relative overflow-hidden">
       <div className="container-tight relative z-10">
         {/* Heading */}
         <motion.div
@@ -76,7 +76,7 @@ export function FAQSection() {
             return (
               <div
                 key={faq.question}
-                className="border-b border-border/50 last:border-0"
+                className="border-b border-border last:border-0"
               >
                 {/* Question */}
                 <button
@@ -115,10 +115,6 @@ export function FAQSection() {
         </motion.div>
       </div>
 
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 blur-[100px] rounded-full" />
-      </div>
     </section>
   );
 }

@@ -11,8 +11,8 @@ const team = [
     name: "Vedant",
     role: "Founder & Creative Director",
     description:
-      "Leads SLIC's creative vision, blending storytelling with performance-driven strategy.",
-    initial: "V",
+      "Leads SLIC’s creative vision, blending storytelling with performance-driven strategy.",
+    initial: "V", // kept but not used in this layout
   },
   {
     name: "Siddhartha",
@@ -25,82 +25,95 @@ const team = [
 
 export function AboutSection() {
   return (
-    <section className="section-padding bg-card/30">
-      <div className="container-tight">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <section className="relative section-padding overflow-hidden">
+      <div className="container-tight relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Story */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] mb-6">
+              <span className="w-6 h-px bg-primary/50" />
               Our Story
             </span>
 
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-balance">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">
               From Passion to{" "}
               <span className="text-gradient">Performance</span>
             </h2>
 
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
               <p>
                 What began as a passion for storytelling and editing evolved into
                 a performance-first content agency trusted by global brands.
               </p>
               <p>
-                We don&apos;t chase trends—we engineer content systems that compound
+                We don’t chase trends—we engineer content systems that compound
                 growth and attention.
               </p>
               <p className="text-foreground font-medium">
-                $50M+ in revenue generated
-                and 150K+ organic followers
+                <span className="text-primary">$50M+</span> in revenue generated
+                and <span className="text-primary">150K+</span> organic followers
                 grown in under 90 days.
               </p>
             </div>
 
-            <div className="mt-8">
-              <Button asChild variant="outline" className="group border-border/50 bg-transparent hover:bg-secondary">
-                <Link href="/about">
-                  Learn More
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </div>
+            <Button
+              variant="outline"
+              className="mt-10 group"
+              asChild
+            >
+              <Link href="/about">
+                Learn More
+                <ArrowRight
+                  className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                  size={18}
+                />
+              </Link>
+            </Button>
           </motion.div>
 
           {/* Team */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            className="space-y-8"
           >
-            <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+            <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-2">
               Core Team
-            </span>
+            </h3>
 
-            <div className="space-y-4">
-              {team.map((member, index) => (
-                <GlowCard key={member.name} className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-display font-bold text-lg shrink-0">
-                      {member.initial}
+            {team.map((member, index) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.12 }}
+                className="group"
+              >
+                <GlowCard className="overflow-hidden h-full">
+                  <div className="p-6 border-b border-slate-600">
+                    <div className="text-2xl md:text-3xl font-display font-bold text-gradient mt-1">
+                      {member.name}
                     </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-foreground">
-                        {member.name}
-                      </h3>
-                      <p className="text-sm text-primary mb-2">{member.role}</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {member.description}
-                      </p>
+                    <div className="text-muted-foreground text-sm uppercase tracking-wider">
+                      {member.role}
                     </div>
                   </div>
+                  <div className="p-6">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {member.description}
+                    </p>
+                  </div>
                 </GlowCard>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

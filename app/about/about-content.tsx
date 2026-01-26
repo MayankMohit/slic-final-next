@@ -89,7 +89,7 @@ export function AboutPageContent() {
         </section>
 
         {/* Story */}
-        <section className="section-padding bg-card/30">
+        <section className="section-padding">
           <div className="container-tight">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <motion.div
@@ -190,7 +190,7 @@ export function AboutPageContent() {
         </section>
 
         {/* Team */}
-        <section className="section-padding bg-card/30">
+        <section className="section-padding">
           <div className="container-tight">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -216,7 +216,7 @@ export function AboutPageContent() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <GlowCard className="p-8">
+                  <GlowCard className="p-8 h-full">
                     <div className="flex flex-col items-center text-center">
                       <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-display font-bold text-2xl mb-4">
                         {member.initial}

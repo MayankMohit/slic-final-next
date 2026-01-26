@@ -131,7 +131,7 @@ export function BlogPageContent() {
                           <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                             {post.title}
                           </h3>
-                          <p className="text-sm text-muted-foreground flex-grow leading-relaxed">
+                          <p className="text-sm text-muted-foreground grow leading-relaxed">
                             {post.excerpt}
                           </p>
                           <div className="flex items-center gap-2 mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
@@ -173,10 +173,10 @@ export function BlogPageContent() {
                         <h3 className="font-display text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground flex-grow leading-relaxed">
+                        <p className="text-sm text-muted-foreground grow leading-relaxed">
                           {post.excerpt}
                         </p>
-                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50">
+                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-muted-foreground/50">
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Clock className="w-4 h-4" />
                             <span>{post.readTime}</span>

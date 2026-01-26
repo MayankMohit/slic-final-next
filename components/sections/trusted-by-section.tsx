@@ -1,80 +1,120 @@
-'use client';
+"use client";
 
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const brands = [
-  "AJIO",
-  "Casio",
-  "Goibibo",
-  "Himalaya",
-  "Loop",
-  "Maybelline",
-  "New Balance",
-  "Nexa",
-  "VH1",
-  "Viacom",
-];
+export const TrustedBySection = () => {
+  const logos = [
+    "ajio.png",
+    "casio.png",
+    "goibibo.png",
+    "himalaya.png",
+    "loop.png",
+    "maybelline.png",
+    "nb.png",
+    "nexa.png",
+    "vh1.png",
+    "viacom.png",
+  ];
 
-export function TrustedBySection() {
-  const marqueeRef = useRef<HTMLDivElement>(null);
+  const logoSizes: Record<string, { width: number }> = {
+    "ajio.png": { width: 110 },
+    "casio.png": { width: 160 },
+    "goibibo.png": { width: 150 },
+    "himalaya.png": { width: 200 },
+    "loop.png": { width: 150 },
+    "maybelline.png": { width: 270 },
+    "nb.png": { width: 70 },
+    "nexa.png": { width: 200 },
+    "vh1.png": { width: 100 },
+    "viacom.png": { width: 200 },
+  };
+
+  const logoYOffsets: Record<string, number> = {
+    "ajio.png": 10,
+    "casio.png": 10,
+    "goibibo.png": 7,
+    "himalaya.png": 0,
+    "loop.png": -4,
+    "maybelline.png": 10,
+    "nb.png": 2,
+    "nexa.png": 8,
+    "vh1.png": 10,
+    "viacom.png": 7,
+  };
+
+  const marqueeRef = useRef<HTMLDivElement | null>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
     const marquee = marqueeRef.current;
+    if (!marquee) return;
+
+    const totalWidth = marquee.scrollWidth / 2;
 
     tweenRef.current = gsap.to(marquee, {
-      xPercent: -50,
-      repeat: -1,
-      duration: 30,
+      x: -totalWidth,
+      duration: 40,
       ease: "linear",
+      repeat: -1,
     });
 
     return () => {
-      if (tweenRef.current) tweenRef.current.kill();
+      tweenRef.current?.kill();
     };
   }, []);
 
-  const repeatedBrands = [...brands, ...brands];
+  const repeatedLogos = [...logos, ...logos];
 
-  const handleMouseEnter = () => {
-    if (tweenRef.current) tweenRef.current.pause();
-  };
-
-  const handleMouseLeave = () => {
-    if (tweenRef.current) tweenRef.current.play();
-  };
+  const handleMouseEnter = () => tweenRef.current?.pause();
+  const handleMouseLeave = () => tweenRef.current?.play();
 
   return (
-    <section className="py-16 border-y border-border/30">
-      <div className="container-tight mb-8">
-        <p className="text-center text-sm text-muted-foreground font-medium uppercase tracking-wider">
-          Trusted by
-        </p>
-      </div>
+    <div className="w-[80%] mx-auto flex flex-col items-center my-15 overflow-hidden">
+      <h3 className="text-[3.5vh] font-inter font-semibold text-white/80 mb-[2.5vh] select-none">
+        <span className="text-blue-500">Trusted</span> by
+      </h3>
 
-      <div 
-        className="overflow-hidden"
+      <div
+        className="w-full overflow-hidden relative"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+        }}
       >
-        <div
-          ref={marqueeRef}
-          className="flex items-center gap-16 whitespace-nowrap"
-          style={{ width: "max-content" }}
-        >
-          {repeatedBrands.map((brand, i) => (
-            <div
-              key={`${brand}-${i}`}
-              className="flex-shrink-0 px-6 py-3 rounded-lg bg-secondary/30 border border-border/30 opacity-70 hover:opacity-100 transition-opacity"
-            >
-              <span className="font-display text-lg font-semibold text-muted-foreground">
-                {brand}
-              </span>
-            </div>
-          ))}
+        <div ref={marqueeRef} className="flex gap-14 whitespace-nowrap w-max">
+          {repeatedLogos.map((logo, i) => {
+            const size = logoSizes[logo] || { width: 150 };
+            const yOffset = logoYOffsets[logo] ?? 0;
+
+            return (
+              <div
+                key={i}
+                className="opacity-70 hover:opacity-100 transition duration-300 select-none"
+                style={{
+                  filter: "brightness(0) invert(1)",
+                  transform: `translateY(${yOffset}px)`,
+                }}
+              >
+                <img
+                  src={`/brandLogos/${logo}`}
+                  alt={`${logo.split(".")[0]} logo`}
+                  className="object-contain pointer-events-none"
+                  style={{
+                    width: `${size.width}px`,
+                    height: "auto",
+                  }}
+                  draggable="false"
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};

@@ -1,7 +1,13 @@
 'use client';
 
-import React, { useRef, useId, useEffect, type CSSProperties } from 'react';
-import { animate, useMotionValue, type AnimationPlaybackControls } from 'framer-motion';
+import React, { useRef, useId, useEffect, CSSProperties } from 'react';
+import { animate, useMotionValue, AnimationPlaybackControls } from 'framer-motion';
+
+interface ResponsiveImage {
+  src: string;
+  alt?: string;
+  srcSet?: string;
+}
 
 interface AnimationConfig {
   preview?: boolean;
@@ -15,6 +21,9 @@ interface NoiseConfig {
 }
 
 interface ShadowOverlayProps {
+  type?: 'preset' | 'custom';
+  presetIndex?: number;
+  customImage?: ResponsiveImage;
   sizing?: 'fill' | 'stretch';
   color?: string;
   animation?: AnimationConfig;
@@ -41,7 +50,7 @@ const useInstanceId = (): string => {
   return `shadowoverlay-${cleanId}`;
 };
 
-function ShadowOverlay({
+export function Component({
   sizing = 'fill',
   color = 'rgba(128, 128, 128, 1)',
   animation,
@@ -52,7 +61,7 @@ function ShadowOverlay({
   const id = useInstanceId();
   const animationEnabled = !!animation && animation.scale > 0;
 
-  const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
+  const feColorMatrixRef = useRef<SVGFEColorMatrixElement | null>(null);
   const hueRotateMotionValue = useMotionValue(180);
   const hueRotateAnimation = useRef<AnimationPlaybackControls | null>(null);
 
@@ -93,75 +102,99 @@ function ShadowOverlay({
     <div
       className={className}
       style={{
-        position: 'absolute',
-        inset: 0,
+        overflow: 'hidden',
+        position: 'relative',
         width: '100%',
         height: '100%',
-        overflow: 'hidden',
+        backgroundColor: 'black', // dark base like the demo
         ...style,
       }}
     >
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <defs>
-          {animationEnabled && (
-            <filter id={`${id}-displacementFilter`}>
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.01"
-                numOctaves="3"
-                result="turbulence"
-              />
-              <feDisplacementMap
-                in="SourceGraphic"
-                in2="turbulence"
-                scale={displacementScale}
-                xChannelSelector="R"
-                yChannelSelector="G"
-              />
-              <feColorMatrix
-                ref={feColorMatrixRef}
-                type="hueRotate"
-                values="180"
-              />
-              <feGaussianBlur stdDeviation="15" />
-              <feColorMatrix
-                type="matrix"
-                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10"
-              />
-            </filter>
-          )}
-        </defs>
-      </svg>
-
-      {/* Folded shadow mask */}
       <div
         style={{
           position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          background: `radial-gradient(ellipse 80% 50% at 50% 50%, ${color}, transparent)`,
-          filter: animationEnabled
-            ? `url(#${id}-displacementFilter)`
-            : undefined,
-          objectFit: sizing === 'fill' ? 'cover' : 'fill',
+          inset: -displacementScale,
+          filter: animationEnabled ? `url(#${id}) blur(10px)` : 'none',
         }}
-      />
+      >
+        {animationEnabled && (
+          <svg style={{ position: 'absolute' }}>
+            <defs>
+              <filter id={id}>
+                <feTurbulence
+                  result="undulation"
+                  numOctaves="2"
+                  baseFrequency={`${mapRange(animation!.scale, 0, 100, 0.001, 0.0004)},${mapRange(
+                    animation!.scale,
+                    0,
+                    100,
+                    0.004,
+                    0.002
+                  )}`}
+                  seed="0"
+                  type="turbulence"
+                />
+                <feColorMatrix
+                  ref={feColorMatrixRef}
+                  in="undulation"
+                  type="hueRotate"
+                  values="180"
+                />
+                <feColorMatrix
+                  in="dist"
+                  result="circulation"
+                  type="matrix"
+                  values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0"
+                />
+                <feDisplacementMap
+                  in="SourceGraphic"
+                  in2="circulation"
+                  scale={displacementScale}
+                  result="dist"
+                />
+                <feDisplacementMap
+                  in="dist"
+                  in2="undulation"
+                  scale={displacementScale}
+                  result="output"
+                />
+              </filter>
+            </defs>
+          </svg>
+        )}
 
-      {/* Single noise overlay */}
+        {/* Folded shadow mask */}
+        <div
+          style={{
+            backgroundColor: color,
+            WebkitMaskImage:
+              "url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')",
+            maskImage:
+              "url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')",
+            WebkitMaskSize: sizing === 'stretch' ? '100% 100%' : 'cover',
+            maskSize: sizing === 'stretch' ? '100% 100%' : 'cover',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+            width: '100%',
+            height: '100%',
+          }}
+        />
+      </div>
+
+      {/* Single noise overlay, same as demo */}
       {noise && noise.opacity > 0 && (
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundImage:
+              'url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")',
+            backgroundSize: noise.scale * 100,
             backgroundRepeat: 'repeat',
-            backgroundSize: `${noise.scale * 100}%`,
-            opacity: noise.opacity,
-            mixBlendMode: 'overlay',
-            pointerEvents: 'none',
+            opacity: noise.opacity / 3,
+            mixBlendMode: 'normal',
           }}
         />
       )}
@@ -169,17 +202,17 @@ function ShadowOverlay({
   );
 }
 
+
 export default function EtheralBackground() {
   return (
-    <div 
-      className="fixed inset-0 z-0 overflow-hidden pointer-events-none"
-      style={{ background: 'hsl(220 20% 6%)' }}
-    >
-      <ShadowOverlay
-        animation={{ scale: 50, speed: 30 }}
-        noise={{ opacity: 0.03, scale: 1 }}
-        color="hsl(217 91% 60% / 0.25)"
+    <div className="fixed inset-0 -z-10 w-screen h-screen">
+      <Component
+        color="rgba(71, 73, 95, 255)"    //111, 143, 175
+        animation={{ scale: 100, speed: 80 }}
+        noise={{ opacity: 1, scale: 1.2 }}
+        sizing="fill"
       />
     </div>
-  );
+  )
 }
+
