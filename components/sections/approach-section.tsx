@@ -1,73 +1,73 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
 import { Search, FileText, Film, BarChart3, ArrowRight } from "lucide-react";
+import { useCalendly } from "@/hooks/use-calendly";
 
 const steps = [
   {
     icon: Search,
-    title: "Market & Competitor Research",
+    title: "Deep Creative Research",
     description:
-      "Trend harvesting, creative gap analysis, and attention-map research to identify what actually works in your niche.",
+      "We audit your competitors' ads, mine customer reviews, and analyze winning creative in your category. You get a strategy brief showing exactly which hooks, angles, and formats are working and where the gaps are.",
     step: "01",
   },
   {
     icon: FileText,
-    title: "Scriptwriting & Hook Design",
+    title: "Performance Scripting",
     description:
-      "Short, tested scripts built for the first 3 seconds — tailored hooks, CTAs, and sequencing that improve CTR and CVR.",
+      "Every ad starts with a script built on research, not templates. We write hooks engineered for the first 3 seconds, narratives that hold attention, and CTAs that drive action. This is why our ads outperform generic creative.",
     step: "02",
   },
   {
     icon: Film,
-    title: "In-House Editing & Optimization",
+    title: "Platform-Native Editing",
     description:
-      "Pacing, cuts, captions, visual emphasis, and format variants for platform-specific delivery — all edited by our internal team.",
+      "We edit specifically for Meta, TikTok, and YouTube. No one-size-fits-all. Pacing, captions, text overlays, and format variations optimized for each platform's algorithm. All production stays in-house for speed and quality control.",
     step: "03",
   },
   {
     icon: BarChart3,
-    title: "Measurement & Rapid Iteration",
+    title: "Testing & Iteration",
     description:
-      "A/B creative tests, performance cohorts, and weekly optimization sprints tied to ROAS and conversion objectives.",
+      "You don't just get ads. You get a testing framework. We structure creative for A/B testing, track what's winning, and iterate fast. The goal: find your top performers and scale them before creative fatigue hits.",
     step: "04",
   },
 ];
 
 export function ApproachSection() {
+  const { openCalendly } = useCalendly();
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Our Approach —{" "}
+            How We Work —{" "}
             <span className="text-primary">
-              Research → Script → Edit → Optimize
+              Research first. Production second. Results always.
             </span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            We don't offer UGC. We research the niche, audit competitors, script
-            high-converting ad concepts, and edit everything in-house for
-            performance. Every creative is built with measurable KPIs and a test
-            plan.
+            We don't offer UGC. We don't guess what might work. We research your
+            market, script high-converting video ad concepts, and edit
+            everything in-house for Facebook, Instagram, TikTok, and YouTube.
+            Every creative ships with a testing plan and clear ROAS targets.
           </p>
         </motion.div>
 
-        {/* Centered Grid Wrapper */}
+        {/* Steps */}
         <div className="max-w-6xl mx-auto">
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center mb-8">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
@@ -79,18 +79,14 @@ export function ApproachSection() {
                 className="w-full max-w-70"
               >
                 <GlowCard className="h-full py-6 px-4 relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
-
-                  {/* Step Number */}
                   <span className="absolute top-4 right-4 text-5xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors">
                     {step.step}
                   </span>
 
-                  {/* Icon */}
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                     <step.icon className="w-6 h-6 text-primary" />
                   </div>
 
-                  {/* Content */}
                   <h3 className="text-lg font-semibold mb-3 pr-8">
                     {step.title}
                   </h3>
@@ -99,7 +95,6 @@ export function ApproachSection() {
                     {step.description}
                   </p>
 
-                  {/* Connector Line */}
                   {index < steps.length - 1 && (
                     <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-linear-to-r from-primary/50 to-transparent" />
                   )}
@@ -109,25 +104,55 @@ export function ApproachSection() {
           </div>
         </div>
 
-        {/* CTA */}
+        {/* Compact Minimal CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center"
+          className=""
         >
-          <Button variant="outline" size="lg" asChild className="group border-border/50 bg-transparent hover:bg-secondary">
-            <Link href="/work" className="group inline-flex items-center">
-              See Our Work
-              <ArrowRight
-                className="ml-2 transition-transform duration-300 "
-                size={18}
-              />
-            </Link>
-          </Button>
-        </motion.div>
+          <div className="max-w-4xl mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
+            <p className="text-muted-foreground text-sm md:text-base">
+              This process has driven{" "}
+              <span className="font-semibold text-foreground">
+                32% average CPA reduction
+              </span>{" "}
+              for our clients.
+            </p>
 
+            <div className="flex items-center gap-10">
+              <div className="relative group">
+                <Button
+                  onClick={openCalendly}
+                  size="sm"
+                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
+                >
+                  Book a Strategy Call
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+
+                {/* Hover Popup */}
+                <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                  <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-sm text-muted-foreground text-center">
+                    30-minute call. No pitch deck. Leave with a creative
+                    roadmap.
+                    {/* Arrow */}
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/work"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+              >
+                See Our Work
+                <ArrowRight className="ml-1 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

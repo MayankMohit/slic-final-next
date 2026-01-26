@@ -9,10 +9,12 @@ import { ApproachSection } from "@/components/sections/approach-section";
 import { ComparisonSection } from "@/components/sections/comparison-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
+import ScrollHandler from "@/components/ScrollHandler";
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <main className="min-h-screen">
+      <ScrollHandler />
       <Navbar />
       <HeroSection />
       <TrustedBySection />

@@ -10,8 +10,8 @@ import { useCalendly } from "@/hooks/use-calendly";
 
 const navLinks = [
   { name: "Work", href: "/work" },
-  { name: "About", href: "/about" },
   { name: "Case Studies", href: "/case-studies" },
+  { name: "About", href: "/about" },
   { name: "Blog", href: "/blog" },
 ];
 
@@ -39,9 +39,12 @@ export function Navbar() {
     >
       <nav className="container-tight flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-1 font-display text-xl font-bold">
-          <span className="text-foreground">SLIC</span>
-          <span className="text-gradient">Media</span>
+        <Link href="/" className="flex items-center gap-1">
+          <img
+            src="/icons/sm_logo.png"
+            alt="Logo"
+            className="h-34 w-auto"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -62,7 +65,7 @@ export function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Button onClick={openCalendly} className="bg-gradient-primary hover:opacity-90 text-primary-foreground">
-            Get a Free Audit
+            Book A Call
           </Button>
         </div>
 

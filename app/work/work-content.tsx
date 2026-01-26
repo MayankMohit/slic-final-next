@@ -86,7 +86,7 @@ function VideoCard({ thumbnail, videoUrl, className = "" }: VideoCardProps) {
   return (
     <GlowCard className={`overflow-hidden ${className}`}>
       <div
-        className="relative aspect-[9/16] cursor-pointer"
+        className="relative aspect-video cursor-pointer "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -165,7 +165,7 @@ export function WorkPageContent() {
               </div>
 
               {/* Bottom right wide */}
-              <div className="col-span-2">
+              <div className="col-span-2 row-span-2">
                 <VideoCard {...workVideos[3]} />
               </div>
 
@@ -178,12 +178,12 @@ export function WorkPageContent() {
                 <VideoCard {...workVideos[5]} />
               </div>
 
-              <div className="col-span-1">
+              <div className="col-span-2">
                 <VideoCard {...workVideos[6]} />
               </div>
 
               {/* Full width bottom */}
-              <div className="col-span-1">
+              <div className="col-span-2">
                 <VideoCard {...workVideos[7]} />
               </div>
             </motion.div>

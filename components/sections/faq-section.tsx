@@ -6,36 +6,52 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
-    question: "What type of clients do you usually work with?",
+    question: "What type of clients does SLIC work with?",
     answer:
-      "We work with creators, entrepreneurs, and businesses who understand the power of consistent, high-quality content. Most of our clients are in the US & UK and want to scale their online presence through powerful storytelling and video marketing.",
+      "SLIC works with DTC and ecommerce brands spending $30,000 or more per month on paid media. Our clients typically run video ads on Facebook, Instagram, TikTok, and YouTube and need high-performing creative to scale profitably. If you have product-market fit and a converting funnel but your creative is the bottleneck, we're a good fit.",
   },
   {
-    question: "How do you ensure the content fits our brand style and tone?",
+    question: "What platforms do you create video ads for?",
     answer:
-      "Before production starts, we go through a brand discovery phase—studying your visuals, tone, competitors, and messaging. We then build a content style guide to ensure everything we create feels consistent, on-brand, and true to your audience.",
+      "We create performance video ads for Facebook, Instagram, TikTok, and YouTube. Each platform has different creative requirements, and we optimize for each. Pacing, hooks, text overlays, and format variations are tailored to how each platform's algorithm rewards content. We don't do one-size-fits-all edits.",
   },
   {
-    question: "How long does it take to deliver the first batch of content?",
+    question: "How long does it take to deliver the first batch of video ads?",
     answer:
-      "Typically, you can expect your first batch of deliverables within 7–10 business days after we receive all necessary inputs and approvals.",
+      "Most clients receive their first batch of video ads within 3 weeks. Week 1 is research and strategy. Week 2 is scripting. Week 3 is production and editing. If you need faster turnaround for urgent campaigns, let us know on our strategy call and we can discuss options.",
   },
   {
-    question: "Do you handle strategy as well, or only the creative part?",
+    question: "How much does it cost to work with SLIC?",
     answer:
-      "We handle both. Our team doesn't just execute—we think strategically about what kind of content performs best for your goals, platforms, and audience.",
+      "Pricing depends on volume, platforms, and turnaround needs. We work with DTC brands spending $30k+ on paid media, and our packages are built for teams serious about creative as a growth lever. Book a strategy call and we'll scope out exactly what you need.",
+  },
+  {
+    question: "Do you handle creative strategy, or just production?",
+    answer:
+      "Both. Strategy is where we start. Before we produce anything, we research your competitors, analyze winning ads in your category, and identify the hooks and angles most likely to convert. Then we script and produce based on that research. You're not just getting video ads. You're getting a creative strategy backed by data.",
   },
   {
     question: "What if I don't have a content idea or script yet?",
     answer:
-      "No problem. We handle ideation and scripting for you. Based on your niche, product, and target audience, we create hooks, angles, and stories that grab attention and convert.",
+      "That's exactly what we do. Most clients come to us without scripts or concepts. We handle the research, develop the creative angles, write the scripts, and produce the final video ads. You just need to share your product, your goals, and access to any existing assets. We take it from there.",
   },
   {
-    question: "Why should we choose your agency over others?",
+    question: "Do you offer UGC or creator content?",
     answer:
-      "Because we don't just make content—we build growth systems. We've scaled brands from zero to millions of views with an obsessive focus on performance, quality, and storytelling that drives results.",
+      "No. SLIC focuses on research, scripting, and editing. We don't source UGC creators or manage influencer content. Our specialty is building the strategic and production layers that make video ads perform. If you need creator sourcing, we can recommend partners, but that's not our core service.",
+  },
+  {
+    question: "How do you ensure the video ads match our brand?",
+    answer:
+      "We start every engagement with a brand and creative briefing. You share your brand guidelines, tone preferences, past creative that worked, and any constraints. We use that as the foundation for all scripts and edits. You review and approve everything before final delivery. Nothing ships without your sign-off.",
+  },
+  {
+    question: "Why should we choose SLIC over other creative agencies?",
+    answer:
+      "Most agencies start with production. We start with research. Before we shoot or edit anything, we dig into what's actually working in your market. We script every ad based on data, not templates. The result is video ads that win creative tests more consistently. We've generated $50M+ in revenue for brands like NEXA, Maybelline, and AJIO using this approach.",
   },
 ];
+
 
 export function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(0);

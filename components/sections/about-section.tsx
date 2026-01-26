@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
+import { useCalendly } from "@/hooks/use-calendly";
 
 const team = [
   {
-    name: "Vedant",
+    name: "Vedant Kulkarni",
     role: "Founder & Creative Director",
     description:
-      "Leads SLIC’s creative vision, blending storytelling with performance-driven strategy.",
-    initial: "V", // kept but not used in this layout
+      "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy, ensuring every ad is backed by research and built to convert."
   },
   {
-    name: "Siddhartha",
-    role: "Operations & Logistics",
+    name: "Siddhartha Aryan",
+    role: "Head of Production",
     description:
-      "Ensures every project runs flawlessly—from concept to final delivery.",
-    initial: "S",
+      "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines."
   },
 ];
 
 export function AboutSection() {
+  const { openCalendly } = useCalendly();
   return (
     <section className="relative section-padding overflow-hidden">
       <div className="container-tight relative z-10">
@@ -41,39 +41,70 @@ export function AboutSection() {
             </span>
 
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">
-              From Passion to{" "}
-              <span className="text-gradient">Performance</span>
+              From Passion to <span className="text-gradient">Performance</span>
             </h2>
 
             <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
               <p>
-                What began as a passion for storytelling and editing evolved into
-                a performance-first content agency trusted by global brands.
+                What began as a passion for storytelling and editing evolved
+                into a performance creative agency built for DTC brands scaling
+                on paid media.
               </p>
               <p>
-                We don’t chase trends—we engineer content systems that compound
-                growth and attention.
+                We don't chase trends. We research what converts, script ads
+                that hold attention, and edit for platforms like Facebook,
+                TikTok, and YouTube. Every video ad we deliver is built to
+                improve ROAS and lower CPA.
               </p>
               <p className="text-foreground font-medium">
                 <span className="text-primary">$50M+</span> in revenue generated
-                and <span className="text-primary">150K+</span> organic followers
-                grown in under 90 days.
+                for brands including <br />
+                <span className="text-primary">
+                  LOOP LABS, NEUROBROCC, LOKT.
+                </span>
               </p>
             </div>
 
-            <Button
-              variant="outline"
-              className="mt-10 group"
-              asChild
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mt-6"
             >
-              <Link href="/about">
-                Learn More
-                <ArrowRight
-                  className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
-                  size={18}
-                />
-              </Link>
-            </Button>
+              <div className="max-w-4xl mx-auto flex flex-col gap-6 text-center md:text-left">
+                <div className="flex items-center gap-10">
+                  <div className="relative group">
+                    <Button
+                      onClick={openCalendly}
+                      size="sm"
+                      className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
+                    >
+                      Book a Strategy Call
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+
+                    {/* Hover Popup */}
+                    <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                      <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-sm text-muted-foreground text-center">
+                        30-minute call. No pitch deck. Leave with a creative
+                        roadmap.
+                        {/* Arrow */}
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/about"
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+                  >
+                    Learn More
+                    <ArrowRight className="ml-1 w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Team */}
@@ -82,11 +113,14 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="space-y-8"
+            className="space-y-4"
           >
-            <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-2">
-              Core Team
+            <h3 className="text-sm uppercase tracking-widest text-foreground mb-1">
+              Team
             </h3>
+            <p className="text-muted-foreground text-sm md:text-base">
+              Who You'll Work With
+            </p>
 
             {team.map((member, index) => (
               <motion.div
@@ -98,11 +132,11 @@ export function AboutSection() {
                 className="group"
               >
                 <GlowCard className="overflow-hidden h-full">
-                  <div className="p-6 border-b border-slate-600">
+                  <div className="p-5 border-b border-slate-600">
                     <div className="text-2xl md:text-3xl font-display font-bold text-gradient mt-1">
                       {member.name}
                     </div>
-                    <div className="text-muted-foreground text-sm uppercase tracking-wider">
+                    <div className="text-foreground text-sm uppercase tracking-wider">
                       {member.role}
                     </div>
                   </div>
