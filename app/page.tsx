@@ -10,11 +10,14 @@ import { ComparisonSection } from "@/components/sections/comparison-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { CTASection } from "@/components/sections/cta-section";
 import ScrollHandler from "@/components/ScrollHandler";
+import { Suspense } from "react";
 
 export default async function HomePage() {
   return (
     <main className="min-h-screen">
-      <ScrollHandler />
+      <Suspense fallback={null}>
+        <ScrollHandler />
+      </Suspense>
       <Navbar />
       <HeroSection />
       <TrustedBySection />
