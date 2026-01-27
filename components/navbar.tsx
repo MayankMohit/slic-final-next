@@ -37,23 +37,23 @@ export function Navbar() {
         isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50" : "bg-transparent"
       }`}
     >
-      <nav className="container-tight flex items-center justify-between h-16 md:h-20">
+      <nav className="container-tight flex items-center justify-between h-16 md:h-[10vh]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1">
           <img
             src="/icons/sm_logo.png"
             alt="Logo"
-            className="h-34 w-auto"
+            className="h-[20vh] w-auto"
           />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-[2.8vw]">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
+              className={`text-[1vw] font-medium transition-colors hover:text-primary ${
                 pathname === link.href ? "text-primary" : "text-muted-foreground"
               }`}
             >
@@ -64,7 +64,7 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Button onClick={openCalendly} className="bg-gradient-primary hover:opacity-90 text-primary-foreground">
+          <Button onClick={openCalendly} className="bg-gradient-primary hover:opacity-90 text-primary-foreground p-[1vw]">
             Book A Call
           </Button>
         </div>

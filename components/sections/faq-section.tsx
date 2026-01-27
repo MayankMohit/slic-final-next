@@ -67,13 +67,13 @@ export function FAQSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+          <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
             Got questions?
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
+          <h2 className="ffont-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Frequently Asked Questions
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-[1vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
             Everything you need to know before working with us.
           </p>
         </motion.div>
@@ -84,7 +84,7 @@ export function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-3xl mx-auto"
+          className="max-w-[50vw] mx-auto"
         >
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
@@ -98,13 +98,13 @@ export function FAQSection() {
                 <button
                   type="button"
                   onClick={() => setActiveIndex(isOpen ? -1 : index)}
-                  className="w-full flex items-center justify-between px-2 py-5 text-left group"
+                  className="w-full flex items-center justify-between px-[1vw] py-[1vw] text-left group"
                 >
-                  <span className="font-display text-lg font-medium text-foreground group-hover:text-primary transition-colors pr-4">
+                  <span className="font-display text-[1.2vw] font-medium text-foreground group-hover:text-primary transition-colors pr-4">
                     {faq.question}
                   </span>
 
-                  <div className="p-2 rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="p-[1vw] text-[1vw] rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>

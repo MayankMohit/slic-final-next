@@ -12,13 +12,13 @@ const team = [
     name: "Vedant Kulkarni",
     role: "Founder & Creative Director",
     description:
-      "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy, ensuring every ad is backed by research and built to convert."
+      "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy, ensuring every ad is backed by research and built to convert.",
   },
   {
     name: "Siddhartha Aryan",
     role: "Head of Production",
     description:
-      "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines."
+      "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines.",
   },
 ];
 
@@ -35,16 +35,16 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="inline-flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] mb-6">
-              <span className="w-6 h-px bg-primary/50" />
+            <span className="inline-flex items-center gap-2 text-primary text-[1vw] uppercase tracking-[0.2em] mb-6">
+              <span className="w-[2vw] h-0.5 bg-primary/50" />
               Our Story
             </span>
 
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">
+            <h2 className="text-4xl md:text-[3vw] font-display font-bold mb-[1vw] leading-tight">
               From Passion to <span className="text-gradient">Performance</span>
             </h2>
 
-            <div className="space-y-5 text-muted-foreground text-lg leading-relaxed">
+            <div className="space-y-5 text-muted-foreground text-[1.1vw] leading-relaxed">
               <p>
                 What began as a passion for storytelling and editing evolved
                 into a performance creative agency built for DTC brands scaling
@@ -73,7 +73,7 @@ export function AboutSection() {
               className="mt-6"
             >
               <div className="max-w-4xl mx-auto flex flex-col gap-6 text-center md:text-left">
-                <div className="flex items-center gap-10">
+                <div className="flex items-center gap-[2vw]">
                   <div className="relative group">
                     <Button
                       onClick={openCalendly}
@@ -97,7 +97,7 @@ export function AboutSection() {
 
                   <Link
                     href="/about"
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+                    className="text-[1.2vw] font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
                   >
                     Learn More
                     <ArrowRight className="ml-1 w-4 h-4" />
@@ -113,12 +113,12 @@ export function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="space-y-4"
+            className="space-y-[2vh] mt-10 lg:mt-0"
           >
-            <h3 className="text-sm uppercase tracking-widest text-foreground mb-1">
+            <h3 className="text-[1.2vw] uppercase tracking-widest text-foreground mb-1">
               Team
             </h3>
-            <p className="text-muted-foreground text-sm md:text-base">
+            <p className="text-muted-foreground text-sm md:text-[1vw] mb-8">
               Who You'll Work With
             </p>
 
@@ -132,16 +132,16 @@ export function AboutSection() {
                 className="group"
               >
                 <GlowCard className="overflow-hidden h-full">
-                  <div className="p-5 border-b border-slate-600">
-                    <div className="text-2xl md:text-3xl font-display font-bold text-gradient mt-1">
+                  <div className="p-[2vh] border-b border-slate-600">
+                    <div className="text-2xl md:text-[1.5vw] font-display font-bold text-gradient mt-1">
                       {member.name}
                     </div>
-                    <div className="text-foreground text-sm uppercase tracking-wider">
+                    <div className="text-foreground text-[1vw] uppercase tracking-wider">
                       {member.role}
                     </div>
                   </div>
-                  <div className="p-6">
-                    <p className="text-muted-foreground leading-relaxed">
+                  <div className="p-[2vh]">
+                    <p className="text-muted-foreground leading-relaxed text-[1vw]">
                       {member.description}
                     </p>
                   </div>

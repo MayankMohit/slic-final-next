@@ -43,7 +43,7 @@ export function ComparisonSection() {
   const { openCalendly } = useCalendly();
   return (
     <section className="section-padding">
-      <div className="container-tight">
+      <div className="">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,13 +52,13 @@ export function ComparisonSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+          <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
             Why Choose Us
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Traditional Agency vs <span className="text-gradient">SLIC</span>
           </h2>
-          <p className="text-muted-foreground max-w-4xl mx-auto text-lg">
+          <p className="text-[1vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
             Most creative agencies prioritize aesthetics over performance. We
             built SLIC to do the opposite.
           </p>
@@ -70,32 +70,32 @@ export function ComparisonSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="hidden md:block"
+          className="hidden md:block w-[70vw] mx-auto"
         >
           <GlowCard className="overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-3 bg-secondary/50 text-sm font-medium">
-              <div className="p-4 text-muted-foreground">Area</div>
-              <div className="p-4 text-muted-foreground border-x border-muted-foreground/30">
+            <div className="grid grid-cols-3 bg-secondary/50 text-[1vw] font-medium">
+              <div className="p-[1vw] text-muted-foreground">Area</div>
+              <div className="p-[1vw] text-muted-foreground border-x border-muted-foreground/30">
                 Traditional
               </div>
-              <div className="p-4 text-primary">SLIC Media</div>
+              <div className="p-[1vw] text-primary">SLIC Media</div>
             </div>
 
             {/* Table Rows */}
             {comparisonData.map((row, index) => (
               <div
                 key={row.area}
-                className={`grid grid-cols-3 text-sm ${index !== comparisonData.length - 1 ? "border-b border-muted-foreground/30" : ""}`}
+                className={`grid grid-cols-3 text-[1.1vw] ${index !== comparisonData.length - 1 ? "border-b border-muted-foreground/30" : ""}`}
               >
-                <div className="p-4 font-medium text-foreground">
+                <div className="p-[0.6vw] font-medium text-foreground">
                   {row.area}
                 </div>
-                <div className="p-4 text-muted-foreground border-x border-muted-foreground/30 flex items-start gap-2">
+                <div className="p-[0.6vw] text-muted-foreground border-x border-muted-foreground/30 flex items-start gap-2">
                   <X className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                   <span>{row.traditional}</span>
                 </div>
-                <div className="p-4 text-foreground flex items-start gap-2">
+                <div className="p-[0.6vw] text-foreground flex items-start gap-2">
                   <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                   <span>{row.slic}</span>
                 </div>
@@ -143,8 +143,8 @@ export function ComparisonSection() {
         viewport={{ once: true }}
         className="mt-6"
       >
-        <div className="max-w-3xl mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-          <p className="text-muted-foreground text-sm md:text-base text-center">
+        <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
+          <p className="text-muted-foreground text-sm md:text-[1v6] text-center">
             If you're tired of agencies that deliver pretty ads that don't perform, let's talk.
           </p>
 

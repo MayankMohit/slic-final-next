@@ -47,15 +47,15 @@ export function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-[4vh]"
         >
-          <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+          <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
             Testimonials
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             What Our Clients Say
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-[1vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
             Don't just take our word for it. Hear from the brands we've helped
             scale with performance video ads.
           </p>
@@ -73,7 +73,7 @@ export function TestimonialsSection() {
               <GlowCard className="h-full p-6">
                 <div className="flex flex-col h-full">
                   <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                  <p className="text-foreground text-lg mb-6 grow leading-relaxed">
+                  <p className="text-foreground text-[1vw] mb-6 grow leading-relaxed">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className="flex gap-1 mb-4">
@@ -85,10 +85,10 @@ export function TestimonialsSection() {
                     ))}
                   </div>
                   <div>
-                    <div className="font-display font-semibold text-foreground">
+                    <div className="font-display font-semibold text-foreground text-[1vw]">
                       {testimonial.author}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-[0.8vw] text-muted-foreground">
                       {testimonial.role}
                     </div>
                   </div>
@@ -105,13 +105,13 @@ export function TestimonialsSection() {
         viewport={{ once: true }}
         className="mt-6"
       >
-        <div className="max-w-3xl mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-          <p className="text-muted-foreground text-sm md:text-base text-center">
+        <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
+          <p className="text-muted-foreground text-sm md:text-[1vw] text-center">
             Ready to see results like these? Book a call and we'll show you
             exactly how we can improve your video ad performance.
           </p>
 
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-[4vw]">
             <div className="relative group">
               <Button
                 onClick={openCalendly}

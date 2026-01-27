@@ -49,15 +49,18 @@ export function ApproachSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-[4vh]"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            How We Work —{" "}
-            <span className="text-primary">
-              Research first. Production second. Results always.
-            </span>
+          
+            <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+            How We Work
+          </span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+             Research first. Production second. Results always.
+
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          
+          <p className="text-[1vw] text-muted-foreground leading-relaxed">
             We don't offer UGC. We don't guess what might work. We research your
             market, script high-converting video ad concepts, and edit
             everything in-house for Facebook, Instagram, TikTok, and YouTube.
@@ -66,8 +69,8 @@ export function ApproachSection() {
         </motion.div>
 
         {/* Steps */}
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center mb-8">
+        <div className="max-w-[70vw] mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-[2vw] justify-items-center mb-[3vh]">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
@@ -76,27 +79,27 @@ export function ApproachSection() {
                 whileHover={{ y: -15 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="w-full max-w-70"
+                className="w-full max-w-[20vw]"
               >
-                <GlowCard className="h-full py-6 px-4 relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
-                  <span className="absolute top-4 right-4 text-5xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors">
+                <GlowCard className="h-full py-[2vh] px-[2vw] relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
+                  <span className="absolute top-4 right-4 text-[2.5vw] font-bold text-primary/10 group-hover:text-primary/20 transition-colors">
                     {step.step}
                   </span>
 
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <step.icon className="w-6 h-6 text-primary" />
+                    <step.icon className="w-[1.5vw] h-[1.5vw] text-primary" />
                   </div>
 
-                  <h3 className="text-lg font-semibold mb-3 pr-8">
+                  <h3 className="text-[1.2vw] font-semibold mb-3 pr-8">
                     {step.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-[0.8vw] leading-relaxed">
                     {step.description}
                   </p>
 
                   {index < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-linear-to-r from-primary/50 to-transparent" />
+                    <div className="hidden lg:block absolute top-1/2 -right-4 w-[2vw] h-0.5 bg-linear-to-r from-primary/50 to-transparent" />
                   )}
                 </GlowCard>
               </motion.div>
@@ -112,8 +115,8 @@ export function ApproachSection() {
           viewport={{ once: true }}
           className=""
         >
-          <div className="max-w-4xl mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-base">
+          <div className="max-w-[70vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
+            <p className="text-muted-foreground text-sm md:text-[1vw]">
               This process has driven{" "}
               <span className="font-semibold text-foreground">
                 32% average CPA reduction
@@ -121,31 +124,30 @@ export function ApproachSection() {
               for our clients.
             </p>
 
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-[4vw]">
               <div className="relative group">
                 <Button
                   onClick={openCalendly}
                   size="sm"
-                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
+                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold"
                 >
                   Book a Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
 
                 {/* Hover Popup */}
-                <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                  <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-sm text-muted-foreground text-center">
-                    30-minute call. No pitch deck. Leave with a creative
-                    roadmap.
-                    {/* Arrow */}
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
-                  </div>
+              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-[] opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[1vw] text-muted-foreground text-center">
+                  30-minute call. No pitch deck. Leave with a creative roadmap.
+                  {/* Arrow */}
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
                 </div>
+              </div>
               </div>
 
               <Link
                 href="/work"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+                className="text-[1vw] font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
               >
                 See Our Work
                 <ArrowRight className="ml-1 w-4 h-4" />

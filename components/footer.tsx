@@ -63,18 +63,18 @@ export function Footer() {
 
   return (
     <footer className="relative bg-black/70 border-t border-border/50 backdrop-blur-sm">
-      <div className="container-tight py-8">
+      <div className="px-[10vw] py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 max-w-[25vw] space-y-4">
             <Link
               href="/"
-              className="flex items-center gap-1 font-display text-xl font-bold mb-4"
+              className="flex items-center gap-1 font-display text-[1.5vw] font-bold mb-4"
             >
-              <span className="text-gradient text-xl">SLIC.</span>
+              <span className="text-gradient text-[1.5vw]">SLIC.</span>
             </Link>
 
-            <p className="text-muted-foreground text-sm mb-6 max-w-xs">
+            <p className="text-muted-foreground text-[1vw] mb-[1vw] max-w-[40vw]">
               Performance video ads for DTC brands scaling on Facebook, TikTok,
               and YouTube. Research-driven creative that lowers CPA and improves
               ROAS.
@@ -97,16 +97,16 @@ export function Footer() {
           </div>
 
           {/* Work */}
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">
+          <div className=" text-[1.1vw]">
+            <h4 className="font-display font-semibold text-foreground mb-[1vw]">
               Work
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-[0.8vw]">
               {footerLinks.explore.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground/80 hover:text-primary text-sm transition-colors"
+                    className="text-muted-foreground/80 hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -116,16 +116,16 @@ export function Footer() {
           </div>
 
           {/* Company */}
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">
+          <div className=" text-[1.1vw]">
+            <h4 className="font-display font-semibold text-foreground mb-[1vw]">
               Company
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-[0.8vw]">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground/80 hover:text-primary text-sm transition-colors"
+                    className="text-muted-foreground/80 hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -136,7 +136,7 @@ export function Footer() {
                   onClick={() => {
                     window.location.href = "/?scroll=faqs";
                   }}
-                  className="text-muted-foreground/80 hover:text-primary text-sm transition-colors"
+                  className="text-muted-foreground/80 hover:text-primary transition-colors"
                 >
                   FAQs
                 </button>
@@ -145,14 +145,14 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
-            <h4 className="font-display font-semibold text-foreground mb-4">
+          <div className=" text-[1.1vw]">
+            <h4 className="font-display font-semibold text-foreground mb-[1vw]">
               Contact
             </h4>
 
-            <ul className="space-y-3 text-sm mb-3">
-              <li className="flex items-start gap-2 text-muted-foreground/80">
-                <Mail className="w-4 h-4 mt-0.5 shrink-0" />
+            <ul className="space-y-[0.8vw] mb-3">
+              <li className="flex items-start gap-[0.8vw] text-muted-foreground/80">
+                <Mail className="w-4 h-4 mt-[0.4vw] shrink-0" />
                 <a
                   href="mailto:slicmedia.business@gmail.com"
                   className="hover:text-primary transition-colors"
@@ -161,8 +161,8 @@ export function Footer() {
                 </a>
               </li>
 
-              <li className="flex items-start gap-2 text-muted-foreground/80">
-                <Phone className="w-4 h-4 mt-0.5 shrink-0" />
+              <li className="flex items-start gap-[0.8vw] text-muted-foreground/80">
+                <Phone className="w-4 h-4 mt-[0.4vw] shrink-0" />
                 <a
                   href="tel:+919876540451"
                   className="hover:text-primary transition-colors"
@@ -170,20 +170,14 @@ export function Footer() {
                   +91 9876540451
                 </a>
               </li>
-
-              <li className="flex items-start gap-2 text-muted-foreground/80">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>Tower B, Oberoi Sky City, Borivali - E</span>
-              </li>
             </ul>
 
             {/* Subtle CTA Button */}
             <button
               onClick={openCalendly}
-              className="text-sm px-2 py-2 rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex"
+              className="text-[1.1vw] px-[0.8vw] py-[0.4vw] rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex"
             >
               Book A Strategy Call
-              <ArrowRight className="ml-2 w-4 h-4" />
             </button>
           </div>
         </div>

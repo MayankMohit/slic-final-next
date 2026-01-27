@@ -12,17 +12,17 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       {/* Content */}
-      <div className="container-tight py-10 md:py-32">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container-tight py-10 md:py-[15vh]">
+        <div className="max-w-[70vw] mx-auto text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            className="inline-flex items-center gap-2 px-[0.8vw] py-[0.4vw] rounded-full bg-primary/10 border border-primary/20 mb-[5vh]"
           >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">
+            <span className="w-[0.4vw] h-[0.4vw] rounded-full bg-primary animate-pulse" />
+            <span className="text-[1vw] font-medium text-primary">
               {" "}
               Performance Creative Agency for DTC Brands
             </span>
@@ -33,7 +33,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-balance"
+            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[5vw] font-bold tracking-tight mb-[3vh] text-balance"
           >
             Ad Creative That{" "}
             <span className="text-gradient">Actually Converts</span>
@@ -44,7 +44,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-pretty"
+            className="text-lg md:text-[1.2vw] text-muted-foreground max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty"
           >
             We research, script, and produce performance-driven video ads for
             Meta, TikTok, and YouTube. Built for DTC brands spending $30k+/month
@@ -56,22 +56,22 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-[3vw]"
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
               <Button
                 onClick={openCalendly}
                 size="lg"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-8 py-6 text-base font-semibold"
+                className="bg-gradient-primary hover:opacity-90 text-primary-foreground  text-[1.2vw] font-semibold"
               >
                 Book a Strategy Call
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-[0.5vw]" />
               </Button>
 
               {/* Hover Popup */}
-              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-sm text-muted-foreground text-center">
+              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-[] opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[1vw] text-muted-foreground text-center">
                   30-minute call. No pitch deck. Leave with a creative roadmap.
                   {/* Arrow */}
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
@@ -83,7 +83,7 @@ export function HeroSection() {
               asChild
               variant="outline"
               size="lg"
-              className="px-8 py-6 text-base font-semibold border-border/50 bg-transparent hover:bg-secondary"
+              className="px-8 py-6 text-[1.2vw] font-semibold border-border/50 bg-transparent hover:bg-secondary"
             >
               <Link href="/work">
                 <Play className="mr-2 w-5 h-5" />
@@ -97,7 +97,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-10 pt-10 border-t border-border/50"
+            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] mt-[6vh] pt-[6vh] border-t border-border/50"
           >
             {[
               { value: "$50M+", label: "Client Revenue Generated" },
@@ -106,10 +106,10 @@ export function HeroSection() {
               { value: "3.2x", label: "Avg. ROAS Lift" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="font-display text-2xl md:text-3xl font-bold text-gradient mb-1">
+                <div className="font-display text-2xl md:text-[2.5vw] font-bold text-gradient mb-[1vh]">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-[1vw] text-muted-foreground">
                   {stat.label}
                 </div>
               </div>
@@ -117,22 +117,6 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 rounded-full bg-primary"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }
