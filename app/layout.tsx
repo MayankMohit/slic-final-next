@@ -105,7 +105,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <SmoothScrollProvider options={{ lerp: 0.08, smoothWheel: true }}>
+        <SmoothScrollProvider>
           <TooltipProvider>
             {/* Global animated background */}
             <EtheralBackground />
