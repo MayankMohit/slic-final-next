@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, TrendingUp, Users, DollarSign } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, DollarSign, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
 import { useCalendly } from "@/hooks/use-calendly";
@@ -151,7 +151,7 @@ export function CaseStudiesSection() {
               className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
             >
               <Link href="/work">
-                
+                <Play className="mr-2 w-5 h-5" />
                 See More Case Studies
               </Link>
             </Button>
