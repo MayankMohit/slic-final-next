@@ -9,11 +9,20 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import EtheralBackground from "@/components/etheral-background";
 import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import PageTransitionProvider from "@/components/PageTransitionProvider";
+import RouteLoader from "@/components/RouteLoader";
+import localFont from 'next/font/local';
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
+// const inter = Inter({ subsets: ['latin'], display: 'swap' });
+
+const SFProDisplay = localFont({
+  src: [
+    { path: '../fonts/SFProDisplay-Semibold.otf', weight: '600', style: 'normal' },
+    { path: '../fonts/SFProDisplay-Bold.otf', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-sfpro',
+  display: 'swap',
+  fallback: ['Inter', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
@@ -96,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${SFProDisplay.variable}`}>
       <head>
         {/* Calendly CSS */}
         <link
@@ -106,16 +115,19 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <SmoothScrollProvider>
-          <TooltipProvider>
-            {/* Global animated background */}
-            <EtheralBackground />
+          <RouteLoader />
+          <PageTransitionProvider>
+            <TooltipProvider>
+              {/* Global animated background */}
+              <EtheralBackground />
 
-            {/* Foreground app content */}
-            <div className="relative z-10">{children}</div>
+              {/* Foreground app content */}
+              <div className="relative z-10 font-sfpro">{children}</div>
 
-            <Toaster />
-            <SonnerToaster />
-          </TooltipProvider>
+              <Toaster />
+              <SonnerToaster />
+            </TooltipProvider>
+          </PageTransitionProvider>
         </SmoothScrollProvider>
         {/* Calendly Script */}
         <Script

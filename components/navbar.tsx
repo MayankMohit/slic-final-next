@@ -43,7 +43,7 @@ export function Navbar() {
           <img
             src="/icons/sm_logo.png"
             alt="Logo"
-            className="h-[3vh] w-auto"
+            className="h-[2.5vh] w-auto"
           />
         </Link>
 
@@ -53,7 +53,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-[0.8vw] font-bold transition-colors hover:text-primary ${
+              className={`text-[1vw] font-semibold transition-colors hover:text-primary ${
                 pathname === link.href ? "text-primary" : "text-foreground"
               }`}
             >

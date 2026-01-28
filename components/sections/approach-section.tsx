@@ -60,7 +60,7 @@ export function ApproachSection() {
 
           </h2>
           
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed font-medium">
             We don't offer UGC. We don't guess what might work. We research your
             market, script high-converting video ad concepts, and edit
             everything in-house for Facebook, Instagram, TikTok, and YouTube.
@@ -94,7 +94,7 @@ export function ApproachSection() {
                     {step.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-[0.8vw] leading-relaxed">
+                  <p className="text-muted-foreground text-[0.8vw] leading-relaxed font-medium">
                     {step.description}
                   </p>
 
@@ -116,9 +116,9 @@ export function ApproachSection() {
           className=""
         >
           <div className="max-w-[70vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[0.8vw]">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] font-medium">
               This process has driven{" "}
-              <span className="font-semibold text-foreground">
+              <span className=" text-foreground">
                 32% average CPA reduction
               </span>{" "}
               for our clients.

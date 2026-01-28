@@ -55,7 +55,7 @@ export function CaseStudiesSection() {
           <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Performance Creative That Delivers Measurable ROAS
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-medium">
             We don't measure success in likes or followers. We measure it in
             CPA, ROAS, and revenue. Here's what our video ads have delivered for
             DTC brands like yours.
@@ -81,7 +81,7 @@ export function CaseStudiesSection() {
                       <div className="font-display text-2xl md:text-[1.5vw] font-bold text-gradient">
                         {study.metric}
                       </div>
-                      <div className="text-[0.8vw] text-muted-foreground">
+                      <div className="text-[0.8vw] text-muted-foreground font-medium">
                         {study.metricLabel}
                       </div>
                     </div>
@@ -89,14 +89,14 @@ export function CaseStudiesSection() {
                   <h3 className="font-display text-[0.8vw] font-bold mb-[1vw] text-foreground">
                     {study.title}
                   </h3>
-                  <p className="text-muted-foreground text-[0.8vw] grow leading-relaxed">
+                  <p className="text-muted-foreground text-[0.8vw] grow leading-relaxed font-medium">
                     {study.description}
                   </p>
                   <div className="flex flex-wrap gap-[0.5vw] mt-[1vw] ">
                     {study.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-[0.5vw] py-[0.2vw] text-[0.7vw] rounded-full bg-secondary text-muted-foreground"
+                        className="px-[0.5vw] py-[0.2vw] text-[0.7vw] rounded-full bg-secondary text-muted-foreground font-medium"
                       >
                         {tag}
                       </span>
@@ -116,7 +116,7 @@ export function CaseStudiesSection() {
           className="mt-6"
         >
           <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center font-medium">
               These results come from research-first creative, not guesswork. If
               you're spending $30k+ on Facebook, TikTok, or YouTube ads and want
               creative that actually performs, let's talk.

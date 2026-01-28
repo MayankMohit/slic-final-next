@@ -73,7 +73,7 @@ export function FAQSection() {
           <h2 className="ffont-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Frequently Asked Questions
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-medium">
             Everything you need to know before working with us.
           </p>
         </motion.div>
@@ -104,7 +104,7 @@ export function FAQSection() {
                     {faq.question}
                   </span>
 
-                  <div className="p-[1vw] text-[0.8vw] rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                  <div className="p-[1vw]  text-[0.8vw] font-medium rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
@@ -119,7 +119,7 @@ export function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="px-2 pb-5 text-muted-foreground leading-relaxed">
+                      <p className="px-5 pb-5 text-muted-foreground leading-relaxed font-medium text-[0.8vw] w-[90%]">
                         {faq.answer}
                       </p>
                     </motion.div>

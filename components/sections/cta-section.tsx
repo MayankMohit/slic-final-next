@@ -34,7 +34,7 @@ export function CTASection() {
           </h2>
 
           {/* Copy */}
-          <p className="text-[0.8vw] text-muted-foreground mb-10 max-w-[50vw] mx-auto leading-relaxed">
+          <p className="text-[0.8vw] text-muted-foreground mb-10 max-w-[50vw] mx-auto leading-relaxed font-medium">
             Book a strategy call and get a clear breakdown of what's holding
             your creative back and how we'd fix it.
           </p>
@@ -55,7 +55,7 @@ export function CTASection() {
           </div>
 
           {/* Trust line */}
-          <p className="mt-8 text-[0.8vw] text-muted-foreground">
+          <p className="mt-8 text-[0.8vw] text-muted-foreground font-medium">
             No pitch. No pressure. Just real insights.
           </p>
         </motion.div>

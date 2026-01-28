@@ -55,7 +55,7 @@ export function TestimonialsSection() {
           <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             What Our Clients Say
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-medium">
             Don't just take our word for it. Hear from the brands we've helped
             scale with performance video ads.
           </p>
@@ -73,7 +73,7 @@ export function TestimonialsSection() {
               <GlowCard className="h-full p-6">
                 <div className="flex flex-col h-full">
                   <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                  <p className="text-foreground text-[0.8vw] mb-6 grow leading-relaxed">
+                  <p className="text-foreground text-[0.8vw] mb-6 grow leading-relaxed font-medium">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className="flex gap-1 mb-4">
@@ -88,7 +88,7 @@ export function TestimonialsSection() {
                     <div className="font-display font-bold text-foreground text-[0.8vw]">
                       {testimonial.author}
                     </div>
-                    <div className="text-[0.8vw] text-muted-foreground">
+                    <div className="text-[0.8vw] text-muted-foreground font-medium">
                       {testimonial.role}
                     </div>
                   </div>
@@ -106,7 +106,7 @@ export function TestimonialsSection() {
         className="mt-6"
       >
         <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
-          <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center">
+          <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center font-medium">
             Ready to see results like these? Book a call and we'll show you
             exactly how we can improve your video ad performance.
           </p>

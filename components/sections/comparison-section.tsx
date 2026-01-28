@@ -58,7 +58,7 @@ export function ComparisonSection() {
           <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Traditional Agency vs <span className="text-gradient">SLIC</span>
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-medium">
             Most creative agencies prioritize aesthetics over performance. We
             built SLIC to do the opposite.
           </p>
@@ -91,11 +91,11 @@ export function ComparisonSection() {
                 <div className="p-[0.6vw] font-bold text-foreground">
                   {row.area}
                 </div>
-                <div className="p-[0.6vw] text-muted-foreground border-x border-muted-foreground/30 flex items-start gap-2">
+                <div className="p-[0.6vw] text-muted-foreground border-x border-muted-foreground/30 flex items-start gap-2 font-medium">
                   <X className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                   <span>{row.traditional}</span>
                 </div>
-                <div className="p-[0.6vw] text-foreground flex items-start gap-2">
+                <div className="p-[0.6vw] text-foreground flex items-start gap-2 font-medium">
                   <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                   <span>{row.slic}</span>
                 </div>
@@ -144,7 +144,7 @@ export function ComparisonSection() {
         className="mt-6"
       >
         <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-          <p className="text-muted-foreground text-sm md:text-[1v6] text-center">
+          <p className="text-muted-foreground text-sm md:text-[1v6] text-center font-medium">
             If you're tired of agencies that deliver pretty ads that don't perform, let's talk.
           </p>
 

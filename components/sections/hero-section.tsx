@@ -44,7 +44,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-[0.8vw] text-muted-foreground max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty"
+            className="text-lg md:text-[0.8vw] text-muted-foreground max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-medium"
           >
             We research, script, and produce performance-driven video ads for
             Meta, TikTok, and YouTube. Built for DTC brands spending $30k+/month
@@ -109,7 +109,7 @@ export function HeroSection() {
                 <div className="font-display text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]">
                   {stat.value}
                 </div>
-                <div className="text-[0.8vw] text-muted-foreground">
+                <div className="text-[0.8vw] text-muted-foreground font-medium">
                   {stat.label}
                 </div>
               </div>
