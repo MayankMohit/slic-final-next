@@ -63,18 +63,19 @@ export function Footer() {
 
   return (
     <footer className="relative bg-black/70 border-t border-border/50 backdrop-blur-sm">
-      <div className="px-[10vw] py-8">
+      <div className="px-[10vw] py-8 text-[0.8vw]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2 max-w-[25vw] space-y-4">
-            <Link
-              href="/"
-              className="flex items-center gap-1 font-display text-[1.5vw] font-bold mb-4"
-            >
-              <span className="text-gradient text-[1.5vw]">SLIC.</span>
-            </Link>
+            <Link href="/" className="flex items-center gap-1">
+          <img
+            src="/icons/sm_logo.png"
+            alt="Logo"
+            className="h-[3vh] w-auto"
+          />
+        </Link>
 
-            <p className="text-muted-foreground text-[1vw] mb-[1vw] max-w-[40vw]">
+            <p className="text-muted-foreground text-[0.8vw] mb-[1vw] max-w-[40vw]">
               Performance video ads for DTC brands scaling on Facebook, TikTok,
               and YouTube. Research-driven creative that lowers CPA and improves
               ROAS.
@@ -97,7 +98,7 @@ export function Footer() {
           </div>
 
           {/* Work */}
-          <div className=" text-[1.1vw]">
+          <div className=" ">
             <h4 className="font-display font-semibold text-foreground mb-[1vw]">
               Work
             </h4>
@@ -116,7 +117,7 @@ export function Footer() {
           </div>
 
           {/* Company */}
-          <div className=" text-[1.1vw]">
+          <div className=" ">
             <h4 className="font-display font-semibold text-foreground mb-[1vw]">
               Company
             </h4>
@@ -145,7 +146,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div className=" text-[1.1vw]">
+          <div className="">
             <h4 className="font-display font-semibold text-foreground mb-[1vw]">
               Contact
             </h4>
@@ -160,22 +161,12 @@ export function Footer() {
                   slicmedia.business@gmail.com
                 </a>
               </li>
-
-              <li className="flex items-start gap-[0.8vw] text-muted-foreground/80">
-                <Phone className="w-4 h-4 mt-[0.4vw] shrink-0" />
-                <a
-                  href="tel:+919876540451"
-                  className="hover:text-primary transition-colors"
-                >
-                  +91 9876540451
-                </a>
-              </li>
             </ul>
 
             {/* Subtle CTA Button */}
             <button
               onClick={openCalendly}
-              className="text-[1.1vw] px-[0.8vw] py-[0.4vw] rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex"
+              className=" px-[1.5vw] py-[1vw] rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex text-[0.8vw] font-bold uppercase hover:text-white"
             >
               Book A Strategy Call
             </button>
@@ -183,7 +174,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 pt-4 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="mt-8 pt-4 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-[0.8vw] text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} SLIC Media. All rights reserved.
           </p>

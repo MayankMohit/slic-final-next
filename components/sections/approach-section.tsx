@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
-import { Search, FileText, Film, BarChart3, ArrowRight } from "lucide-react";
+import { Search, FileText, Film, BarChart3, ArrowRight, Play } from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 
 const steps = [
@@ -49,18 +49,18 @@ export function ApproachSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto mb-[4vh]"
+          className="text-center max-w-[70vw] mx-auto mb-[4vh]"
         >
           
-            <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+            <span className="inline-block text-[0.8vw] font-medium text-primary mb-[1vh] uppercase tracking-wider">
             How We Work
           </span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
-             Research first. Production second. Results always.
+             Research first. Production second. <br />Results always.
 
           </h2>
           
-          <p className="text-[1vw] text-muted-foreground leading-relaxed">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed">
             We don't offer UGC. We don't guess what might work. We research your
             market, script high-converting video ad concepts, and edit
             everything in-house for Facebook, Instagram, TikTok, and YouTube.
@@ -82,7 +82,7 @@ export function ApproachSection() {
                 className="w-full max-w-[20vw]"
               >
                 <GlowCard className="h-full py-[2vh] px-[2vw] relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
-                  <span className="absolute top-4 right-4 text-[2.5vw] font-bold text-primary/10 group-hover:text-primary/20 transition-colors">
+                  <span className="absolute top-4 right-4 text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
                     {step.step}
                   </span>
 
@@ -90,7 +90,7 @@ export function ApproachSection() {
                     <step.icon className="w-[1.5vw] h-[1.5vw] text-primary" />
                   </div>
 
-                  <h3 className="text-[1.2vw] font-semibold mb-3 pr-8">
+                  <h3 className="text-[0.8vw] font-bold mb-3 pr-8">
                     {step.title}
                   </h3>
 
@@ -116,7 +116,7 @@ export function ApproachSection() {
           className=""
         >
           <div className="max-w-[70vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[1vw]">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw]">
               This process has driven{" "}
               <span className="font-semibold text-foreground">
                 32% average CPA reduction
@@ -129,7 +129,7 @@ export function ApproachSection() {
                 <Button
                   onClick={openCalendly}
                   size="sm"
-                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold"
+                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
                 >
                   Book a Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -145,13 +145,17 @@ export function ApproachSection() {
               </div>
               </div>
 
-              <Link
-                href="/work"
-                className="text-[1vw] font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
-              >
+              <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+            >
+              <Link href="/work">
+                <Play className="mr-2 w-5 h-5" />
                 See Our Work
-                <ArrowRight className="ml-1 w-4 h-4" />
               </Link>
+            </Button>
             </div>
           </div>
         </motion.div>

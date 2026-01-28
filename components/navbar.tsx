@@ -37,13 +37,13 @@ export function Navbar() {
         isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50" : "bg-transparent"
       }`}
     >
-      <nav className="container-tight flex items-center justify-between h-16 md:h-[10vh]">
+      <nav className="container-tight flex items-center justify-between h-16 md:h-[7.5vh]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1">
           <img
             src="/icons/sm_logo.png"
             alt="Logo"
-            className="h-[20vh] w-auto"
+            className="h-[3vh] w-auto"
           />
         </Link>
 
@@ -53,8 +53,8 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-[1vw] font-medium transition-colors hover:text-primary ${
-                pathname === link.href ? "text-primary" : "text-muted-foreground"
+              className={`text-[0.8vw] font-bold transition-colors hover:text-primary ${
+                pathname === link.href ? "text-primary" : "text-foreground"
               }`}
             >
               {link.name}

@@ -22,7 +22,7 @@ export function CTASection() {
           {/* Sub badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-[1vw] font-medium text-primary">
+            <span className="text-[0.8vw] font-medium text-primary">
               Ready to Scale?
             </span>
           </div>
@@ -34,7 +34,7 @@ export function CTASection() {
           </h2>
 
           {/* Copy */}
-          <p className="text-[1vw] text-muted-foreground mb-10 max-w-[50vw] mx-auto leading-relaxed">
+          <p className="text-[0.8vw] text-muted-foreground mb-10 max-w-[50vw] mx-auto leading-relaxed">
             Book a strategy call and get a clear breakdown of what's holding
             your creative back and how we'd fix it.
           </p>
@@ -43,8 +43,8 @@ export function CTASection() {
           <div className="relative inline-block">
             <Button
               onClick={openCalendly}
-              size="lg"
-              className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-10 py-6 text-[1.2vw] font-semibold"
+              size="sm"
+              className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-10 py-6"
             >
               Book a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -55,7 +55,7 @@ export function CTASection() {
           </div>
 
           {/* Trust line */}
-          <p className="mt-8 text-[1vw] text-muted-foreground">
+          <p className="mt-8 text-[0.8vw] text-muted-foreground">
             No pitch. No pressure. Just real insights.
           </p>
         </motion.div>

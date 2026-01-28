@@ -49,13 +49,13 @@ export function CaseStudiesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-[4vh]"
         >
-          <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="inline-block text-[0.8vw] font-medium text-primary mb-[1vh] uppercase tracking-wider">
             Results
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Performance Creative That Delivers Measurable ROAS
           </h2>
-          <p className="text-[1vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
             We don't measure success in likes or followers. We measure it in
             CPA, ROAS, and revenue. Here's what our video ads have delivered for
             DTC brands like yours.
@@ -86,7 +86,7 @@ export function CaseStudiesSection() {
                       </div>
                     </div>
                   </div>
-                  <h3 className="font-display text-[1.2vw] font-semibold mb-[1vw] text-foreground">
+                  <h3 className="font-display text-[0.8vw] font-bold mb-[1vw] text-foreground">
                     {study.title}
                   </h3>
                   <p className="text-muted-foreground text-[0.8vw] grow leading-relaxed">
@@ -116,7 +116,7 @@ export function CaseStudiesSection() {
           className="mt-6"
         >
           <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[1vw] text-center">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center">
               These results come from research-first creative, not guesswork. If
               you're spending $30k+ on Facebook, TikTok, or YouTube ads and want
               creative that actually performs, let's talk.
@@ -144,13 +144,17 @@ export function CaseStudiesSection() {
                 </div>
               </div>
 
-              <Link
-                href="/case-studies"
-                className="text-[1vw] font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
-              >
+               <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+            >
+              <Link href="/work">
+                
                 See More Case Studies
-                <ArrowRight className="ml-1 w-4 h-4" />
               </Link>
+            </Button>
             </div>
           </div>
         </motion.div>

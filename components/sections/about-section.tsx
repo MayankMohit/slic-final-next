@@ -35,8 +35,7 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="inline-flex items-center gap-2 text-primary text-[1vw] uppercase tracking-[0.2em] mb-6">
-              <span className="w-[2vw] h-0.5 bg-primary/50" />
+            <span className="inline-flex items-center gap-2 text-primary text-[0.8vw] uppercase tracking-[0.2em] mb-6">
               Our Story
             </span>
 
@@ -44,7 +43,7 @@ export function AboutSection() {
               From Passion to <span className="text-gradient">Performance</span>
             </h2>
 
-            <div className="space-y-5 text-muted-foreground text-[1.1vw] leading-relaxed">
+            <div className="space-y-5 text-muted-foreground text-[0.8vw] leading-relaxed">
               <p>
                 What began as a passion for storytelling and editing evolved
                 into a performance creative agency built for DTC brands scaling
@@ -95,13 +94,14 @@ export function AboutSection() {
                     </div>
                   </div>
 
-                  <Link
-                    href="/about"
-                    className="text-[1.2vw] font-medium text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
                   >
-                    Learn More
-                    <ArrowRight className="ml-1 w-4 h-4" />
-                  </Link>
+                    <Link href="/work">Learn More</Link>
+                  </Button>
                 </div>
               </div>
             </motion.div>
@@ -115,10 +115,10 @@ export function AboutSection() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
             className="space-y-[2vh] mt-10 lg:mt-0"
           >
-            <h3 className="text-[1.2vw] uppercase tracking-widest text-foreground mb-1">
+            <h3 className="text-[0.8vw] uppercase tracking-widest text-foreground mb-1 font-bold">
               Team
             </h3>
-            <p className="text-muted-foreground text-sm md:text-[1vw] mb-8">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] mb-8">
               Who You'll Work With
             </p>
 
@@ -133,15 +133,15 @@ export function AboutSection() {
               >
                 <GlowCard className="overflow-hidden h-full">
                   <div className="p-[2vh] border-b border-slate-600">
-                    <div className="text-2xl md:text-[1.5vw] font-display font-bold text-gradient mt-1">
+                    <div className="text-2xl md:text-[0.8vw] font-display font-bold text-gradient mt-1 uppercase">
                       {member.name}
                     </div>
-                    <div className="text-foreground text-[1vw] uppercase tracking-wider">
+                    <div className="text-foreground text-[0.8vw]  tracking-wider">
                       {member.role}
                     </div>
                   </div>
                   <div className="p-[2vh]">
-                    <p className="text-muted-foreground leading-relaxed text-[1vw]">
+                    <p className="text-muted-foreground leading-relaxed text-[0.8vw]">
                       {member.description}
                     </p>
                   </div>

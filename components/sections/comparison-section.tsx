@@ -52,13 +52,13 @@ export function ComparisonSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <span className="inline-block text-[2vh] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="inline-block text-[0.8vw] font-medium text-primary mb-[1vh] uppercase tracking-wider">
             Why Choose Us
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Traditional Agency vs <span className="text-gradient">SLIC</span>
           </h2>
-          <p className="text-[1vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto">
             Most creative agencies prioritize aesthetics over performance. We
             built SLIC to do the opposite.
           </p>
@@ -74,9 +74,9 @@ export function ComparisonSection() {
         >
           <GlowCard className="overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-3 bg-secondary/50 text-[1vw] font-medium">
-              <div className="p-[1vw] text-muted-foreground">Area</div>
-              <div className="p-[1vw] text-muted-foreground border-x border-muted-foreground/30">
+            <div className="grid grid-cols-3 bg-secondary/50 text-[0.8vw] font-bold">
+              <div className="p-[1vw] text-foreground">Area</div>
+              <div className="p-[1vw] text-foreground border-x border-muted-foreground/30">
                 Traditional
               </div>
               <div className="p-[1vw] text-primary">SLIC Media</div>
@@ -86,9 +86,9 @@ export function ComparisonSection() {
             {comparisonData.map((row, index) => (
               <div
                 key={row.area}
-                className={`grid grid-cols-3 text-[1.1vw] ${index !== comparisonData.length - 1 ? "border-b border-muted-foreground/30" : ""}`}
+                className={`grid grid-cols-3 text-[0.8vw] ${index !== comparisonData.length - 1 ? "border-b border-muted-foreground/30" : ""}`}
               >
-                <div className="p-[0.6vw] font-medium text-foreground">
+                <div className="p-[0.6vw] font-bold text-foreground">
                   {row.area}
                 </div>
                 <div className="p-[0.6vw] text-muted-foreground border-x border-muted-foreground/30 flex items-start gap-2">
