@@ -62,18 +62,19 @@ export function Footer() {
   const { openCalendly } = useCalendly();
 
   return (
-    <footer className="relative bg-black/70 border-t border-border/50 backdrop-blur-sm">
+    <footer className="md:rounded-t-6xl relative w-full mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/18%),theme(backgroundColor.black/68%))] px-6 pt-6 lg:pt-8">
+      <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
       <div className="px-[10vw] py-8 text-[0.8vw]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2 max-w-[25vw] space-y-4">
             <Link href="/" className="flex items-center gap-1">
-          <img
-            src="/icons/sm_logo.png"
-            alt="Logo"
-            className="h-[3vh] w-auto"
-          />
-        </Link>
+              <img
+                src="/icons/sm_logo.png"
+                alt="Logo"
+                className="h-[3vh] w-auto"
+              />
+            </Link>
 
             <p className="text-muted-foreground text-[0.8vw] mb-[1vw] max-w-[40vw]">
               Performance video ads for DTC brands scaling on Facebook, TikTok,
