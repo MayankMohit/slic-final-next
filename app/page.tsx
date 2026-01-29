@@ -14,7 +14,7 @@ import { Suspense } from "react";
 
 export default async function HomePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen font-sans">
       <Suspense fallback={null}>
         <ScrollHandler />
       </Suspense>

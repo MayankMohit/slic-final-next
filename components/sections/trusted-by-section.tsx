@@ -71,8 +71,9 @@ export const TrustedBySection = () => {
 
   return (
     <div className="w-[80%] mx-auto flex flex-col items-center mb-[5vh] overflow-hidden">
-      <h3 className="text-[0.9vw] font-inter font-medium text-white/80 mb-[5vh] select-none text-center">
-        <span className="text-blue-400">Trusted by DTC brands </span>scaling on paid media
+      <h3 className="text-[0.9vw] font-inter font-semibold text-white/80 mb-[5vh] select-none text-center">
+        <span className="text-blue-400">Trusted by DTC brands </span>scaling on
+        paid media
       </h3>
 
       <div

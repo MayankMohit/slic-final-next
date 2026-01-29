@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
@@ -71,18 +71,18 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                 About Us
               </span>
 
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
                 From Passion to{" "}
                 <span className="text-gradient">Performance</span>
               </h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                We&apos;re a performance-first video agency obsessed with creating
-                content that actually converts.
+                We&apos;re a performance-first video agency obsessed with
+                creating content that actually converts.
               </p>
             </motion.div>
           </div>
@@ -98,7 +98,7 @@ export function AboutPageContent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+                <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                   Our Story
                 </span>
 
@@ -109,12 +109,12 @@ export function AboutPageContent() {
                   </p>
                   <p>
                     Our first major breakthrough came when we grew an Instagram
-                    account from zero to 150,000 followers in just 90 days—purely
-                    through strategic content.
+                    account from zero to 150,000 followers in just 90
+                    days—purely through strategic content.
                   </p>
                   <p>
-                    That success wasn&apos;t luck. It was systems, testing, and a deep
-                    understanding of what makes people stop scrolling.
+                    That success wasn&apos;t luck. It was systems, testing, and
+                    a deep understanding of what makes people stop scrolling.
                   </p>
                   <p>
                     Today, we help brands scale revenue with performance-driven
@@ -133,7 +133,7 @@ export function AboutPageContent() {
                   <div className="grid grid-cols-2 gap-8">
                     {milestones.map((stat, index) => (
                       <div key={stat.label} className="text-center">
-                        <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-2">
+                        <div className="font-sans text-3xl md:text-4xl font-bold text-gradient mb-2">
                           {stat.value}
                         </div>
                         <div className="text-sm text-muted-foreground">
@@ -158,7 +158,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                 What Drives Us
               </span>
             </motion.div>
@@ -176,7 +176,7 @@ export function AboutPageContent() {
                     <div className="p-3 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
                       <value.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold mb-2 text-foreground">
+                    <h3 className="font-sans text-lg font-semibold mb-2 text-foreground">
                       {value.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -199,7 +199,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                 Meet the Team
               </span>
               <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -218,10 +218,10 @@ export function AboutPageContent() {
                 >
                   <GlowCard className="p-8 h-full">
                     <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-display font-bold text-2xl mb-4">
+                      <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-sans font-bold text-2xl mb-4">
                         {member.initial}
                       </div>
-                      <h3 className="font-display text-xl font-semibold text-foreground">
+                      <h3 className="font-sans text-xl font-semibold text-foreground">
                         {member.name}
                       </h3>
                       <p className="text-primary text-sm mb-4">{member.role}</p>

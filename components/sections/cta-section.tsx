@@ -22,19 +22,19 @@ export function CTASection() {
           {/* Sub badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-[0.8vw] font-medium text-primary">
+            <span className="text-[0.8vw] font-semibold text-primary">
               Ready to Scale?
             </span>
           </div>
 
           {/* Heading */}
-          <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-6 text-balance">
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-6 text-balance">
             Let&apos;s Build Video Ads That{" "}
             <span className="text-gradient">Actually Converts</span>
           </h2>
 
           {/* Copy */}
-          <p className="text-[0.8vw] text-muted-foreground mb-10 max-w-[50vw] mx-auto leading-relaxed font-medium">
+          <p className="text-[0.8vw] text-muted-foreground mb-10 max-w-[50vw] mx-auto leading-relaxed font-semibold">
             Book a strategy call and get a clear breakdown of what's holding
             your creative back and how we'd fix it.
           </p>
@@ -55,7 +55,7 @@ export function CTASection() {
           </div>
 
           {/* Trust line */}
-          <p className="mt-8 text-[0.8vw] text-muted-foreground font-medium">
+          <p className="mt-8 text-[0.8vw] text-muted-foreground font-semibold">
             No pitch. No pressure. Just real insights.
           </p>
         </motion.div>

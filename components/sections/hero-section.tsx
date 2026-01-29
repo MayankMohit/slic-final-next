@@ -22,7 +22,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 px-[0.8vw] py-[0.4vw] rounded-full bg-primary/10 border border-primary/20 mb-[5vh]"
           >
             <span className="w-[0.4vw] h-[0.4vw] rounded-full bg-primary animate-pulse" />
-            <span className="text-[0.8vw] font-medium text-primary">
+            <span className="text-[0.8vw] font-semibold text-primary">
               {" "}
               Performance Creative Agency for DTC Brands
             </span>
@@ -33,7 +33,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[3vw] font-bold tracking-tight mb-[3vh] text-balance"
+            className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-[3vw] tracking-tight mb-[3vh] text-balance"
           >
             Ad Creative That{" "}
             <span className="text-gradient">Actually Converts</span>
@@ -44,7 +44,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-[0.8vw] text-muted-foreground max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-medium"
+            className="text-lg md:text-[0.8vw] text-muted-foreground max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-semibold"
           >
             We research, script, and produce performance-driven video ads for
             Meta, TikTok, and YouTube. Built for DTC brands spending $30k+/month
@@ -106,10 +106,10 @@ export function HeroSection() {
               { value: "3.2x", label: "Avg. ROAS Lift" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="font-display text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]">
+                <div className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]">
                   {stat.value}
                 </div>
-                <div className="text-[0.8vw] text-muted-foreground font-medium">
+                <div className="text-[0.8vw] text-muted-foreground font-semibold">
                   {stat.label}
                 </div>
               </div>

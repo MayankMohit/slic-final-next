@@ -35,15 +35,15 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="inline-flex items-center gap-2 text-primary text-[0.8vw] uppercase tracking-[0.2em] mb-6 font-medium">
+            <span className="inline-flex items-center gap-2 text-primary text-[0.8vw] uppercase tracking-[0.2em] mb-6 font-semibold">
               Our Story
             </span>
 
-            <h2 className="text-4xl md:text-[3vw] font-display font-bold mb-[1vw] leading-tight">
+            <h2 className="text-4xl md:text-[3vw] font-sans font-bold mb-[1vw] leading-tight">
               From Passion to <span className="text-gradient">Performance</span>
             </h2>
 
-            <div className="space-y-5 text-muted-foreground text-[0.8vw] leading-relaxed font-medium">
+            <div className="space-y-5 text-muted-foreground text-[0.8vw] leading-relaxed font-semibold">
               <p>
                 What began as a passion for storytelling and editing evolved
                 into a performance creative agency built for DTC brands scaling
@@ -55,7 +55,7 @@ export function AboutSection() {
                 TikTok, and YouTube. Every video ad we deliver is built to
                 improve ROAS and lower CPA.
               </p>
-              <p className="text-foreground font-medium">
+              <p className="text-foreground font-semibold">
                 <span className="text-primary">$50M+</span> in revenue generated
                 for brands including <br />
                 <span className="text-primary">
@@ -86,8 +86,9 @@ export function AboutSection() {
                     {/* Hover Popup */}
                     <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
                       <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-sm text-muted-foreground text-center">
-                        30-minute call. No pitch deck. Leave with a creative roadmap.
-                       </div>
+                        30-minute call. No pitch deck. Leave with a creative
+                        roadmap.
+                      </div>
                     </div>
                   </div>
 
@@ -115,7 +116,7 @@ export function AboutSection() {
             <h3 className="text-[0.8vw] uppercase tracking-widest text-foreground mb-1 font-bold">
               Team
             </h3>
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] mb-8 font-medium">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] mb-8 font-semibold">
               Who You'll Work With
             </p>
 
@@ -130,15 +131,15 @@ export function AboutSection() {
               >
                 <GlowCard className="overflow-hidden h-full">
                   <div className="p-[2vh] border-b border-slate-600">
-                    <div className="text-2xl md:text-[0.8vw] font-display font-bold text-gradient mt-1 uppercase">
+                    <div className="text-2xl md:text-[0.8vw] font-sans font-bold text-gradient mt-1 uppercase">
                       {member.name}
                     </div>
-                    <div className="text-foreground text-[0.8vw] font-medium tracking-wider">
+                    <div className="text-foreground text-[0.8vw] font-semibold tracking-wider">
                       {member.role}
                     </div>
                   </div>
                   <div className="p-[2vh]">
-                    <p className="text-muted-foreground leading-relaxed text-[0.8vw] font-medium">
+                    <p className="text-muted-foreground leading-relaxed text-[0.8vw] font-semibold">
                       {member.description}
                     </p>
                   </div>

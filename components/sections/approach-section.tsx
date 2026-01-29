@@ -4,7 +4,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
-import { Search, FileText, Film, BarChart3, ArrowRight, Play } from "lucide-react";
+import {
+  Search,
+  FileText,
+  Film,
+  BarChart3,
+  ArrowRight,
+  Play,
+} from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 
 const steps = [
@@ -51,16 +58,15 @@ export function ApproachSection() {
           viewport={{ once: true }}
           className="text-center max-w-[70vw] mx-auto mb-[4vh]"
         >
-          
-            <span className="inline-block text-[0.8vw] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
             How We Work
           </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
-             Research first. Production second. <br />Results always.
-
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+            Research first. Production second. <br />
+            Results always.
           </h2>
-          
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed font-medium">
+
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed font-semibold">
             We don't offer UGC. We don't guess what might work. We research your
             market, script high-converting video ad concepts, and edit
             everything in-house for Facebook, Instagram, TikTok, and YouTube.
@@ -94,7 +100,7 @@ export function ApproachSection() {
                     {step.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-[0.8vw] leading-relaxed font-medium">
+                  <p className="text-muted-foreground text-[0.8vw] leading-relaxed font-semibold">
                     {step.description}
                   </p>
 
@@ -116,7 +122,7 @@ export function ApproachSection() {
           className=""
         >
           <div className="max-w-[70vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] font-medium">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] font-semibold">
               This process has driven{" "}
               <span className=" text-foreground">
                 32% average CPA reduction
@@ -136,26 +142,27 @@ export function ApproachSection() {
                 </Button>
 
                 {/* Hover Popup */}
-              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-[] opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[1vw] text-muted-foreground text-center">
-                  30-minute call. No pitch deck. Leave with a creative roadmap.
-                  {/* Arrow */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
+                <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-[] opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                  <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[1vw] text-muted-foreground text-center">
+                    30-minute call. No pitch deck. Leave with a creative
+                    roadmap.
+                    {/* Arrow */}
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
+                  </div>
                 </div>
-              </div>
               </div>
 
               <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
-            >
-              <Link href="/work">
-                <Play className="mr-2 w-5 h-5" />
-                See Our Work
-              </Link>
-            </Button>
+                asChild
+                variant="outline"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+              >
+                <Link href="/work">
+                  <Play className="mr-2 w-5 h-5" />
+                  See Our Work
+                </Link>
+              </Button>
             </div>
           </div>
         </motion.div>

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -52,7 +52,6 @@ const faqs = [
   },
 ];
 
-
 export function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -67,13 +66,13 @@ export function FAQSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[0.8vw] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
             Got questions?
           </span>
-          <h2 className="ffont-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+          <h2 className="ffont-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Frequently Asked Questions
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-medium">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-semibold">
             Everything you need to know before working with us.
           </p>
         </motion.div>
@@ -100,12 +99,16 @@ export function FAQSection() {
                   onClick={() => setActiveIndex(isOpen ? -1 : index)}
                   className="w-full flex items-center justify-between px-[1vw] py-[0.2vw] text-left group"
                 >
-                  <span className="font-display text-[0.8vw] font-bold text-foreground group-hover:text-primary transition-colors pr-4">
+                  <span className="font-sans text-[0.8vw] font-bold text-foreground group-hover:text-primary transition-colors pr-4">
                     {faq.question}
                   </span>
 
-                  <div className="p-[1vw]  text-[0.8vw] font-medium rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  <div className="p-[1vw]  text-[0.8vw] font-semibold rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                    {isOpen ? (
+                      <Minus className="w-4 h-4" />
+                    ) : (
+                      <Plus className="w-4 h-4" />
+                    )}
                   </div>
                 </button>
 
@@ -119,7 +122,7 @@ export function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="px-5 pb-5 text-muted-foreground leading-relaxed font-medium text-[0.8vw] w-[90%]">
+                      <p className="px-5 pb-5 text-muted-foreground leading-relaxed font-semibold text-[0.8vw] w-[90%]">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -130,7 +133,6 @@ export function FAQSection() {
           })}
         </motion.div>
       </div>
-
     </section>
   );
 }

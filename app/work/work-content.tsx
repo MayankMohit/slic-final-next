@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
@@ -12,49 +12,57 @@ const workVideos = [
     id: 1,
     thumbnail:
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
   {
     id: 2,
     thumbnail:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
   },
   {
     id: 3,
     thumbnail:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
   },
   {
     id: 4,
     thumbnail:
       "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
   },
   {
     id: 5,
     thumbnail:
       "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
   },
   {
     id: 6,
     thumbnail:
       "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
   },
   {
     id: 7,
     thumbnail:
       "https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
   },
   {
     id: 8,
     thumbnail:
       "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
   },
 ];
 
@@ -93,7 +101,7 @@ function VideoCard({ thumbnail, videoUrl, className = "" }: VideoCardProps) {
         <img
           src={thumbnail || "/placeholder.svg"}
           alt="Video thumbnail"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovering ? 'opacity-0' : 'opacity-100'}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovering ? "opacity-0" : "opacity-100"}`}
         />
         <video
           ref={videoRef}
@@ -101,7 +109,7 @@ function VideoCard({ thumbnail, videoUrl, className = "" }: VideoCardProps) {
           muted
           loop
           playsInline
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovering ? "opacity-100" : "opacity-0"}`}
         />
       </div>
     </GlowCard>
@@ -123,17 +131,18 @@ export function WorkPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                 Our Work
               </span>
 
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
                 Videos That Drive Results
               </h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                From viral social content to cinematic brand films, explore how we
-                help brands capture attention, build trust, and convert at scale.
+                From viral social content to cinematic brand films, explore how
+                we help brands capture attention, build trust, and convert at
+                scale.
               </p>
             </motion.div>
           </div>

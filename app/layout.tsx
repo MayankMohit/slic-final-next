@@ -13,16 +13,32 @@ import PageTransitionProvider from "@/components/PageTransitionProvider";
 import RouteLoader from "@/components/RouteLoader";
 import localFont from 'next/font/local';
 
-// const inter = Inter({ subsets: ['latin'], display: 'swap' });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
-const SFProDisplay = localFont({
+const sfPro = localFont({
   src: [
-    { path: '../fonts/SFProDisplay-Semibold.otf', weight: '600', style: 'normal' },
-    { path: '../fonts/SFProDisplay-Bold.otf', weight: '700', style: 'normal' },
+    {
+      path: "../fonts/sf-pro-display-medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/sf-pro-display-bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../fonts/SF-Pro-Display-Semibold.woff",
+      weight: "600",
+      style: "normal",
+    },
   ],
-  variable: '--font-sfpro',
-  display: 'swap',
-  fallback: ['Inter', 'sans-serif'],
+  variable: "--font-sfpro",
+  display: "swap",
+  fallback: ["Inter", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -105,7 +121,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${SFProDisplay.variable}`}>
+    <html lang="en" className={`${sfPro.variable} ${inter.className}`}>
       <head>
         {/* Calendly CSS */}
         <link
@@ -113,7 +129,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans">
         <SmoothScrollProvider>
           <RouteLoader />
           <PageTransitionProvider>
@@ -122,7 +138,7 @@ export default function RootLayout({
               <EtheralBackground />
 
               {/* Foreground app content */}
-              <div className="relative z-10 font-sfpro">{children}</div>
+              <div className="relative z-10">{children}</div>
 
               <Toaster />
               <SonnerToaster />

@@ -76,7 +76,7 @@ export function Footer() {
               />
             </Link>
 
-            <p className="text-muted-foreground text-[0.8vw] mb-[1vw] max-w-[40vw] font-medium">
+            <p className="text-muted-foreground text-[0.8vw] mb-[1vw] max-w-[40vw] font-semibold">
               Performance video ads for DTC brands scaling on Facebook, TikTok,
               and YouTube. Research-driven creative that lowers CPA and improves
               ROAS.
@@ -100,7 +100,7 @@ export function Footer() {
 
           {/* Work */}
           <div className=" ">
-            <h4 className="font-display font-bold text-foreground mb-[1vw]">
+            <h4 className="font-sans font-bold text-foreground mb-[1vw]">
               Work
             </h4>
             <ul className="space-y-[0.8vw]">
@@ -108,7 +108,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground/80 hover:text-primary transition-colors font-medium"
+                    className="text-muted-foreground/80 hover:text-primary transition-colors font-semibold"
                   >
                     {link.name}
                   </Link>
@@ -119,7 +119,7 @@ export function Footer() {
 
           {/* Company */}
           <div className=" ">
-            <h4 className="font-display font-bold text-foreground mb-[1vw]">
+            <h4 className="font-sans font-bold text-foreground mb-[1vw]">
               Company
             </h4>
             <ul className="space-y-[0.8vw]">
@@ -127,7 +127,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground/80 hover:text-primary transition-colors font-medium"
+                    className="text-muted-foreground/80 hover:text-primary transition-colors font-semibold"
                   >
                     {link.name}
                   </Link>
@@ -138,7 +138,7 @@ export function Footer() {
                   onClick={() => {
                     window.location.href = "/?scroll=faqs";
                   }}
-                  className="text-muted-foreground/80 hover:text-primary transition-colors font-medium"
+                  className="text-muted-foreground/80 hover:text-primary transition-colors font-semibold"
                 >
                   FAQs
                 </button>
@@ -148,7 +148,7 @@ export function Footer() {
 
           {/* Contact */}
           <div className="">
-            <h4 className="font-display font-bold text-foreground mb-[1vw]">
+            <h4 className="font-sans font-bold text-foreground mb-[1vw]">
               Contact
             </h4>
 
@@ -157,7 +157,7 @@ export function Footer() {
                 <Mail className="w-4 h-4 mt-[0.4vw] shrink-0" />
                 <a
                   href="mailto:slicmedia.business@gmail.com"
-                  className="hover:text-primary transition-colors font-medium"
+                  className="hover:text-primary transition-colors font-semibold"
                 >
                   slicmedia.business@gmail.com
                 </a>
@@ -175,7 +175,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 pt-4 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-[0.8vw] text-muted-foreground font-medium">
+        <div className="mt-8 pt-4 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-[0.8vw] text-muted-foreground font-semibold">
           <p>
             &copy; {new Date().getFullYear()} SLIC Media. All rights reserved.
           </p>

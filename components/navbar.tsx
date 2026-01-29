@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -34,7 +34,9 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50" : "bg-transparent"
+        isScrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
+          : "bg-transparent"
       }`}
     >
       <nav className="container-tight flex items-center justify-between h-16 md:h-[7.5vh]">
@@ -64,7 +66,10 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Button onClick={openCalendly} className="bg-gradient-primary hover:opacity-90 text-primary-foreground p-[1vw]">
+          <Button
+            onClick={openCalendly}
+            className="bg-gradient-primary hover:opacity-90 text-primary-foreground p-[1vw]"
+          >
             Book A Call
           </Button>
         </div>
@@ -75,7 +80,11 @@ export function Navbar() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </nav>
 
@@ -94,17 +103,22 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-medium py-2 transition-colors hover:text-primary ${
-                    pathname === link.href ? "text-primary" : "text-muted-foreground"
+                  className={`text-base font-semibold py-2 transition-colors hover:text-primary ${
+                    pathname === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <Button onClick={() => {
-                openCalendly();
-                setIsMobileMenuOpen(false);
-              }} className="bg-gradient-primary w-full">
+              <Button
+                onClick={() => {
+                  openCalendly();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="bg-gradient-primary w-full"
+              >
                 Get a Free Audit
               </Button>
             </div>

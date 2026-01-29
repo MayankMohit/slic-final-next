@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -11,7 +11,8 @@ import { CTASection } from "@/components/sections/cta-section";
 const blogPosts = [
   {
     title: "TikTok Ad Trends: What's Working in 2024",
-    excerpt: "Discover the latest TikTok ad formats and creative strategies driving the highest ROAS for DTC brands this year.",
+    excerpt:
+      "Discover the latest TikTok ad formats and creative strategies driving the highest ROAS for DTC brands this year.",
     category: "Trends",
     readTime: "5 min read",
     slug: "/blog/tiktok-ad-trends-2024",
@@ -19,7 +20,8 @@ const blogPosts = [
   },
   {
     title: "The Psychology of Scroll-Stopping Creatives",
-    excerpt: "Why certain videos make you stop scrolling—and how to apply these principles to your ad creatives for maximum impact.",
+    excerpt:
+      "Why certain videos make you stop scrolling—and how to apply these principles to your ad creatives for maximum impact.",
     category: "Strategy",
     readTime: "7 min read",
     slug: "/blog/psychology-scroll-stopping-creatives",
@@ -27,7 +29,8 @@ const blogPosts = [
   },
   {
     title: "TikTok vs Instagram Reels for DTC Brands",
-    excerpt: "A data-driven comparison to help you decide where to invest your content marketing budget for maximum ROI.",
+    excerpt:
+      "A data-driven comparison to help you decide where to invest your content marketing budget for maximum ROI.",
     category: "Platform Guides",
     readTime: "6 min read",
     slug: "/blog/tiktok-vs-instagram-reels-dtc",
@@ -35,7 +38,8 @@ const blogPosts = [
   },
   {
     title: "How to Script Videos That Convert",
-    excerpt: "The proven framework we use to write video scripts that hook viewers in the first 3 seconds and drive action.",
+    excerpt:
+      "The proven framework we use to write video scripts that hook viewers in the first 3 seconds and drive action.",
     category: "Strategy",
     readTime: "8 min read",
     slug: "/blog/script-videos-that-convert",
@@ -43,7 +47,8 @@ const blogPosts = [
   },
   {
     title: "Meta Ads Video Best Practices for 2024",
-    excerpt: "Everything you need to know about creating high-performing video ads for Facebook and Instagram in the current landscape.",
+    excerpt:
+      "Everything you need to know about creating high-performing video ads for Facebook and Instagram in the current landscape.",
     category: "Platform Guides",
     readTime: "10 min read",
     slug: "/blog/meta-ads-video-best-practices",
@@ -51,7 +56,8 @@ const blogPosts = [
   },
   {
     title: "UGC vs Professional Ads: What Performs Better?",
-    excerpt: "We tested $100K in ad spend to answer the age-old question. The results might surprise you.",
+    excerpt:
+      "We tested $100K in ad spend to answer the age-old question. The results might surprise you.",
     category: "Case Studies",
     readTime: "6 min read",
     slug: "/blog/ugc-vs-professional-ads",
@@ -59,7 +65,8 @@ const blogPosts = [
   },
   {
     title: "Building a Content Calendar That Drives Results",
-    excerpt: "How to plan and organize your social content for consistent growth without burning out.",
+    excerpt:
+      "How to plan and organize your social content for consistent growth without burning out.",
     category: "Strategy",
     readTime: "5 min read",
     slug: "/blog/content-calendar-results",
@@ -67,7 +74,8 @@ const blogPosts = [
   },
   {
     title: "YouTube Shorts for Brand Growth",
-    excerpt: "Why YouTube Shorts is the most underutilized platform for DTC brands and how to win there.",
+    excerpt:
+      "Why YouTube Shorts is the most underutilized platform for DTC brands and how to win there.",
     category: "Platform Guides",
     readTime: "7 min read",
     slug: "/blog/youtube-shorts-brand-growth",
@@ -93,16 +101,17 @@ export function BlogPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-medium text-primary mb-4 uppercase tracking-wider">
+              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                 Blog & Insights
               </span>
 
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
                 Learn to Create Viral Content
               </h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Actionable insights on video marketing, social media growth, and ad creative strategies from our team.
+                Actionable insights on video marketing, social media growth, and
+                ad creative strategies from our team.
               </p>
             </motion.div>
           </div>
@@ -112,7 +121,9 @@ export function BlogPageContent() {
         {featuredPosts.length > 0 && (
           <section className="section-padding pt-0">
             <div className="container-tight">
-              <h2 className="font-display text-2xl font-semibold mb-8 text-foreground">Featured Articles</h2>
+              <h2 className="font-sans text-2xl font-semibold mb-8 text-foreground">
+                Featured Articles
+              </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {featuredPosts.map((post, index) => (
                   <motion.div
@@ -128,7 +139,7 @@ export function BlogPageContent() {
                           <span className="inline-block px-3 py-1 text-xs rounded-full bg-primary/10 text-primary w-fit mb-4">
                             {post.category}
                           </span>
-                          <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
+                          <h3 className="font-sans text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                             {post.title}
                           </h3>
                           <p className="text-sm text-muted-foreground grow leading-relaxed">
@@ -152,9 +163,11 @@ export function BlogPageContent() {
         <section className="section-padding pt-0">
           <div className="container-tight">
             {featuredPosts.length > 0 && (
-              <h2 className="font-display text-2xl font-semibold mb-8 text-foreground">All Articles</h2>
+              <h2 className="font-sans text-2xl font-semibold mb-8 text-foreground">
+                All Articles
+              </h2>
             )}
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {regularPosts.map((post, index) => (
                 <motion.div
@@ -170,7 +183,7 @@ export function BlogPageContent() {
                         <span className="inline-block px-3 py-1 text-xs rounded-full bg-primary/10 text-primary w-fit mb-4">
                           {post.category}
                         </span>
-                        <h3 className="font-display text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                        <h3 className="font-sans text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
                         <p className="text-sm text-muted-foreground grow leading-relaxed">

@@ -49,13 +49,13 @@ export function CaseStudiesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-[4vh]"
         >
-          <span className="inline-block text-[0.8vw] font-medium text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
             Results
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
             Performance Creative That Delivers Measurable ROAS
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-medium">
+          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-semibold">
             We don't measure success in likes or followers. We measure it in
             CPA, ROAS, and revenue. Here's what our video ads have delivered for
             DTC brands like yours.
@@ -78,25 +78,25 @@ export function CaseStudiesSection() {
                       <study.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="text-right">
-                      <div className="font-display text-2xl md:text-[1.5vw] font-bold text-gradient">
+                      <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
                         {study.metric}
                       </div>
-                      <div className="text-[0.8vw] text-muted-foreground font-medium">
+                      <div className="text-[0.8vw] text-muted-foreground font-semibold">
                         {study.metricLabel}
                       </div>
                     </div>
                   </div>
-                  <h3 className="font-display text-[0.8vw] font-bold mb-[1vw] text-foreground">
+                  <h3 className="font-sans text-[0.8vw] font-bold mb-[1vw] text-foreground">
                     {study.title}
                   </h3>
-                  <p className="text-muted-foreground text-[0.8vw] grow leading-relaxed font-medium">
+                  <p className="text-muted-foreground text-[0.8vw] grow leading-relaxed font-semibold">
                     {study.description}
                   </p>
                   <div className="flex flex-wrap gap-[0.5vw] mt-[1vw] ">
                     {study.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-[0.5vw] py-[0.2vw] text-[0.7vw] rounded-full bg-secondary text-muted-foreground font-medium"
+                        className="px-[0.5vw] py-[0.2vw] text-[0.7vw] rounded-full bg-secondary text-muted-foreground font-semibold"
                       >
                         {tag}
                       </span>
@@ -116,7 +116,7 @@ export function CaseStudiesSection() {
           className="mt-6"
         >
           <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center font-medium">
+            <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center font-semibold">
               These results come from research-first creative, not guesswork. If
               you're spending $30k+ on Facebook, TikTok, or YouTube ads and want
               creative that actually performs, let's talk.
@@ -144,17 +144,17 @@ export function CaseStudiesSection() {
                 </div>
               </div>
 
-               <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
-            >
-              <Link href="/work">
-                <Play className="mr-2 w-5 h-5" />
-                See More Case Studies
-              </Link>
-            </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
+              >
+                <Link href="/work">
+                  <Play className="mr-2 w-5 h-5" />
+                  See More Case Studies
+                </Link>
+              </Button>
             </div>
           </div>
         </motion.div>
