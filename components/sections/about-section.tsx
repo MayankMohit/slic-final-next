@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
 import { useCalendly } from "@/hooks/use-calendly";
+import PrimaryButton from "../ui/primaryBtn";
 
 const team = [
   {
@@ -74,14 +75,15 @@ export function AboutSection() {
               <div className="max-w-4xl mx-auto flex flex-col gap-6 text-center md:text-left">
                 <div className="flex items-center gap-[2vw]">
                   <div className="relative group">
-                    <Button
+                    {/* <Button
                       onClick={openCalendly}
                       size="sm"
                       className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
                     >
                       Book a Strategy Call
                       <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
+                    </Button> */}
+                    <PrimaryButton onClick={openCalendly} />
 
                     {/* Hover Popup */}
                     <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">

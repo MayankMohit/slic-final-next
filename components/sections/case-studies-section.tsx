@@ -6,6 +6,8 @@ import { ArrowRight, TrendingUp, Users, DollarSign, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
 import { useCalendly } from "@/hooks/use-calendly";
+import AnimatedCounter from "@/components/ui/animated-counter";
+import PrimaryButton from "../ui/primaryBtn";
 
 const caseStudies = [
   {
@@ -79,7 +81,12 @@ export function CaseStudiesSection() {
                     </div>
                     <div className="text-right">
                       <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
-                        {study.metric}
+                        <AnimatedCounter
+                          value={study.metric}
+                          scrollTrigger
+                          duration={3000}
+                          className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient"
+                        />
                       </div>
                       <div className="text-[0.8vw] text-muted-foreground font-semibold">
                         {study.metricLabel}
@@ -124,14 +131,15 @@ export function CaseStudiesSection() {
 
             <div className="flex items-center gap-[4vw]">
               <div className="relative group">
-                <Button
+                {/* <Button
                   onClick={openCalendly}
                   size="sm"
                   className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
                 >
                   Book a Strategy Call
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                </Button> */}
+                <PrimaryButton onClick={openCalendly} />
 
                 {/* Hover Popup */}
                 <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCalendly } from "@/hooks/use-calendly";
+import NavButton from "@/components/ui/navButton";
 
 const navLinks = [
   { name: "Work", href: "/work" },
@@ -66,12 +67,7 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Button
-            onClick={openCalendly}
-            className="bg-gradient-primary hover:opacity-90 text-primary-foreground p-[1vw]"
-          >
-            Book A Call
-          </Button>
+          <NavButton onClick={openCalendly} />
         </div>
 
         {/* Mobile Menu Toggle */}

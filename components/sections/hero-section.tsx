@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import PrimaryButton from "@/components/ui/primaryBtn";
 import { useCalendly } from "@/hooks/use-calendly";
+import AnimatedCounter from "@/components/ui/animated-counter";
 
 export function HeroSection() {
   const { openCalendly } = useCalendly();
@@ -60,14 +62,15 @@ export function HeroSection() {
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
-              <Button
+              {/* <Button
                 onClick={openCalendly}
                 size="sm"
                 className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
               >
                 Book a Strategy Call
                 <ArrowRight className="ml-[0.5vw]" />
-              </Button>
+              </Button> */}
+              <PrimaryButton onClick={openCalendly} />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-[] opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
@@ -106,9 +109,12 @@ export function HeroSection() {
               { value: "3.2x", label: "Avg. ROAS Lift" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]">
-                  {stat.value}
-                </div>
+                <AnimatedCounter
+                  value={stat.value}
+                  duration={1800}
+                  delay={4000}
+                  className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]"
+                />
                 <div className="text-[0.8vw] text-muted-foreground font-semibold">
                   {stat.label}
                 </div>

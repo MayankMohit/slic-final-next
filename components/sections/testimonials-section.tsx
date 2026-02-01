@@ -5,6 +5,7 @@ import { Star, Quote, ArrowRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { Button } from "../ui/button";
 import { useCalendly } from "@/hooks/use-calendly";
+import PrimaryButton from "../ui/primaryBtn";
 
 const testimonials = [
   {
@@ -113,14 +114,15 @@ export function TestimonialsSection() {
 
           <div className="flex items-center gap-[4vw]">
             <div className="relative group">
-              <Button
+              {/* <Button
                 onClick={openCalendly}
                 size="sm"
                 className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
               >
                 Book a Strategy Call
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              </Button> */}
+              <PrimaryButton onClick={openCalendly} />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">

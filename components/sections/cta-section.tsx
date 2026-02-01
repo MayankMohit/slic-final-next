@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCalendly } from "@/hooks/use-calendly";
+import PrimaryButton from "../ui/primaryBtn";
 
 export function CTASection() {
   const { openCalendly } = useCalendly();
@@ -41,14 +42,15 @@ export function CTASection() {
 
           {/* CTA */}
           <div className="relative inline-block">
-            <Button
+            {/* <Button
               onClick={openCalendly}
               size="sm"
               className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-10 py-6"
             >
               Book a Strategy Call
               <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            </Button> */}
+            <PrimaryButton onClick={openCalendly} />
 
             {/* Subtle glow hover */}
             <div className="absolute inset-0 bg-primary/20 blur-xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
