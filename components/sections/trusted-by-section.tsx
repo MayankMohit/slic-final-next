@@ -5,42 +5,33 @@ import { gsap } from "gsap";
 
 export const TrustedBySection = () => {
   const logos = [
-    "ajio.png",
-    "casio.png",
-    "goibibo.png",
-    "himalaya.png",
     "loop.png",
-    "maybelline.png",
     "nb.png",
+    "unscrptd.png",
+    "lokt.png",
+    "blackbox.png",
+    "maybelline.png",
     "nexa.png",
-    "vh1.png",
-    "viacom.png",
   ];
 
   const logoSizes: Record<string, { width: number }> = {
-    "ajio.png": { width: 110 },
-    "casio.png": { width: 160 },
-    "goibibo.png": { width: 150 },
-    "himalaya.png": { width: 200 },
     "loop.png": { width: 150 },
-    "maybelline.png": { width: 270 },
     "nb.png": { width: 70 },
+    "unscrptd.png": { width: 200 },
+    "lokt.png": { width: 150 },
+    "blackbox.png": { width: 230 },
+    "maybelline.png": { width: 270 },
     "nexa.png": { width: 200 },
-    "vh1.png": { width: 100 },
-    "viacom.png": { width: 200 },
   };
 
   const logoYOffsets: Record<string, number> = {
-    "ajio.png": 10,
-    "casio.png": 10,
-    "goibibo.png": 7,
-    "himalaya.png": 0,
     "loop.png": -4,
-    "maybelline.png": 10,
     "nb.png": 2,
+    "unscrptd.png": 0,
+    "lokt.png": 5,
+    "blackbox.png": -3,
     "nexa.png": 8,
-    "vh1.png": 10,
-    "viacom.png": 7,
+    "maybelline.png": 0,
   };
 
   const marqueeRef = useRef<HTMLDivElement | null>(null);

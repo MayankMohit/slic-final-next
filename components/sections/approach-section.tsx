@@ -80,14 +80,19 @@ export function ApproachSection() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-[2vw] justify-items-center mb-[3vh]">
             {steps.map((step, index) => (
               <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -15 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="w-full max-w-[20vw]"
-              >
+              key={step.step}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              viewport={{ once: true }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 18,
+                delay: index * 0.1,
+              }}
+              className="h-full max-w-[20vw]"
+            >
                 <GlowCard className="h-full py-[2vh] px-[2vw] relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
                   <span className="absolute top-4 right-4 text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
                     {step.step}

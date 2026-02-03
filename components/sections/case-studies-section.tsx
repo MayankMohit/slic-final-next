@@ -68,12 +68,19 @@ export function CaseStudiesSection() {
           {caseStudies.map((study, index) => (
             <motion.div
               key={study.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, scale: 1.02 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 18,
+                delay: index * 0.1,
+              }}
+              className="h-full"
             >
-              <GlowCard className="h-full p-[1vw]">
+              <GlowCard className="h-full p-[1vw] transition-shadow duration-300 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)]">
                 <div className="flex flex-col h-full">
                   <div className="flex items-start justify-between mb-[1vw]">
                     <div className="p-[0.8vw] rounded-xl bg-primary/10">

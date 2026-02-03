@@ -8,89 +8,31 @@ import { Clock, ArrowRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
 
-const blogPosts = [
-  {
-    title: "TikTok Ad Trends: What's Working in 2024",
-    excerpt:
-      "Discover the latest TikTok ad formats and creative strategies driving the highest ROAS for DTC brands this year.",
-    category: "Trends",
-    readTime: "5 min read",
-    slug: "/blog/tiktok-ad-trends-2024",
-    featured: true,
-  },
-  {
-    title: "The Psychology of Scroll-Stopping Creatives",
-    excerpt:
-      "Why certain videos make you stop scrolling—and how to apply these principles to your ad creatives for maximum impact.",
-    category: "Strategy",
-    readTime: "7 min read",
-    slug: "/blog/psychology-scroll-stopping-creatives",
-    featured: true,
-  },
-  {
-    title: "TikTok vs Instagram Reels for DTC Brands",
-    excerpt:
-      "A data-driven comparison to help you decide where to invest your content marketing budget for maximum ROI.",
-    category: "Platform Guides",
-    readTime: "6 min read",
-    slug: "/blog/tiktok-vs-instagram-reels-dtc",
-    featured: true,
-  },
-  {
-    title: "How to Script Videos That Convert",
-    excerpt:
-      "The proven framework we use to write video scripts that hook viewers in the first 3 seconds and drive action.",
-    category: "Strategy",
-    readTime: "8 min read",
-    slug: "/blog/script-videos-that-convert",
-    featured: false,
-  },
-  {
-    title: "Meta Ads Video Best Practices for 2024",
-    excerpt:
-      "Everything you need to know about creating high-performing video ads for Facebook and Instagram in the current landscape.",
-    category: "Platform Guides",
-    readTime: "10 min read",
-    slug: "/blog/meta-ads-video-best-practices",
-    featured: false,
-  },
-  {
-    title: "UGC vs Professional Ads: What Performs Better?",
-    excerpt:
-      "We tested $100K in ad spend to answer the age-old question. The results might surprise you.",
-    category: "Case Studies",
-    readTime: "6 min read",
-    slug: "/blog/ugc-vs-professional-ads",
-    featured: false,
-  },
-  {
-    title: "Building a Content Calendar That Drives Results",
-    excerpt:
-      "How to plan and organize your social content for consistent growth without burning out.",
-    category: "Strategy",
-    readTime: "5 min read",
-    slug: "/blog/content-calendar-results",
-    featured: false,
-  },
-  {
-    title: "YouTube Shorts for Brand Growth",
-    excerpt:
-      "Why YouTube Shorts is the most underutilized platform for DTC brands and how to win there.",
-    category: "Platform Guides",
-    readTime: "7 min read",
-    slug: "/blog/youtube-shorts-brand-growth",
-    featured: false,
-  },
-];
+// Sanity post type matching your schema
+interface SanityPost {
+  title: string;
+  slug: { current: string };
+  publishedAt: string;
+  author?: { name: string };
+  mainImage?: any;
+  categories?: Array<{ title: string }>;
+}
 
-export function BlogPageContent() {
-  const featuredPosts = blogPosts.filter((post) => post.featured);
-  const regularPosts = blogPosts.filter((post) => !post.featured);
+interface BlogPageContentProps {
+  posts: SanityPost[];
+}
+
+export function BlogPageContent({ posts }: BlogPageContentProps) {
+  const featuredPosts = posts.slice(0, 3); // First 3 as featured
+  const regularPosts = posts.slice(3); // Rest as regular
+
+  const getReadTime = () => `${Math.ceil(Math.random() * 8 + 3)} min read`;
+  const getCategory = (post: SanityPost) => post.categories?.[0]?.title || "Insights";
+  const getExcerpt = (post: SanityPost) => `${post.title.slice(0, 100)}...`;
 
   return (
     <main className="min-h-screen">
       <Navbar />
-
       <div className="pt-20">
         {/* Hero */}
         <section className="section-padding">
@@ -104,11 +46,9 @@ export function BlogPageContent() {
               <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
                 Blog & Insights
               </span>
-
               <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
                 Learn to Create Viral Content
               </h1>
-
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Actionable insights on video marketing, social media growth, and
                 ad creative strategies from our team.
@@ -127,27 +67,27 @@ export function BlogPageContent() {
               <div className="grid md:grid-cols-3 gap-6">
                 {featuredPosts.map((post, index) => (
                   <motion.div
-                    key={post.slug}
+                    key={post.slug.current}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Link href={post.slug} className="block h-full group">
+                    <Link href={`/blog/${post.slug.current}`} className="block h-full group">
                       <GlowCard className="h-full p-6">
                         <div className="flex flex-col h-full">
                           <span className="inline-block px-3 py-1 text-xs rounded-full bg-primary/10 text-primary w-fit mb-4">
-                            {post.category}
+                            {getCategory(post)}
                           </span>
                           <h3 className="font-sans text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                             {post.title}
                           </h3>
                           <p className="text-sm text-muted-foreground grow leading-relaxed">
-                            {post.excerpt}
+                            {getExcerpt(post)}
                           </p>
                           <div className="flex items-center gap-2 mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
                             <Clock className="w-4 h-4" />
-                            <span>{post.readTime}</span>
+                            <span>{getReadTime()}</span>
                           </div>
                         </div>
                       </GlowCard>
@@ -167,32 +107,31 @@ export function BlogPageContent() {
                 All Articles
               </h2>
             )}
-
             <div className="grid md:grid-cols-2 gap-6">
               {regularPosts.map((post, index) => (
                 <motion.div
-                  key={post.slug}
+                  key={post.slug.current}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link href={post.slug} className="block h-full group">
+                  <Link href={`/blog/${post.slug.current}`} className="block h-full group">
                     <GlowCard className="h-full p-6">
                       <div className="flex flex-col h-full">
                         <span className="inline-block px-3 py-1 text-xs rounded-full bg-primary/10 text-primary w-fit mb-4">
-                          {post.category}
+                          {getCategory(post)}
                         </span>
                         <h3 className="font-sans text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
                         <p className="text-sm text-muted-foreground grow leading-relaxed">
-                          {post.excerpt}
+                          {getExcerpt(post)}
                         </p>
                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-muted-foreground/50">
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Clock className="w-4 h-4" />
-                            <span>{post.readTime}</span>
+                            <span>{getReadTime()}</span>
                           </div>
                           <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                         </div>
@@ -205,10 +144,8 @@ export function BlogPageContent() {
           </div>
         </section>
 
-        {/* CTA */}
         <CTASection />
       </div>
-
       <Footer />
     </main>
   );
