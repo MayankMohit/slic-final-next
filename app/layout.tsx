@@ -9,8 +9,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import EtheralBackground from "@/components/etheral-background";
 import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import PageTransitionProvider from "@/components/PageTransitionProvider";
-import RouteLoader from "@/components/RouteLoader";
+// import PageTransitionProvider from "@/components/PageTransitionProvider";
+// import RouteLoader from "@/components/RouteLoader";
 import localFont from 'next/font/local';
 
 const inter = Inter({
@@ -131,8 +131,8 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <SmoothScrollProvider>
-          <RouteLoader />
-          <PageTransitionProvider>
+          {/* <RouteLoader /> */}
+          {/* <PageTransitionProvider> */}
             <TooltipProvider>
               {/* Global animated background */}
               <EtheralBackground />
@@ -143,7 +143,7 @@ export default function RootLayout({
               <Toaster />
               <SonnerToaster />
             </TooltipProvider>
-          </PageTransitionProvider>
+          {/* </PageTransitionProvider> */}
         </SmoothScrollProvider>
         {/* Calendly Script */}
         <Script

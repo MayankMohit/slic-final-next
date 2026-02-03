@@ -12,7 +12,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
   return (
     <StyledWrapper>
-      <button {...props}>
+      <button id="btn" {...props}>
         {children}
       </button>
     </StyledWrapper>
@@ -21,34 +21,33 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 
 const StyledWrapper = styled.div`
   button {
-    padding: 17px 40px;
-    border-radius: 50px;
-    cursor: pointer;
-    border: 0;
-    background-color: #F78379;
-    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-    letter-spacing: 1.5px;
+    padding: 10px 20px;
     text-transform: uppercase;
-    font-size: 15px;
-    color: rgb(0, 0, 0);
-    transition: all 0.5s ease;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff80;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff80;
+    transition: 0.5s ease;
+    user-select: none;
   }
 
-  button:hover {
-    letter-spacing: 3px;
-    background-color: white;
-    color: #894943;
-    box-shadow: hsl(214deg 75% 45% / 40%) 0px 7px 29px 0px;
+  #btn:hover,
+  :focus {
+    color: #ffffff;
+    background: #118aeb;
+    border: 1px solid #0ef;
+    text-shadow: 0 0 5px #ffffff;
+    box-shadow: 0 0 3px #118aeb, 0 0 10px #118aeb, 0 0 25px #118aeb, 0 0 50px #118aeb;
+    scale: 1.1;
   }
 
-  button:active {
-    letter-spacing: 3px;
-    background-color: hsl(214deg 75% 50%);
-    color: hsl(0, 0%, 100%);
-    box-shadow: hsl(214deg 75% 45% / 30%) 0px 0px 0px 0px;
-    transform: translateY(6px);
-    transition: 100ms;
-  }
-`;
+  #btn:active {
+    transform: scale(0.8);
+  }`;
 
 export default PrimaryButton;
