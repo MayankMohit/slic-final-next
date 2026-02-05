@@ -50,6 +50,12 @@ export const postType = defineType({
       name: 'body',
       type: 'blockContent',
     }),
+    defineField({
+      name: "featured",
+      title: "Featured Post",
+      type: "boolean",
+      initialValue: false,
+    }),
   ],
   preview: {
     select: {

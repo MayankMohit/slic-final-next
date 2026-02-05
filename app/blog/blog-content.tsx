@@ -7,14 +7,21 @@ import { Footer } from "@/components/footer";
 import { Clock, ArrowRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
+import Image from "next/image";
+import { urlFor } from "@/lib/sanity";
 
 // Sanity post type matching your schema
 interface SanityPost {
   title: string;
   slug: { current: string };
   publishedAt: string;
-  author?: { name: string };
+  body?: any[];
   mainImage?: any;
+  featured?: boolean;
+  author?: {
+    name: string;
+    image?: any;
+  };
   categories?: Array<{ title: string }>;
 }
 
@@ -23,12 +30,41 @@ interface BlogPageContentProps {
 }
 
 export function BlogPageContent({ posts }: BlogPageContentProps) {
-  const featuredPosts = posts.slice(0, 3); // First 3 as featured
-  const regularPosts = posts.slice(3); // Rest as regular
+  const featuredPosts = posts.filter((post) => post.featured);
+  const allPosts = posts;
 
-  const getReadTime = () => `${Math.ceil(Math.random() * 8 + 3)} min read`;
-  const getCategory = (post: SanityPost) => post.categories?.[0]?.title || "Insights";
-  const getExcerpt = (post: SanityPost) => `${post.title.slice(0, 100)}...`;
+  const getReadTime = (post: SanityPost) => {
+    if (!post.body) return "1 min read";
+
+    const plainText = post.body
+      .filter((block: any) => block._type === "block" && block.children)
+      .map((block: any) =>
+        block.children
+          .filter((child: any) => child._type === "span")
+          .map((child: any) => child.text)
+          .join(" "),
+      )
+      .join(" ");
+
+    const words = plainText.trim().split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(1, Math.ceil(words / 200));
+
+    return `${minutes} min read`;
+  };
+
+  const getExcerpt = (post: SanityPost) => {
+    if (!post.body) return "";
+
+    const plainText = post.body
+      .map((block: any) =>
+        block._type === "block"
+          ? block.children.map((child: any) => child.text).join("")
+          : "",
+      )
+      .join(" ");
+
+    return plainText.slice(0, 180) + "...";
+  };
 
   return (
     <main className="min-h-screen">
@@ -73,21 +109,52 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Link href={`/blog/${post.slug.current}`} className="block h-full group">
-                      <GlowCard className="h-full p-6">
-                        <div className="flex flex-col h-full">
-                          <span className="inline-block px-3 py-1 text-xs rounded-full bg-primary/10 text-primary w-fit mb-4">
-                            {getCategory(post)}
-                          </span>
-                          <h3 className="font-sans text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
+                    <Link
+                      href={`/blog/${post.slug.current}`}
+                      className="block h-full group"
+                    >
+                      <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
+                        {post.mainImage && (
+                          <div className="relative h-48 w-full">
+                            <Image
+                              src={urlFor(post.mainImage).width(800).url()}
+                              alt={post.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        )}
+
+                        <div className="p-6 flex flex-col h-full">
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            {post.categories?.map((cat) => (
+                              <span
+                                key={cat.title}
+                                className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
+                              >
+                                {cat.title}
+                              </span>
+                            ))}
+                          </div>
+
+                          {/* Title */}
+                          <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                             {post.title}
                           </h3>
+
+                          {/* Excerpt */}
                           <p className="text-sm text-muted-foreground grow leading-relaxed">
                             {getExcerpt(post)}
                           </p>
-                          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
-                            <Clock className="w-4 h-4" />
-                            <span>{getReadTime()}</span>
+
+                          {/* Footer */}
+                          <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
+                            <div className="flex items-center gap-2">
+                              <Clock className="w-4 h-4" />
+                              <span>{getReadTime(post)}</span>
+                            </div>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all" />
                           </div>
                         </div>
                       </GlowCard>
@@ -107,8 +174,8 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                 All Articles
               </h2>
             )}
-            <div className="grid md:grid-cols-2 gap-6">
-              {regularPosts.map((post, index) => (
+            <div className="grid md:grid-cols-3 gap-6">
+              {allPosts.map((post, index) => (
                 <motion.div
                   key={post.slug.current}
                   initial={{ opacity: 0, y: 20 }}
@@ -116,24 +183,52 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link href={`/blog/${post.slug.current}`} className="block h-full group">
-                    <GlowCard className="h-full p-6">
-                      <div className="flex flex-col h-full">
-                        <span className="inline-block px-3 py-1 text-xs rounded-full bg-primary/10 text-primary w-fit mb-4">
-                          {getCategory(post)}
-                        </span>
-                        <h3 className="font-sans text-lg font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                  <Link
+                    href={`/blog/${post.slug.current}`}
+                    className="block h-full group"
+                  >
+                    <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
+                      {post.mainImage && (
+                        <div className="relative h-48 w-full">
+                          <Image
+                            src={urlFor(post.mainImage).width(800).url()}
+                            alt={post.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
+
+                      <div className="p-6 flex flex-col h-full">
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {post.categories?.map((cat) => (
+                            <span
+                              key={cat.title}
+                              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
+                            >
+                              {cat.title}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
+
+                        {/* Excerpt */}
                         <p className="text-sm text-muted-foreground grow leading-relaxed">
                           {getExcerpt(post)}
                         </p>
-                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-muted-foreground/50">
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+
+                        {/* Footer */}
+                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
+                          <div className="flex items-center gap-2">
                             <Clock className="w-4 h-4" />
-                            <span>{getReadTime()}</span>
+                            <span>{getReadTime(post)}</span>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all" />
                         </div>
                       </div>
                     </GlowCard>
