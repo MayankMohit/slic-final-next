@@ -112,7 +112,7 @@ export function HeroSection() {
                 <AnimatedCounter
                   value={stat.value}
                   duration={1800}
-                  delay={4000}
+                  delay={1000}
                   className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]"
                 />
                 <div className="text-[0.8vw] text-muted-foreground font-semibold">
