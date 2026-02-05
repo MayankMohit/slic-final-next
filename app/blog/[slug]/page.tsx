@@ -1,4 +1,4 @@
-import { client } from "@/lib/sanity";
+import { sanityFetch } from "@/lib/sanity.live";
 import { BlogPostView } from "./BlogPostView";
 
 export default async function PostPage({
@@ -8,8 +8,8 @@ export default async function PostPage({
 }) {
   const { slug } = await params;
 
-  const post = await client.fetch(
-    `*[_type == "post" && slug.current == $slug][0]{
+  const {data: post} = await sanityFetch({
+    query: `*[_type == "post" && slug.current == $slug][0]{
       title,
       slug,
       body,
@@ -20,14 +20,12 @@ export default async function PostPage({
         title
       }
     }`,
-    { slug }
-  );
+    params: { slug },
+  });
 
   if (!post) return <div>Post not found</div>;
 
-  const formattedDate = new Date(post.publishedAt)
-    .toISOString()
-    .split("T")[0];
+  const formattedDate = new Date(post.publishedAt).toISOString().split("T")[0];
 
   return <BlogPostView post={post} formattedDate={formattedDate} />;
 }

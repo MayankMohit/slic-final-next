@@ -11,8 +11,9 @@ import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 // import PageTransitionProvider from "@/components/PageTransitionProvider";
 // import RouteLoader from "@/components/RouteLoader";
-import localFont from 'next/font/local';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import localFont from "next/font/local";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SanityLive } from "@/lib/sanity.live";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -134,16 +135,17 @@ export default function RootLayout({
         <SmoothScrollProvider>
           {/* <RouteLoader /> */}
           {/* <PageTransitionProvider> */}
-            <TooltipProvider>
-              {/* Global animated background */}
-              <EtheralBackground />
+          <TooltipProvider>
+            {/* Global animated background */}
+            <EtheralBackground />
 
-              {/* Foreground app content */}
-              <div className="relative z-10">{children}</div>
-              <SpeedInsights/>
-              <Toaster />
-              <SonnerToaster />
-            </TooltipProvider>
+            {/* Foreground app content */}
+            <div className="relative z-10">{children}</div>
+            <SpeedInsights />
+            <SanityLive />
+            <Toaster />
+            <SonnerToaster />
+          </TooltipProvider>
           {/* </PageTransitionProvider> */}
         </SmoothScrollProvider>
         {/* Calendly Script */}
