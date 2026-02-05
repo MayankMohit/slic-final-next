@@ -63,8 +63,8 @@ export function BlogPostView({ post, formattedDate }: BlogPostViewProps) {
     <main className="min-h-screen bg-transparent">
       <Navbar />
 
-      <div className="pt-24 pb-20 flex justify-center">
-        <div className="w-[90%] max-w-5xl">
+      <div className="pt-35 pb-20 flex justify-center w-[75%] mx-auto bg-[#131417a9]">
+        <div className=" max-w-6xl ">
 
           {/* Hero Image */}
           {post.mainImage && (

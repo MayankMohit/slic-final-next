@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
-import { Button } from "../ui/button";
 import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
 
@@ -125,8 +124,8 @@ export function TestimonialsSection() {
               <PrimaryButton onClick={openCalendly} />
 
               {/* Hover Popup */}
-              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-md opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-sm text-muted-foreground text-center">
+              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-muted-foreground text-center">
                   30-minute call. No pitch deck. Leave with a creative roadmap.
                   {/* Arrow */}
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
