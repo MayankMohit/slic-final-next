@@ -2,6 +2,7 @@
 
 import React, { useRef, useId, useEffect, CSSProperties } from 'react';
 import { animate, useMotionValue, AnimationPlaybackControls } from 'framer-motion';
+import { useIsMobile } from "@/hooks/use-isMobile";
 
 interface ResponsiveImage {
   src: string;
@@ -204,6 +205,8 @@ export function Component({
 
 
 export default function EtheralBackground() {
+  const isMobile = useIsMobile();
+  if (isMobile) return null;
   return (
     <div className="fixed inset-0 -z-10 w-screen h-screen">
       <Component

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useIsMobile } from "@/hooks/use-isMobile";
 
 export const TrustedBySection = () => {
   const logos = [
@@ -30,12 +31,13 @@ export const TrustedBySection = () => {
     "unscrptd.png": 0,
     "lokt.png": 5,
     "blackbox.png": -3,
-    "nexa.png": 8,
+    "nexa.png": 6,
     "maybelline.png": 0,
   };
 
   const marqueeRef = useRef<HTMLDivElement | null>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const marquee = marqueeRef.current;
@@ -60,9 +62,11 @@ export const TrustedBySection = () => {
   const handleMouseEnter = () => tweenRef.current?.pause();
   const handleMouseLeave = () => tweenRef.current?.play();
 
+  
+
   return (
-    <div className="w-[80%] mx-auto flex flex-col items-center mb-[5vh] overflow-hidden">
-      <h3 className="text-[0.9vw] font-inter font-semibold text-white/80 mb-[5vh] select-none text-center">
+    <div className="md:w-[80%] w-[95%] mx-auto flex flex-col items-center mb-[5vh] overflow-hidden">
+      <h3 className="text-sm md:text-[0.9vw] font-inter font-semibold text-white/80 md:mb-[5vh] mb-4 select-none text-center">
         <span className="text-blue-400">Trusted by DTC brands </span>scaling on
         paid media
       </h3>
@@ -72,13 +76,13 @@ export const TrustedBySection = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{
-          maskImage:
+          maskImage: 
             "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
           WebkitMaskImage:
             "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
         }}
       >
-        <div ref={marqueeRef} className="flex gap-14 whitespace-nowrap w-max">
+        <div ref={marqueeRef} className="flex gap-4 md:gap-14 whitespace-nowrap w-max">
           {repeatedLogos.map((logo, i) => {
             const size = logoSizes[logo] || { width: 150 };
             const yOffset = logoYOffsets[logo] ?? 0;
@@ -97,8 +101,7 @@ export const TrustedBySection = () => {
                   alt={`${logo.split(".")[0]} logo`}
                   className="object-contain pointer-events-none"
                   style={{
-                    width: `${size.width}px`,
-                    height: "auto",
+                    width: isMobile ? size.width / 1.5 : size.width,
                   }}
                   draggable="false"
                 />

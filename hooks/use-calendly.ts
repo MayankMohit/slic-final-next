@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 
-const CALENDLY_URL = "https://calendly.com/mayankmohitagarwal7/30min";
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL!;
 
 declare global {
   interface Window {
@@ -17,7 +17,6 @@ export const useCalendly = () => {
     if (typeof window !== 'undefined' && window.Calendly) {
       window.Calendly.initPopupWidget({ url: CALENDLY_URL });
     } else {
-      // Fallback: open in new tab if widget not loaded
       window.open(CALENDLY_URL, "_blank");
     }
   }, []);

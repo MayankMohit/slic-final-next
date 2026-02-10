@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCalendly } from "@/hooks/use-calendly";
 import NavButton from "@/components/ui/navButton";
+import { useIsMobile } from "@/hooks/use-isMobile";
 
 const navLinks = [
   { name: "Work", href: "/work" },
@@ -21,6 +22,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const isMobile = useIsMobile();
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,12 +33,13 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (isMobile === null) return null;
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMobile
           ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
           : "bg-transparent"
       }`}
@@ -99,7 +103,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-semibold py-2 transition-colors hover:text-primary ${
+                  className={`text-md font-semibold py-2 transition-colors hover:text-primary ml-4 ${
                     pathname === link.href
                       ? "text-primary"
                       : "text-muted-foreground"
@@ -113,9 +117,9 @@ export function Navbar() {
                   openCalendly();
                   setIsMobileMenuOpen(false);
                 }}
-                className="bg-gradient-primary w-full"
+                className="bg-gradient-primary w-full text-md"
               >
-                Get a Free Audit
+                Book A Call
               </Button>
             </div>
           </motion.div>

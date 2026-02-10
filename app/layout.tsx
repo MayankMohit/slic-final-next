@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import EtheralBackground from "@/components/etheral-background";
+import MobileBackground from "@/components/mobile-background";
 import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 // import PageTransitionProvider from "@/components/PageTransitionProvider";
@@ -64,14 +65,14 @@ export const metadata: Metadata = {
   authors: [{ name: "SLIC Media" }],
   creator: "SLIC Media",
   publisher: "SLIC Media",
-  metadataBase: new URL("https://slicmedia.com"),
+  metadataBase: new URL("https://slicmedia.com"),      /////////////////////////////////////
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://slicmedia.com",
+    url: "https://slicmedia.com",              ////////////////////////////////////
     siteName: "SLIC Media",
     title: "SLIC Media | Viral Video Content Agency - TikTok & Meta Ads",
     description:
@@ -125,21 +126,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sfPro.variable} ${inter.className}`}>
       <head>
-        {/* Calendly CSS */}
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
         />
       </head>
       <body className="font-sans">
+        <EtheralBackground />
         <SmoothScrollProvider>
           {/* <RouteLoader /> */}
           {/* <PageTransitionProvider> */}
           <TooltipProvider>
-            {/* Global animated background */}
-            <EtheralBackground />
-
-            {/* Foreground app content */}
+            <MobileBackground />
             <div className="relative z-10">{children}</div>
             <SpeedInsights />
             <SanityLive />
@@ -148,7 +146,6 @@ export default function RootLayout({
           </TooltipProvider>
           {/* </PageTransitionProvider> */}
         </SmoothScrollProvider>
-        {/* Calendly Script */}
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
           strategy="lazyOnload"

@@ -14,17 +14,17 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       {/* Content */}
-      <div className="container-tight py-10 md:py-[15vh]">
-        <div className="max-w-[70vw] mx-auto text-center">
+      <div className="container-tight py-10 md:py-[15vh] pt-10 md:pt-20">
+        <div className="md:max-w-[70vw] mx-auto text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-[0.8vw] py-[0.4vw] rounded-full bg-primary/10 border border-primary/20 mb-[5vh]"
+            className="inline-flex items-center gap-2 md:px-[0.8vw] md:py-[0.4vw] p-1.5 rounded-full bg-primary/10 border border-primary/20 md:mb-[5vh] mb-5"
           >
-            <span className="w-[0.4vw] h-[0.4vw] rounded-full bg-primary animate-pulse" />
-            <span className="text-[0.8vw] font-semibold text-primary">
+            <span className="md:w-[0.4vw] md:h-[0.4vw] w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-xs md:text-[0.8vw] font-semibold text-primary">
               {" "}
               Performance Creative Agency for DTC Brands
             </span>
@@ -46,7 +46,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-[0.8vw] text-muted-foreground max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-semibold"
+            className="text-sm md:text-[0.8vw] text-muted-foreground md:max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-semibold"
           >
             We research, script, and produce performance-driven video ads for
             Meta, TikTok, and YouTube. Built for DTC brands spending $30k+/month
@@ -100,7 +100,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] mt-[6vh] pt-[6vh] border-t border-border/50"
+            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] md:mt-[6vh] mt-4 md:pt-[6vh] pt-8 border-t border-border/50"
           >
             {[
               { value: "$50M+", label: "Client Revenue Generated" },
@@ -115,7 +115,7 @@ export function HeroSection() {
                   delay={1000}
                   className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]"
                 />
-                <div className="text-[0.8vw] text-muted-foreground font-semibold">
+                <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
                   {stat.label}
                 </div>
               </div>

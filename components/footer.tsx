@@ -1,14 +1,10 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import {
-  ArrowRight,
   Instagram,
   Linkedin,
   Mail,
-  MapPin,
-  Phone,
 } from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 import { createLucideIcon } from "lucide-react";
@@ -62,27 +58,27 @@ export function Footer() {
   const { openCalendly } = useCalendly();
 
   return (
-    <footer className="md:rounded-t-6xl relative w-full mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/18%),theme(backgroundColor.black/68%))] px-6 pt-6 lg:pt-8">
+    <footer className="md:rounded-t-6xl relative w-full mx-auto flex flex-col md:items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/18%),theme(backgroundColor.black/68%))]  lg:pt-8">
       <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
-      <div className="px-[10vw] py-8 text-[0.8vw]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      <div className="md:px-[10vw] md:pb-8 pt-8 pb-3 md:text-[0.8vw] ml-10 md:ml-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-2 max-w-[25vw] space-y-4">
+          <div className="lg:col-span-2 md:max-w-[25vw] space-y-4">
             <Link href="/" className="flex items-center gap-1">
               <img
                 src="/icons/sm_logo.png"
                 alt="Logo"
-                className="h-[2.5vh] w-auto"
+                className="md:h-[2.5vh] h-[3.5vh] w-auto"
               />
             </Link>
 
-            <p className="text-muted-foreground text-[0.8vw] mb-[1vw] max-w-[40vw] font-semibold">
+            <p className="text-muted-foreground text-xs md:text-[0.8vw] mb-[1vw] md:max-w-[40vw] max-w-[80vw] font-semibold">
               Performance video ads for DTC brands scaling on Facebook, TikTok,
               and YouTube. Research-driven creative that lowers CPA and improves
               ROAS.
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 mt-3">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -118,7 +114,7 @@ export function Footer() {
           </div>
 
           {/* Company */}
-          <div className=" ">
+          <div className="">
             <h4 className="font-sans font-bold text-foreground mb-[1vw]">
               Company
             </h4>
@@ -154,7 +150,7 @@ export function Footer() {
 
             <ul className="space-y-[0.8vw] mb-3">
               <li className="flex items-start gap-[0.8vw] text-muted-foreground/80">
-                <Mail className="w-4 h-4 mt-[0.4vw] shrink-0" />
+                <Mail className="w-4 h-4 md:mt-[0.2vw] mt-1 shrink-0" />
                 <a
                   href="mailto:slicmedia.business@gmail.com"
                   className="hover:text-primary transition-colors font-semibold"
@@ -167,7 +163,7 @@ export function Footer() {
             {/* Subtle CTA Button */}
             <button
               onClick={openCalendly}
-              className=" px-[1.4vw] pt-[0.7vw] pb-[0.8vw] rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex text-[0.8vw] font-bold uppercase hover:text-white"
+              className=" md:px-[1.4vw] md:pt-[0.7vw] md:pb-[0.8vw] p-3 rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex md:text-[0.8vw] font-bold uppercase hover:text-white"
             >
               Book A Strategy Call
             </button>
@@ -175,11 +171,11 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 pt-4 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-[0.8vw] text-muted-foreground font-semibold">
+        <div className="mt-8 md:pt-4 mr-8 md:mr-0 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
           <p>
             &copy; {new Date().getFullYear()} SLIC Media. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-10">
             {footerLinks.support.map((link) => (
               <Link
                 key={link.name}
