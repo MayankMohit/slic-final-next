@@ -116,7 +116,7 @@ export function AboutSection() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
             className="space-y-[2vh] mt-10 lg:mt-0"
           >
-            <h3 className="text-[0.8vw] uppercase tracking-widest text-foreground mb-1 font-bold">
+            <h3 className="text-sm md:text-[0.8vw] uppercase tracking-widest text-foreground mb-1 font-bold">
               Team
             </h3>
             <p className="text-muted-foreground text-sm md:text-[0.8vw] mb-8 font-semibold">
@@ -134,15 +134,15 @@ export function AboutSection() {
               >
                 <GlowCard className="overflow-hidden h-full">
                   <div className="p-[2vh] border-b border-slate-600">
-                    <div className="text-2xl md:text-[0.8vw] font-sans font-bold text-gradient mt-1 uppercase">
+                    <div className="text-xl md:text-[0.8vw] font-sans font-bold text-gradient mt-1 uppercase">
                       {member.name}
                     </div>
-                    <div className="text-foreground text-[0.8vw] font-semibold tracking-wider">
+                    <div className="text-foreground text-sm md:text-[0.8vw] font-semibold tracking-wider">
                       {member.role}
                     </div>
                   </div>
                   <div className="p-[2vh]">
-                    <p className="text-muted-foreground leading-relaxed text-[0.8vw] font-semibold">
+                    <p className="text-muted-foreground leading-relaxed text-xs md:text-[0.8vw] font-semibold">
                       {member.description}
                     </p>
                   </div>

@@ -64,15 +64,15 @@ export function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center md:mb-16 mb-6"
         >
-          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="tag">
             Got questions?
           </span>
-          <h2 className="ffont-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+          <h2 className="heading">
             Frequently Asked Questions
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-semibold">
+          <p className="desc">
             Everything you need to know before working with us.
           </p>
         </motion.div>
@@ -83,7 +83,7 @@ export function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-[50vw] mx-auto"
+          className="md:max-w-[50vw] mx-auto max-w-[90vw]"
         >
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
@@ -97,13 +97,13 @@ export function FAQSection() {
                 <button
                   type="button"
                   onClick={() => setActiveIndex(isOpen ? -1 : index)}
-                  className="w-full flex items-center justify-between px-[1vw] py-[0.2vw] text-left group"
+                  className="w-full flex items-center justify-between md:px-[1vw] md:py-[0.2vw] p-1.5 text-left group"
                 >
-                  <span className="font-sans text-[0.8vw] font-bold text-foreground group-hover:text-primary transition-colors pr-4">
+                  <span className="font-sans text-sm md:text-[0.8vw] font-bold text-foreground group-hover:text-primary transition-colors pr-4">
                     {faq.question}
                   </span>
 
-                  <div className="p-[1vw]  text-[0.8vw] font-semibold rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                  <div className="md:p-[1vw] p-2 text-[0.8vw] font-semibold rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {isOpen ? (
                       <Minus className="w-4 h-4" />
                     ) : (
@@ -122,7 +122,7 @@ export function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="px-5 pb-5 text-muted-foreground leading-relaxed font-semibold text-[0.8vw] w-[90%]">
+                      <p className="md:px-5 md:pb-5 pb-2 px-2 text-muted-foreground leading-relaxed font-semibold text-xs md:text-[0.8vw] w-[90%]">
                         {faq.answer}
                       </p>
                     </motion.div>
