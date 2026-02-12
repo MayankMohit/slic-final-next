@@ -191,6 +191,15 @@
   .container-tight {
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+  .tag {
+    @apply inline-block text-xs md:text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider;
+  }
+  .heading{
+    @apply font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance leading-8 md:leading-16;
+  }
+  .desc{
+    @apply text-xs md:text-[0.8vw] text-muted-foreground leading-relaxed font-semibold;
+  }
 }
 
 @layer utilities {
@@ -232,3 +241,4 @@
     @apply bg-background text-foreground;
   }
 }
+

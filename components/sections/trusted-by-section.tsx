@@ -101,7 +101,7 @@ export const TrustedBySection = () => {
                   alt={`${logo.split(".")[0]} logo`}
                   className="object-contain pointer-events-none"
                   style={{
-                    width: isMobile ? size.width / 1.5 : size.width,
+                    width: isMobile ? size.width / 2 : size.width,
                   }}
                   draggable="false"
                 />

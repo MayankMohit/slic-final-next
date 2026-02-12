@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
+import { useIsMobile } from "@/hooks/use-isMobile";
 
 const steps = [
   {
@@ -48,6 +49,7 @@ const steps = [
 
 export function ApproachSection() {
   const { openCalendly } = useCalendly();
+  const isMobile = useIsMobile();
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
@@ -57,17 +59,17 @@ export function ApproachSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-[70vw] mx-auto mb-[4vh]"
+          className="text-center md:max-w-[70vw] mx-auto mb-[4vh]"
         >
-          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="tag">
             How We Work
           </span>
-          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+          <h2 className="heading">
             Research first. Production second. <br />
             Results always.
           </h2>
 
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed font-semibold">
+          <p className="desc">
             We don't offer UGC. We don't guess what might work. We research your
             market, script high-converting video ad concepts, and edit
             everything in-house for Facebook, Instagram, TikTok, and YouTube.
@@ -76,8 +78,8 @@ export function ApproachSection() {
         </motion.div>
 
         {/* Steps */}
-        <div className="max-w-[70vw] mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-[2vw] justify-items-center mb-[3vh]">
+        <div className="md:max-w-[70vw] mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 md:gap-[2vw] gap-5 justify-items-center mb-[3vh]">
             {steps.map((step, index) => (
               <motion.div
               key={step.step}
@@ -91,26 +93,26 @@ export function ApproachSection() {
                 damping: 18,
                 delay: index * 0.1,
               }}
-              className="h-full max-w-[20vw]"
+              className="h-full md:max-w-[20vw]"
             >
-                <GlowCard className="h-full py-[2vh] px-[2vw] relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
-                  <span className="absolute top-4 right-4 text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
+                <GlowCard className="h-full md:py-[2vh] md:px-[2vw] p-8 relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
+                  <span className="absolute md:top-4 md:right-4 top-9 right-9 text-5xl md:text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
                     {step.step}
                   </span>
 
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <step.icon className="w-[1.5vw] h-[1.5vw] text-primary" />
+                    <step.icon className="md:w-[1.5vw] md:h-[1.5vw] text-primary" />
                   </div>
 
-                  <h3 className="text-[0.8vw] font-bold mb-3 pr-8">
+                  <h3 className="text-sm md:text-[0.8vw] font-bold mb-3 pr-8">
                     {step.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-[0.8vw] leading-relaxed font-semibold">
+                  <p className="text-muted-foreground text-sm md:text-[0.8vw] leading-relaxed font-semibold">
                     {step.description}
                   </p>
 
-                  {index < steps.length - 1 && (
+                  {index < steps.length - 1 && !isMobile && (
                     <div className="hidden lg:block absolute top-1/2 -right-4 w-[2vw] h-0.5 bg-linear-to-r from-primary/50 to-transparent" />
                   )}
                 </GlowCard>
@@ -128,7 +130,7 @@ export function ApproachSection() {
           className=""
         >
           <div className="max-w-[70vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] font-semibold">
+            <p className="text-muted-foreground text-xs md:text-[0.8vw] font-semibold">
               This process has driven{" "}
               <span className=" text-foreground">
                 32% average CPA reduction
@@ -136,7 +138,7 @@ export function ApproachSection() {
               for our clients.
             </p>
 
-            <div className="flex items-center gap-[4vw]">
+            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-[4vw]">
               <div className="relative group">
                 {/* <Button
                   onClick={openCalendly}
@@ -163,11 +165,10 @@ export function ApproachSection() {
                 asChild
                 variant="outline"
                 size="sm"
-                className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
               >
                 <Link href="/work">
                   <Play className="mr-2 w-5 h-5" />
-                  See Our Work
+                  <span>See Our Work</span>
                 </Link>
               </Button>
             </div>

@@ -51,20 +51,20 @@ export function CaseStudiesSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-[4vh]"
         >
-          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="tag">
             Results
           </span>
-          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+          <h2 className="heading">
             Performance Creative That Delivers Measurable ROAS
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-semibold">
+          <p className="desc">
             We don't measure success in likes or followers. We measure it in
             CPA, ROAS, and revenue. Here's what our video ads have delivered for
             DTC brands like yours.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[2vw] mb-[4vh]">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-[2vw] mb-[4vh]">
           {caseStudies.map((study, index) => (
             <motion.div
               key={study.title}
@@ -80,10 +80,10 @@ export function CaseStudiesSection() {
               }}
               className="h-full"
             >
-              <GlowCard className="h-full p-[1vw] transition-shadow duration-300 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)]">
-                <div className="flex flex-col h-full">
+              <GlowCard className="h-full p-6 md:p-[1vw] transition-shadow duration-300 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)]">
+                <div className="flex flex-col h-full gap-3 md:gap-0">
                   <div className="flex items-start justify-between mb-[1vw]">
-                    <div className="p-[0.8vw] rounded-xl bg-primary/10">
+                    <div className="p-2 md:p-[0.8vw] rounded-xl bg-primary/10">
                       <study.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="text-right">
@@ -95,22 +95,22 @@ export function CaseStudiesSection() {
                           className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient"
                         />
                       </div>
-                      <div className="text-[0.8vw] text-muted-foreground font-semibold">
+                      <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
                         {study.metricLabel}
                       </div>
                     </div>
                   </div>
-                  <h3 className="font-sans text-[0.8vw] font-bold mb-[1vw] text-foreground">
+                  <h3 className="font-sans text-sm md:text-[0.8vw] font-bold mb-[1vw] text-foreground">
                     {study.title}
                   </h3>
-                  <p className="text-muted-foreground text-[0.8vw] grow leading-relaxed font-semibold">
+                  <p className="text-muted-foreground text-xs md:text-[0.8vw] grow leading-relaxed font-semibold">
                     {study.description}
                   </p>
-                  <div className="flex flex-wrap gap-[0.5vw] mt-[1vw] ">
+                  <div className="flex flex-wrap gap-2 md:gap-[0.5vw] mt-[1vw] ">
                     {study.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-[0.5vw] py-[0.2vw] text-[0.7vw] rounded-full bg-secondary text-muted-foreground font-semibold"
+                        className="p-2 md:px-[0.5vw] md:py-[0.2vw] text-xs md:text-[0.7vw] rounded-full bg-[#00000040] text-muted-foreground font-semibold"
                       >
                         {tag}
                       </span>
@@ -129,14 +129,14 @@ export function CaseStudiesSection() {
           viewport={{ once: true }}
           className="mt-6"
         >
-          <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center font-semibold">
+          <div className="md:max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-5 md:gap-[1vw] text-center md:text-left">
+            <p className="text-muted-foreground text-xs md:text-[0.8vw] text-center font-semibold">
               These results come from research-first creative, not guesswork. If
               you're spending $30k+ on Facebook, TikTok, or YouTube ads and want
               creative that actually performs, let's talk.
             </p>
 
-            <div className="flex items-center gap-[4vw]">
+            <div className="flex items-center flex-col md:flex-row gap-3 md:gap-[4vw]">
               <div className="relative group">
                 {/* <Button
                   onClick={openCalendly}
@@ -163,11 +163,10 @@ export function CaseStudiesSection() {
                 asChild
                 variant="outline"
                 size="sm"
-                className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
               >
                 <Link href="/work">
                   <Play className="mr-2 w-5 h-5" />
-                  See More Case Studies
+                  <span>See More Case Studies</span>
                 </Link>
               </Button>
             </div>

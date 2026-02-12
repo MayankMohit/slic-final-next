@@ -12,7 +12,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
   return (
     <StyledWrapper>
-      <button id="btn" {...props}>
+      <button id="btn" className="text-sm md:text-[0.8vw]" {...props}>
         {children}
       </button>
     </StyledWrapper>
@@ -24,8 +24,6 @@ const StyledWrapper = styled.div`
     padding: 10px 20px;
     text-transform: uppercase;
     border-radius: 8px;
-    font-size: 17px;
-    font-weight: 500;
     color: #ffffff80;
     text-shadow: none;
     background: transparent;

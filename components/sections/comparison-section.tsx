@@ -53,13 +53,13 @@ export function ComparisonSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="tag">
             Why Choose Us
           </span>
-          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-semibold mb-[2vh] text-balance">
+          <h2 className="heading">
             Traditional Agency vs <span className="text-gradient font-bold">SLIC</span>
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-semibold">
+          <p className="desc">
             Most creative agencies prioritize aesthetics over performance. We
             built SLIC to do the opposite.
           </p>
@@ -106,7 +106,7 @@ export function ComparisonSection() {
         </motion.div>
 
         {/* Mobile Cards */}
-        <div className="md:hidden space-y-4">
+        <div className="md:hidden space-y-4 max-w-[90vw] mx-auto">
           {comparisonData.map((row, index) => (
             <motion.div
               key={row.area}
@@ -144,8 +144,8 @@ export function ComparisonSection() {
         viewport={{ once: true }}
         className="mt-6"
       >
-        <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-          <p className="text-muted-foreground text-sm md:text-[1v6] text-center font-semibold">
+        <div className="md:max-w-[50vw] max-w-[90vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
+          <p className="text-muted-foreground text-xs md:text-[0.8vw] text-center font-semibold">
             If you're tired of agencies that deliver pretty ads that don't
             perform, let's talk.
           </p>

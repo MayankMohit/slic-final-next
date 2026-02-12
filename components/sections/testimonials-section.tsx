@@ -49,13 +49,13 @@ export function TestimonialsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-[4vh]"
         >
-          <span className="inline-block text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider">
+          <span className="tag">
             Testimonials
           </span>
-          <h2 className="font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance">
+          <h2 className="heading">
             What Our Clients Say
           </h2>
-          <p className="text-[0.8vw] text-muted-foreground leading-relaxed max-w-[50vw] mx-auto font-semibold">
+          <p className="desc">
             Don't just take our word for it. Hear from the brands we've helped
             scale with performance video ads.
           </p>
@@ -73,7 +73,7 @@ export function TestimonialsSection() {
               <GlowCard className="h-full p-6">
                 <div className="flex flex-col h-full">
                   <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                  <p className="text-foreground text-[0.8vw] mb-6 grow leading-relaxed font-semibold">
+                  <p className="text-foreground text-sm md:text-[0.8vw] mb-6 grow leading-relaxed font-semibold">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className="flex gap-1 mb-4">
@@ -84,11 +84,11 @@ export function TestimonialsSection() {
                       />
                     ))}
                   </div>
-                  <div>
-                    <div className="font-sans font-bold text-foreground text-[0.8vw]">
+                  <div className="flex flex-col gap-1">
+                    <div className="font-sans font-bold text-foreground text-xs md:text-[0.8vw]">
                       {testimonial.author}
                     </div>
-                    <div className="text-[0.8vw] text-muted-foreground font-semibold">
+                    <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
                       {testimonial.role}
                     </div>
                   </div>
@@ -105,8 +105,8 @@ export function TestimonialsSection() {
         viewport={{ once: true }}
         className="mt-6"
       >
-        <div className="max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-[1vw] text-center md:text-left">
-          <p className="text-muted-foreground text-sm md:text-[0.8vw] text-center font-semibold">
+        <div className="md:max-w-[50vw] max-w-[90vw] mx-auto flex flex-col items-center justify-between gap-5 md:gap-[1vw] text-center md:text-left">
+          <p className="text-muted-foreground text-xs md:text-[0.8vw] text-center font-semibold">
             Ready to see results like these? Book a call and we'll show you
             exactly how we can improve your video ad performance.
           </p>

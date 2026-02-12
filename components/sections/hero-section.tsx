@@ -35,7 +35,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-[3vw] tracking-tight mb-[3vh] text-balance"
+            className="font-sans text-3xl sm:text-5xl md:text-6xl lg:text-[3vw] tracking-tight mb-[3vh] text-balance"
           >
             Ad Creative That{" "}
             <span className="text-gradient">Actually Converts</span>
@@ -46,7 +46,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-sm md:text-[0.8vw] text-muted-foreground md:max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-semibold"
+            className="text-xs md:text-[0.8vw] text-muted-foreground md:max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-semibold"
           >
             We research, script, and produce performance-driven video ads for
             Meta, TikTok, and YouTube. Built for DTC brands spending $30k+/month
@@ -70,7 +70,7 @@ export function HeroSection() {
                 Book a Strategy Call
                 <ArrowRight className="ml-[0.5vw]" />
               </Button> */}
-              <PrimaryButton onClick={openCalendly} />
+              <PrimaryButton onClick={openCalendly}  />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
@@ -86,10 +86,9 @@ export function HeroSection() {
               asChild
               variant="outline"
               size="sm"
-              className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center"
             >
               <Link href="/work">
-                <Play className="mr-2 w-5 h-5" />
+                <Play className="mr-1/2 w-5 h-5" />
                 See Our Work
               </Link>
             </Button>

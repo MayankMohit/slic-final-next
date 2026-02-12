@@ -36,15 +36,15 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="inline-flex items-center gap-2 text-primary text-[0.8vw] uppercase tracking-[0.2em] mb-6 font-semibold">
+            <span className="tag">
               Our Story
             </span>
 
-            <h2 className="text-4xl md:text-[3vw] font-sans font-bold mb-[1vw] leading-tight">
+            <h2 className="heading">
               From Passion to <span className="text-gradient">Performance</span>
             </h2>
 
-            <div className="space-y-5 text-muted-foreground text-[0.8vw] leading-relaxed font-semibold">
+            <div className="space-y-5 desc">
               <p>
                 What began as a passion for storytelling and editing evolved
                 into a performance creative agency built for DTC brands scaling
