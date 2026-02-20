@@ -3,126 +3,93 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import {
-  TrendingUp,
-  Users,
-  DollarSign,
-  ShoppingCart,
-  Eye,
-  BarChart3,
-  Check,
-} from "lucide-react";
+import { Check } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
 
 const caseStudies = [
   {
-    icon: Users,
-    metric: "0 → 150K",
-    metricLabel: "Instagram Followers",
-    title: "Lifestyle Brand Organic Growth",
-    client: "Premium Fashion Label",
-    challenge:
-      "A new lifestyle brand needed to build social proof and a loyal following from scratch with zero existing presence.",
-    solution:
-      "Implemented our viral content framework with trend-jacking, UGC-style posts, and community engagement strategy.",
-    results: [
-      "150K followers in 90 days",
-      "12% average engagement rate",
-      "500% increase in website traffic",
-      "45% of sales from social",
+    logo: "loop.png",
+    logoSize: { width: 130 },
+    metrics: [
+      { value: "$40M+", label: "Revenue Generated" },
+      { value: "2.5x", label: "ROAS" },
     ],
-    tags: ["Instagram", "Organic Growth", "Content Strategy", "Fashion"],
+    title: "Loop Labs: $40M+ in Revenue with Performance Video Ads",
+    client: "DTC Toy Brand",
+    challenge:
+      "Loop Labs needed a reliable stream of high-performing video ad creative to scale their paid media spend profitably. They were spending aggressively on Facebook and TikTok but hitting creative fatigue and inconsistent ROAS.",
+    solution:
+      "We became their dedicated performance creative partner, delivering research-backed video ads on a continuous basis. Every ad started with competitor analysis, customer research, and hook testing. We optimized specifically for Facebook and TikTok algorithms, iterating weekly based on performance data.",
+    results: [
+      "$40M+ in revenue generated over 2 years",
+      "Consistent 2.5x ROAS across campaigns",
+      "Eliminated creative bottlenecks",
+      "Continuous pipeline of winning ad variations",
+    ],
+    tags: ["Facebook Ads", "TikTok Ads", "DTC", "Toys"],
   },
   {
-    icon: TrendingUp,
-    metric: "3x",
-    metricLabel: "Conversion Rate Lift",
-    title: "DTC Beauty Brand Transformation",
-    client: "Skincare Startup",
-    challenge:
-      "A DTC skincare brand was struggling with high CPA and low ROAS from their paid social campaigns.",
-    solution:
-      "Created platform-native ad creatives with strong hooks, social proof elements, and optimized for conversions.",
-    results: [
-      "3x conversion rate increase",
-      "65% reduction in CPA",
-      "4.5x ROAS achieved",
-      "200+ winning ad variations",
+    logo: "nb.png",
+    logoSize: { width: 60 },
+    metrics: [
+      { value: "$10M+", label: "Revenue Generated" },
+      { value: "3x", label: "ROAS" },
     ],
-    tags: ["Meta Ads", "TikTok Ads", "Conversion", "Beauty"],
+    title: "NeuroBrocc: $10M+ Revenue and 3x ROAS on US Launch",
+    client: "Kids Nutrition Supplement Brand",
+    challenge:
+      "NeuroBrocc was relaunching in the US market and needed video ad creative that could drive profitable customer acquisition from day one. The kids nutrition space is competitive, with high CPAs and skeptical parents as the target audience.",
+    solution:
+      "We researched the competitive landscape, identified messaging gaps, and scripted video ads that addressed parent objections head-on. Our creative focused on trust signals, ingredient transparency, and clear benefits. Every ad was optimized for Meta and tested rigorously.",
+    results: [
+      "$10M+ in revenue generated",
+      "3x ROAS on paid campaigns",
+      "Successful US market relaunch",
+      "Scalable creative system for ongoing growth",
+    ],
+    tags: ["Meta Ads", "DTC", "Nutrition", "Supplements"],
   },
   {
-    icon: DollarSign,
-    metric: "7-Figure",
-    metricLabel: "Annual Revenue",
-    title: "Startup to Scale Success",
-    client: "Health & Wellness Brand",
-    challenge:
-      "A bootstrapped health brand needed to scale from $10K/month to $100K+/month without VC funding.",
-    solution:
-      "Full Brand Growth Package with comprehensive ad creative production and organic content strategy.",
-    results: [
-      "Scaled to 7-figure revenue",
-      "8x return on ad spend",
-      "80K organic followers",
-      "Featured in major publications",
+    logo: "lokt.png",
+    logoSize: { width: 120 },
+    metrics: [
+      { value: "3x", label: "ROAS" },
+      { value: "$12 to $15", label: "CPA" },
     ],
-    tags: ["Full Funnel", "Viral Ads", "Growth", "Wellness"],
+    title: "LOKT: 3x ROAS with $12 to $15 CPA",
+    client: "Screentime Solution Product",
+    challenge:
+      "LOKT needed video ad creative that could explain their screentime solution product quickly and drive conversions at a sustainable CPA. The product required education before purchase, making the first 3 seconds critical.",
+    solution:
+      "We developed hook-first video ads that grabbed attention and communicated the core value proposition within seconds. Scripts were built on customer pain points (parents frustrated with kids' screen addiction) and clear product benefits. We tested multiple angles and iterated toward winners.",
+    results: [
+      "3x ROAS achieved",
+      "$12 to $15 CPA (sustainable for scale)",
+      "High-converting hook variations identified",
+      "Repeatable creative framework established",
+    ],
+    tags: ["Facebook Ads", "TikTok Ads", "DTC", "Consumer Tech"],
   },
   {
-    icon: ShoppingCart,
-    metric: "$2M+",
-    metricLabel: "Revenue in Q4",
-    title: "E-commerce Holiday Campaign",
-    client: "Home Goods Brand",
-    challenge:
-      "Needed to maximize Q4 holiday revenue with limited budget and short timeline.",
-    solution:
-      "Rapid creative production with holiday-themed UGC and promotional content across all platforms.",
-    results: [
-      "$2M+ Q4 revenue",
-      "400% increase vs previous year",
-      "35% of annual revenue in 60 days",
-      "10M+ video views",
+    logo: "unscrptd.png",
+    logoSize: { width: 140 },
+    metrics: [
+      { value: "2x", label: "ROAS" },
     ],
-    tags: ["E-commerce", "Seasonal", "Meta Ads", "Home"],
-  },
-  {
-    icon: Eye,
-    metric: "50M+",
-    metricLabel: "Video Views",
-    title: "Viral TikTok Campaign",
-    client: "Food & Beverage Brand",
+    title: "UNSCRPTD: 2x ROAS with Street Interview Ad Creative",
+    client: "Street Interview Content Agency",
     challenge:
-      "A new beverage brand needed massive awareness on a startup budget.",
+      "UNSCRPTD needed video ad creative that could turn their signature street interview format into high-converting paid ads for their brand clients. The challenge was maintaining the raw, authentic feel that makes street interviews engaging while optimizing for conversions.",
     solution:
-      "Creator partnerships combined with our in-house viral content production focused on TikTok.",
+      "We developed a performance-focused editing approach for street interview content. We identified the highest-impact moments, built scroll-stopping hooks from real reactions, and structured the ads for platform algorithms. The authentic format combined with strategic editing created ads that felt native but converted.",
     results: [
-      "50M+ organic views",
-      "Multiple viral videos (1M+ views each)",
-      "300% follower growth",
-      "Sold out product launch",
+      "2x ROAS on paid campaigns",
+      "Authentic street interview format preserved",
+      "Scalable ad creative system",
+      "High engagement with strong conversion",
     ],
-    tags: ["TikTok", "Viral", "F&B", "Launch"],
-  },
-  {
-    icon: BarChart3,
-    metric: "500%",
-    metricLabel: "ROAS Improvement",
-    title: "Ad Creative Overhaul",
-    client: "Fitness Equipment Brand",
-    challenge:
-      "Existing ads were burning through budget with poor returns. Needed a complete creative refresh.",
-    solution:
-      "Rebuilt entire creative strategy with new hooks, formats, and platform-specific optimizations.",
-    results: [
-      "500% ROAS improvement",
-      "85% lower cost per acquisition",
-      "50+ new winning creatives",
-      "Expanded to 3 new platforms",
-    ],
-    tags: ["Paid Social", "Creative Strategy", "Fitness", "Performance"],
+    tags: ["Facebook Ads", "TikTok Ads", "Street Interviews", "Content Agency"],
   },
 ];
 
@@ -141,18 +108,15 @@ export function CaseStudiesPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
-                Case Studies
-              </span>
+              <span className="tag">Case Studies</span>
 
-              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
-                Real Results for Real Brands
-              </h1>
+              <h1 className="heading">Real Results for Real Brands</h1>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Numbers don&apos;t lie. Explore how we&apos;ve helped brands
-                like yours achieve explosive growth through strategic video
-                content.
+              <p className="desc">
+                We don't measure success in likes or views. We measure it in
+                revenue, ROAS, and CPA. Here's how our performance video ads
+                have helped DTC brands scale profitably on Facebook, TikTok, and
+                YouTube.
               </p>
             </motion.div>
           </div>
@@ -174,20 +138,32 @@ export function CaseStudiesPageContent() {
                     {/* Header */}
                     <div className="flex items-start justify-between mb-6">
                       <div>
-                        <div className="p-3 rounded-xl bg-primary/10 w-fit mb-3">
-                          <study.icon className="w-6 h-6 text-primary" />
+                        <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-3 flex items-center justify-center">
+                          <img
+                            src={`/brandLogos/${study.logo}`}
+                            alt={`${study.logo.split(".")[0]} logo`}
+                            className="object-contain pointer-events-none"
+                            draggable="false"
+                            style={{
+                              width: study.logoSize.width,
+                            }}
+                          />
                         </div>
                         <p className="text-xs text-muted-foreground">
                           {study.client}
                         </p>
                       </div>
-                      <div className="text-right">
-                        <div className="font-sans text-3xl font-bold text-gradient">
-                          {study.metric}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {study.metricLabel}
-                        </div>
+                      <div className="text-right space-y-3">
+                        {study.metrics.map((metric) => (
+                          <div key={metric.value}>
+                            <div className="font-sans text-2xl md:text-3xl font-bold text-gradient leading-none">
+                              {metric.value}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {metric.label}
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
 

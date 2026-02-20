@@ -34,9 +34,7 @@ const portableTextComponents: PortableTextComponents = {
       <h3 className="text-2xl font-semibold mt-8 mb-4">{children}</h3>
     ),
     normal: ({ children }) => (
-      <p className="text-lg leading-8 text-muted-foreground mb-6">
-        {children}
-      </p>
+      <p className="text-lg leading-8 text-muted-foreground mb-6">{children}</p>
     ),
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-primary pl-6 italic my-8 text-xl">
@@ -46,14 +44,10 @@ const portableTextComponents: PortableTextComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc pl-6 space-y-2 my-6 text-lg">
-        {children}
-      </ul>
+      <ul className="list-disc pl-6 space-y-2 my-6 text-lg">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal pl-6 space-y-2 my-6 text-lg">
-        {children}
-      </ol>
+      <ol className="list-decimal pl-6 space-y-2 my-6 text-lg">{children}</ol>
     ),
   },
 };
@@ -63,12 +57,11 @@ export function BlogPostView({ post, formattedDate }: BlogPostViewProps) {
     <main className="min-h-screen bg-transparent">
       <Navbar />
 
-      <div className="pt-35 pb-20 flex justify-center w-[75%] mx-auto bg-[#131417a9]">
-        <div className=" max-w-6xl ">
-
+      <div className="pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 bg-[#131417a9]">
+        <div className="max-w-4xl lg:max-w-5xl mx-auto">
           {/* Hero Image */}
           {post.mainImage && (
-            <div className="mb-12">
+            <div className="mb-8 md:mb-12">
               <Image
                 src={urlFor(post.mainImage).width(1600).url()}
                 alt={post.mainImage.alt || post.title}
@@ -81,7 +74,7 @@ export function BlogPostView({ post, formattedDate }: BlogPostViewProps) {
           )}
 
           {/* Categories */}
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-6">
             {post.categories?.map((cat: any) => (
               <span
                 key={cat.title}
@@ -93,37 +86,34 @@ export function BlogPostView({ post, formattedDate }: BlogPostViewProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-5xl font-bold mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
             {post.title}
           </h1>
 
           {/* Author + Date */}
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12">
             {post.author?.image && (
               <Image
                 src={urlFor(post.author.image).width(100).url()}
                 alt={post.author.name}
                 width={50}
                 height={50}
-                className="rounded-full"
+                className="rounded-full w-10 h-10 md:w-12 md:h-12"
               />
             )}
             <div>
               <p className="font-medium">{post.author?.name}</p>
-              <p className="text-sm text-muted-foreground">
-                {formattedDate}
-              </p>
+              <p className="text-sm text-muted-foreground">{formattedDate}</p>
             </div>
           </div>
 
           {/* Body */}
-          <article className="prose prose-neutral max-w-none">
+          <article className="prose prose-sm sm:prose-base lg:prose-lg prose-neutral max-w-none overflow-hidden">
             <PortableText
               value={post.body}
               components={portableTextComponents}
             />
           </article>
-
         </div>
       </div>
 

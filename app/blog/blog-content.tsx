@@ -79,13 +79,9 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
-                Blog & Insights
-              </span>
-              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
-                Learn to Create Viral Content
-              </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <span className="tag">Blog & Insights</span>
+              <h1 className="heading">Learn to Create Viral Content</h1>
+              <p className="desc">
                 Actionable insights on video marketing, social media growth, and
                 ad creative strategies from our team.
               </p>
@@ -112,6 +108,8 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                     <Link
                       href={`/blog/${post.slug.current}`}
                       className="block h-full group"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
                         {post.mainImage && (
@@ -186,6 +184,8 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                   <Link
                     href={`/blog/${post.slug.current}`}
                     className="block h-full group"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
                       {post.mainImage && (

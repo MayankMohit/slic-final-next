@@ -71,16 +71,16 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
+              <span className="tag">
                 About Us
               </span>
 
-              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+              <h1 className="heading">
                 From Passion to{" "}
                 <span className="text-gradient">Performance</span>
               </h1>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="desc">
                 We&apos;re a performance-first video agency obsessed with
                 creating content that actually converts.
               </p>

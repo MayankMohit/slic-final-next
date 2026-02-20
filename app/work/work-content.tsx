@@ -131,15 +131,15 @@ export function WorkPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
+              <span className="tag">
                 Our Work
               </span>
 
-              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+              <h1 className="heading">
                 Videos That Drive Results
               </h1>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="desc">
                 From viral social content to cinematic brand films, explore how
                 we help brands capture attention, build trust, and convert at
                 scale.
