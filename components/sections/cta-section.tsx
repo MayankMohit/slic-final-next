@@ -31,7 +31,7 @@ export function CTASection() {
           {/* Heading */}
           <h2 className="heading">
             Let&apos;s Build Video Ads That{" "}
-            <span className="text-gradient">Actually Converts</span>
+            <span className="text-gradient">Actually Convert</span>
           </h2>
 
           {/* Copy */}

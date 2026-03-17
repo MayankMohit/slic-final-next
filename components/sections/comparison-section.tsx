@@ -15,7 +15,7 @@ const comparisonData = [
   },
   {
     area: "Speed",
-    traditional: "4–8 week creative cycles",
+    traditional: "4 to 8 week creative cycles",
     slic: "Test-ready variants in 48 to 72 hours",
   },
   {
@@ -80,7 +80,7 @@ export function ComparisonSection() {
               <div className="p-[1vw] text-foreground border-x border-muted-foreground/30 font-semibold">
                 Traditional
               </div>
-              <div className="p-[1vw] text-primary">SLIC Media</div>
+              <div className="p-[1vw] text-primary">SLIC</div>
             </div>
 
             {/* Table Rows */}

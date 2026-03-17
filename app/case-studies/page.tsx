@@ -3,11 +3,11 @@ import { CaseStudiesPageContent } from "./case-studies-content";
 
 export const metadata: Metadata = {
   title: "Case Studies",
-  description: "Explore real results from SLIC Media's work with DTC brands. See how we've helped brands achieve 3x conversion rates, 150K+ followers, and 7-figure revenue.",
+  description: "Explore real results from SLIC's work with DTC brands. See how we've helped brands achieve 3x conversion rates, 150K+ followers, and 7-figure revenue.",
   openGraph: {
-    title: "Case Studies | SLIC Media",
-    description: "Explore real results from our work with DTC brands. See how we've helped brands achieve explosive growth.",
-    url: "https://slicmedia.com/case-studies",
+    title: "Case Studies | SLIC Performance Creative Results",
+    description: "See how SLIC generated $50M+ for DTC brands like Loop Labs, NeuroBrocc, and LOKT. 2x to 3x ROAS. Performance video ads that convert.",
+    url: "https://slic.agency/case-studies",
   },
 };
 

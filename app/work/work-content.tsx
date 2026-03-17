@@ -131,18 +131,12 @@ export function WorkPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="tag">
-                Our Work
-              </span>
+              <span className="tag">Our Work</span>
 
-              <h1 className="heading">
-                Videos That Drive Results
-              </h1>
+              <h1 className="heading">Performance Video Ads That Drive Revenue</h1>
 
               <p className="desc">
-                From viral social content to cinematic brand films, explore how
-                we help brands capture attention, build trust, and convert at
-                scale.
+                Browse video ads we've created for DTC brands scaling on Facebook, TikTok, and YouTube.
               </p>
             </motion.div>
           </div>

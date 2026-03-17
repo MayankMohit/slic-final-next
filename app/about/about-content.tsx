@@ -10,49 +10,49 @@ import { CTASection } from "@/components/sections/cta-section";
 const values = [
   {
     icon: Target,
-    title: "Results-Obsessed",
+    title: "Performance Over Aesthetics",
     description:
-      "Every creative decision is driven by data and optimized for measurable outcomes.",
+      "A beautiful ad that doesn't convert is a failed ad. We optimize for ROAS, CPA, and revenue first. The creative follows the strategy, not the other way around.",
   },
   {
     icon: Rocket,
-    title: "Speed & Quality",
+    title: "Research Before Production",
     description:
-      "We move fast without compromising on the quality that drives results.",
+      "We don't start with a camera. We start with competitor ads, customer reviews, and winning creative patterns. Scripts are built on insights, not assumptions.",
   },
   {
     icon: Users,
-    title: "Partnership Mindset",
+    title: "Speed Without Sacrifice",
     description:
-      "We treat your brand like our own, invested in your long-term success.",
+      "Test-ready variants in 48 to 72 hours, not 4 to 8 weeks. We move fast because creative fatigue doesn't wait. But speed never means cutting corners on quality.",
   },
   {
     icon: Award,
-    title: "Creative Excellence",
+    title: "Partnership, Not Hand-Off",
     description:
-      "Pushing boundaries to create content that stands out in crowded feeds.",
+      "We share your KPIs. We track your results. We iterate based on what's working. This isn't a deliverables relationship. It's a growth partnership.",
   },
 ];
 
 const team = [
   {
-    name: "Vedant",
-    role: "Founder & Creative Director",
-    bio: "The visionary behind SLIC's creative strategy. With a background in film production and digital marketing, Vedant has helped brands generate over $50M in revenue through viral content. His approach blends storytelling with performance marketing.",
+    name: "Vedant Kulkarni",
+    role: "FOUNDER AND CREATIVE DIRECTOR",
+    bio: "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy across every client engagement, ensuring every ad is backed by research and built to convert. Obsessed with the intersection of psychology and performance.",
     initial: "V",
   },
   {
-    name: "Siddharth",
-    role: "Operations & Logistics",
-    bio: "The engine behind seamless execution. Siddharth ensures every project—from concept to delivery—is delivered on time while maintaining SLIC's quality bar.",
+    name: "Siddhartha Aryan",
+    role: "HEAD OF PRODUCTION",
+    bio: "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines. The reason SLIC delivers fast without sacrificing quality.",
     initial: "S",
   },
 ];
 
 const milestones = [
   { value: "$50M+", label: "Revenue Generated" },
-  { value: "150K+", label: "Followers Grown" },
-  { value: "500+", label: "Videos Produced" },
+  { value: "2.5x to 3.5x+", label: "Average ROAS" },
+  { value: "500+", label: "Performance Ads Delivered" },
   { value: "50+", label: "Brands Scaled" },
 ];
 
@@ -71,9 +71,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <span className="tag">
-                About Us
-              </span>
+              <span className="tag">About Us</span>
 
               <h1 className="heading">
                 From Passion to{" "}
@@ -81,8 +79,9 @@ export function AboutPageContent() {
               </h1>
 
               <p className="desc">
-                We&apos;re a performance-first video agency obsessed with
-                creating content that actually converts.
+                We&apos;re a performance creative agency obsessed with making
+                video ads that actually convert. Not content for content's sake.
+                Ads that drive revenue.
               </p>
             </motion.div>
           </div>
@@ -98,27 +97,35 @@ export function AboutPageContent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
+                <span className="tag">
                   Our Story
                 </span>
 
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <div className="desc space-y-2">
                   <p>
-                    SLIC Media started with one belief: video should drive real
-                    business outcomes, not just impressions.
+                    SLIC started with one belief: creative should be measured by
+                    business outcomes, not impressions.
                   </p>
                   <p>
-                    Our first major breakthrough came when we grew an Instagram
-                    account from zero to 150,000 followers in just 90
-                    days—purely through strategic content.
+                    We saw DTC brands spending $30k, $50k, even $100k per month
+                    on paid media, but their creative was an afterthought.
+                    Agencies delivered pretty videos that tanked in ad accounts.
+                    Media buyers blamed creative. Creative teams blamed
+                    strategy. Nobody owned results.
+                  </p>
+                  <p>We built SLIC to fix that.</p>
+                  <p>
+                    We research before we produce. We script before we edit.
+                    Every video ad we deliver is built on customer insights,
+                    competitor analysis, and platform-specific optimization.
+                    When our ads go live, they're not guesses. They're informed
+                    bets designed to win.
                   </p>
                   <p>
-                    That success wasn&apos;t luck. It was systems, testing, and
-                    a deep understanding of what makes people stop scrolling.
-                  </p>
-                  <p>
-                    Today, we help brands scale revenue with performance-driven
-                    video across social and paid channels.
+                    Today, our video ads have generated over $50M in revenue for
+                    DTC brands like Loop Labs, NeuroBrocc, and LOKT. We've
+                    averaged 47% hold rates and $30 to $40 CPAs across clients.
+                    And we're just getting started.
                   </p>
                 </div>
               </motion.div>
@@ -133,10 +140,10 @@ export function AboutPageContent() {
                   <div className="grid grid-cols-2 gap-8">
                     {milestones.map((stat, index) => (
                       <div key={stat.label} className="text-center">
-                        <div className="font-sans text-3xl md:text-4xl font-bold text-gradient mb-2">
+                        <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
                           {stat.value}
                         </div>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
                           {stat.label}
                         </div>
                       </div>
@@ -158,7 +165,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
+              <span className="tag">
                 What Drives Us
               </span>
             </motion.div>
@@ -176,10 +183,10 @@ export function AboutPageContent() {
                     <div className="p-3 rounded-xl bg-primary/10 w-fit mx-auto mb-4">
                       <value.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="font-sans text-lg font-semibold mb-2 text-foreground">
+                    <h3 className="font-sans text-sm md:text-[0.8vw] font-bold mb-2 text-foreground">
                       {value.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-xs md:text-[0.8vw] text-muted-foreground">
                       {value.description}
                     </p>
                   </GlowCard>
@@ -199,10 +206,10 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <span className="inline-block text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
+              <span className="tag">
                 Meet the Team
               </span>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="desc">
                 A focused team combining creativity, strategy, and execution.
               </p>
             </motion.div>
@@ -221,11 +228,11 @@ export function AboutPageContent() {
                       <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-sans font-bold text-2xl mb-4">
                         {member.initial}
                       </div>
-                      <h3 className="font-sans text-xl font-semibold text-foreground">
+                      <h3 className="font-sans text-sm md:text-[0.8vw] font-bold text-foreground uppercase">
                         {member.name}
                       </h3>
-                      <p className="text-primary text-sm mb-4">{member.role}</p>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-primary text-sm md:text-[0.8vw] mb-4">{member.role}</p>
+                      <p className="text-muted-foreground text-xs md:text-[0.8vw]">
                         {member.bio}
                       </p>
                     </div>
@@ -236,7 +243,6 @@ export function AboutPageContent() {
           </div>
         </section>
 
-        {/* CTA */}
         <CTASection />
       </div>
 

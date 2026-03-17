@@ -46,11 +46,11 @@ const sfPro = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "SLIC Media | Viral Video Content Agency - TikTok & Meta Ads",
-    template: "%s | SLIC Media",
+    default: "SLIC | Performance Creative Agency for DTC Brands",
+    template: "%s | SLIC",
   },
   description:
-    "SLIC Media is a performance-first video content agency helping DTC brands scale with viral TikTok ads, Meta ads, and high-converting video content. $50M+ revenue generated for clients.",
+    "Performance video ads for DTC brands on Facebook, TikTok, and YouTube. We research, script, and produce creative that drives ROAS. $50M+ revenue generated.",
   keywords: [
     "video content agency",
     "TikTok ads",
@@ -62,35 +62,35 @@ export const metadata: Metadata = {
     "social media marketing",
     "performance marketing",
   ],
-  authors: [{ name: "SLIC Media" }],
-  creator: "SLIC Media",
-  publisher: "SLIC Media",
-  metadataBase: new URL("https://slicmedia.com"),      /////////////////////////////////////
+  authors: [{ name: "SLIC" }],
+  creator: "SLIC",
+  publisher: "SLIC",
+  metadataBase: new URL("https://slic.agency"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://slicmedia.com",              ////////////////////////////////////
-    siteName: "SLIC Media",
-    title: "SLIC Media | Viral Video Content Agency - TikTok & Meta Ads",
+    url: "https://slic.agency",
+    siteName: "SLIC",
+    title: "SLIC | Performance Creative Agency for DTC Brands",
     description:
-      "Performance-first video content agency helping DTC brands scale with viral content. $50M+ revenue generated.",
+      "Performance-first video content agency helping DTC brands scale with performance video ads. $50M+ revenue generated.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "SLIC Media - Viral Video Content Agency",
+        alt: "SLIC - Performance Creative Agency for DTC Brands",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SLIC Media | Viral Video Content Agency",
+    title: "SLIC | Performance Creative Agency for DTC Brands",
     description:
-      "Performance-first video content agency helping DTC brands scale with viral content.",
+      "Performance-first video content agency helping DTC brands scale with performance video ads.",
     images: ["/og-image.jpg"],
   },
   robots: {

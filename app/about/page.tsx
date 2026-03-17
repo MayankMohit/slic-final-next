@@ -3,11 +3,13 @@ import { AboutPageContent } from "./about-content";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about SLIC Media - a performance-first video content agency helping DTC brands scale with viral content. Meet our team and discover our story.",
+  description:
+    "Learn about SLIC - a performance-first video content agency helping DTC brands scale with performance video ads. Meet our team and discover our story.",
   openGraph: {
-    title: "About Us | SLIC Media",
-    description: "Learn about SLIC Media - a performance-first video content agency helping DTC brands scale with viral content.",
-    url: "https://slicmedia.com/about",
+    title: "About SLIC | Performance Creative Agency for DTC",
+    description:
+      "SLIC is a performance creative agency producing video ads for DTC brands. $50M+ revenue generated. 2.5x to 3.5x ROAS. Meet the team behind the results.",
+    url: "https://slic.agency/about",
   },
 };
 

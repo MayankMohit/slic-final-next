@@ -5,12 +5,12 @@ import { BlogPageContent } from "./blog-content";
 export const metadata: Metadata = {
   title: "Blog & Insights",
   description:
-    "Learn video marketing strategies, TikTok ad trends, and content tips from SLIC Media's team of performance marketers and creative strategists.",
+    "Learn video marketing strategies, TikTok ad trends, and content tips from SLIC's team of performance marketers and creative strategists.",
   openGraph: {
-    title: "Blog & Insights | SLIC Media",
+    title: "Blog & Insights | SLIC",
     description:
       "Learn video marketing strategies, TikTok ad trends, and content tips from our team.",
-    url: "https://slicmedia.com/blog",
+    url: "https://slic.agency/blog",
   },
 };
 

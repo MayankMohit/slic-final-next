@@ -38,11 +38,6 @@ const XIcon = createLucideIcon("CustomXIcon", [
 
 const socialLinks = [
   {
-    icon: Instagram,
-    href: "https://www.instagram.com/slic.media/",
-    label: "Instagram",
-  },
-  {
     icon: Linkedin,
     href: "https://www.linkedin.com/company/slic-media/",
     label: "LinkedIn",
@@ -129,36 +124,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <button
-                  onClick={() => {
-                    window.location.href = "/?scroll=faqs";
-                  }}
-                  className="text-muted-foreground/80 hover:text-primary transition-colors font-semibold"
-                >
-                  FAQs
-                </button>
-              </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div className="">
             <h4 className="font-sans font-bold text-foreground mb-[1vw]">
-              Contact
+              Get Started
             </h4>
-
-            <ul className="space-y-[0.8vw] mb-3">
-              <li className="flex items-start gap-[0.8vw] text-muted-foreground/80">
-                <Mail className="w-4 h-4 md:mt-[0.2vw] mt-1 shrink-0" />
-                <a
-                  href="mailto:slicmedia.business@gmail.com"
-                  className="hover:text-primary transition-colors font-semibold"
-                >
-                  slicmedia.business@gmail.com
-                </a>
-              </li>
-            </ul>
 
             {/* Subtle CTA Button */}
             <button
@@ -173,7 +146,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-8 md:pt-4 mr-8 md:mr-0 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
           <p>
-            &copy; {new Date().getFullYear()} SLIC Media. All rights reserved.
+            &copy; {new Date().getFullYear()} SLIC. All rights reserved.
           </p>
           <div className="flex gap-10">
             {footerLinks.support.map((link) => (
