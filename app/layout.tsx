@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://slic.agency",
     siteName: "SLIC",
-    title: "SLIC | Performance Creative Agency for DTC Brands",
+    title: "Performance Creative Agency for DTC Brands | SLIC",
     description:
       "Performance-first video content agency helping DTC brands scale with performance video ads. $50M+ revenue generated.",
     images: [

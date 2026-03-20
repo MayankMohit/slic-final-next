@@ -101,7 +101,7 @@ export function AboutPageContent() {
                   Our Story
                 </span>
 
-                <div className="desc space-y-2">
+                <div className="text-xs md:text-[0.8vw] text-muted-foreground space-y-2">
                   <p>
                     SLIC started with one belief: creative should be measured by
                     business outcomes, not impressions.
@@ -143,7 +143,7 @@ export function AboutPageContent() {
                         <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
                           {stat.value}
                         </div>
-                        <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
+                        <div className="text-xs md:text-[0.8vw] text-muted-foreground">
                           {stat.label}
                         </div>
                       </div>

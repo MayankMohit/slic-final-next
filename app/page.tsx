@@ -5,6 +5,7 @@ import { TrustedBySection } from "@/components/sections/trusted-by-section";
 import { CaseStudiesSection } from "@/components/sections/case-studies-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { WorkSection } from "@/components/sections/work-section";
 import { ApproachSection } from "@/components/sections/approach-section";
 import { ComparisonSection } from "@/components/sections/comparison-section";
 import { FAQSection } from "@/components/sections/faq-section";
@@ -24,6 +25,7 @@ export default async function HomePage() {
       <ApproachSection />
       <CaseStudiesSection />
       <TestimonialsSection />
+      <WorkSection />
       <ComparisonSection />
       <AboutSection />
       <FAQSection />
