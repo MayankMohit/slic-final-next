@@ -279,7 +279,7 @@ export function WorkSection() {
                         ? 0
                         : Math.sign(offset) * -15,
                     zIndex: 10 - dist,
-                    opacity: isCenter ? 1 : dist === 1 ? 0.5 : 0.1,
+                    opacity: isCenter ? 1 : dist === 1 ? 0.8 : 0.4,
                     filter: isMobile
                       ? "none"
                       : isCenter

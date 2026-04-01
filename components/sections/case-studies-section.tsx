@@ -76,7 +76,6 @@ export function CaseStudiesSection() {
                 type: "spring",
                 stiffness: 260,
                 damping: 18,
-                delay: index * 0.1,
               }}
               className="h-full"
             >
