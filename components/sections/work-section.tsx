@@ -427,6 +427,7 @@ export function WorkSection() {
                           });
                         }}
                         className="p-2"
+                        aria-label={muted ? "Unmute" : "Mute"}
                       >
                         {muted ? <VolumeX size={22} /> : <Volume2 size={22} />}
                       </button>
@@ -468,6 +469,7 @@ export function WorkSection() {
               <div className="flex items-center gap-2 rounded-full bg-neutral-900/70 px-2 py-1.5 ring-1 ring-white/10 backdrop-blur-md">
                 <button
                   onClick={handlePrev}
+                  aria-label="Previous"
                   className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 >
                   <ChevronLeft className="h-5 w-5" />
@@ -477,6 +479,7 @@ export function WorkSection() {
                 </span>
                 <button
                   onClick={handleNext}
+                  aria-label="Next"
                   className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 >
                   <ChevronRight className="h-5 w-5" />

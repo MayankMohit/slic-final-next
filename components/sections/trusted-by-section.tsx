@@ -1,18 +1,19 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { useIsMobile } from "@/hooks/use-isMobile";
 
 export const TrustedBySection = () => {
-  const logos = [
-    "loop.png",
-    "nb.png",
-    "unscrptd.png",
-    "lokt.png",
-    "blackbox.png",
-    "maybelline.png",
-    "nexa.png",
+  const logos: { file: string; name: string }[] = [
+    { file: "loop.png",       name: "Loop Labs" },
+    { file: "nb.png",         name: "NeuroBrocc" },
+    { file: "unscrptd.png",   name: "UNSCRPTD" },
+    { file: "lokt.png",       name: "LOKT" },
+    { file: "blackbox.png",   name: "Blackbox" },
+    { file: "maybelline.png", name: "Maybelline" },
+    { file: "nexa.png",       name: "NEXA" },
   ];
 
   const logoSizes: Record<string, { width: number }> = {
@@ -84,8 +85,8 @@ export const TrustedBySection = () => {
       >
         <div ref={marqueeRef} className="flex gap-4 md:gap-14 whitespace-nowrap w-max">
           {repeatedLogos.map((logo, i) => {
-            const size = logoSizes[logo] || { width: 150 };
-            const yOffset = logoYOffsets[logo] ?? 0;
+            const size = logoSizes[logo.file] || { width: 150 };
+            const yOffset = logoYOffsets[logo.file] ?? 0;
 
             return (
               <div
@@ -96,14 +97,17 @@ export const TrustedBySection = () => {
                   transform: `translateY(${yOffset}px)`,
                 }}
               >
-                <img
-                  src={`/brandLogos/${logo}`}
-                  alt={`${logo.split(".")[0]} logo`}
+                <Image
+                  src={`/brandLogos/${logo.file}`}
+                  alt={`${logo.name} logo`}
+                  width={size.width}
+                  height={50}
                   className="object-contain pointer-events-none"
                   style={{
                     width: isMobile ? size.width / 2 : size.width,
+                    height: "auto",
                   }}
-                  draggable="false"
+                  draggable={false}
                 />
               </div>
             );

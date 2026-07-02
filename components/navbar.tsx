@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,10 +48,13 @@ export function Navbar() {
       <nav className="container-tight flex items-center justify-between h-16 md:h-[7.5vh]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1">
-          <img
+          <Image
             src="/icons/sm_logo.png"
-            alt="Logo"
+            alt="SLIC logo"
+            width={120}
+            height={32}
             className="h-[2.5vh] w-auto"
+            priority
           />
         </Link>
 

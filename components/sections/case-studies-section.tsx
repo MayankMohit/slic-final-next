@@ -163,7 +163,7 @@ export function CaseStudiesSection() {
                 variant="outline"
                 size="sm"
               >
-                <Link href="/work">
+                <Link href="/case-studies">
                   <Play className="mr-2 w-5 h-5" />
                   <span>See More Case Studies</span>
                 </Link>

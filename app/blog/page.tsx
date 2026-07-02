@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Blog & Insights",
   description:
     "Learn video marketing strategies, TikTok ad trends, and content tips from SLIC's team of performance marketers and creative strategists.",
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
     title: "Blog & Insights | SLIC",
     description:

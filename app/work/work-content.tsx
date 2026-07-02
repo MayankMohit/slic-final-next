@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { useEffect, useRef, useState } from "react";
@@ -8,56 +9,33 @@ import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
 import { useIsMobile } from "@/hooks/use-isMobile";
 
-const workVideos = [
-  {
-    id: 1,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 2,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 3,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 4,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 5,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 6,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 7,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
-  {
-    id: 8,
-    thumbnail: "/work/ad1-thumb.webp",
-    previewVideoUrl: "/work/ad1-preview.mp4",
-    fullVideoUrl: "/work/ad1-full.mp4",
-  },
+type VideoEntry = {
+  thumbnail: string;
+  previewVideoUrl: string;
+  fullVideoUrl: string;
+};
+
+// Grid order: [0]=h1(landscape) [1]=v1 [2]=v2 [3]=h2(landscape) [4-15]=v3-v14
+const workVideos: VideoEntry[] = [
+  { thumbnail: "/work/thumbnails/h1.webp", previewVideoUrl: "/work/previews/h1.mp4", fullVideoUrl: "/work/full/h1.mp4" },
+  { thumbnail: "/work/thumbnails/v1.webp", previewVideoUrl: "/work/previews/v1.mp4", fullVideoUrl: "/work/full/v1.mp4" },
+  { thumbnail: "/work/thumbnails/v2.webp", previewVideoUrl: "/work/previews/v2.mp4", fullVideoUrl: "/work/full/v2.mp4" },
+  { thumbnail: "/work/thumbnails/h2.webp", previewVideoUrl: "/work/previews/h2.mp4", fullVideoUrl: "/work/full/h2.mp4" },
+  { thumbnail: "/work/thumbnails/v3.webp", previewVideoUrl: "/work/previews/v3.mp4", fullVideoUrl: "/work/full/v3.mp4" },
+  { thumbnail: "/work/thumbnails/v4.webp", previewVideoUrl: "/work/previews/v4.mp4", fullVideoUrl: "/work/full/v4.mp4" },
+  { thumbnail: "/work/thumbnails/v5.webp", previewVideoUrl: "/work/previews/v5.mp4", fullVideoUrl: "/work/full/v5.mp4" },
+  { thumbnail: "/work/thumbnails/v6.webp", previewVideoUrl: "/work/previews/v6.mp4", fullVideoUrl: "/work/full/v6.mp4" },
+  { thumbnail: "/work/thumbnails/v7.webp", previewVideoUrl: "/work/previews/v7.mp4", fullVideoUrl: "/work/full/v7.mp4" },
+  { thumbnail: "/work/thumbnails/v8.webp", previewVideoUrl: "/work/previews/v8.mp4", fullVideoUrl: "/work/full/v8.mp4" },
+  { thumbnail: "/work/thumbnails/v9.webp", previewVideoUrl: "/work/previews/v9.mp4", fullVideoUrl: "/work/full/v9.mp4" },
+  { thumbnail: "/work/thumbnails/v10.webp", previewVideoUrl: "/work/previews/v10.mp4", fullVideoUrl: "/work/full/v10.mp4" },
+  { thumbnail: "/work/thumbnails/v11.webp", previewVideoUrl: "/work/previews/v11.mp4", fullVideoUrl: "/work/full/v11.mp4" },
+  { thumbnail: "/work/thumbnails/v12.webp", previewVideoUrl: "/work/previews/v12.mp4", fullVideoUrl: "/work/full/v12.mp4" },
+  { thumbnail: "/work/thumbnails/v13.webp", previewVideoUrl: "/work/previews/v13.mp4", fullVideoUrl: "/work/full/v13.mp4" },
+  { thumbnail: "/work/thumbnails/v14.webp", previewVideoUrl: "/work/previews/v14.mp4", fullVideoUrl: "/work/full/v14.mp4" },
 ];
+
+type ActiveVideo = { url: string; aspect: "landscape" | "portrait" };
 
 interface VideoCardProps {
   thumbnail: string;
@@ -66,7 +44,7 @@ interface VideoCardProps {
   className?: string;
   aspect?: "landscape" | "portrait";
   isMobile: boolean | null;
-  onOpen: (videoUrl: string) => void;
+  onOpen: (video: ActiveVideo) => void;
 }
 
 function VideoCard({
@@ -80,15 +58,21 @@ function VideoCard({
 }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const popupTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
   const [hasMountedVideo, setHasMountedVideo] = useState(false);
   const [isLoadingPreview, setIsLoadingPreview] = useState(false);
   const [isPreviewReady, setIsPreviewReady] = useState(false);
+  const [showClickPopup, setShowClickPopup] = useState(false);
 
   const stopPreview = () => {
     setIsPreviewVisible(false);
     setIsLoadingPreview(false);
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current);
+    if (popupTimerRef.current) clearTimeout(popupTimerRef.current);
+    setShowClickPopup(false);
 
     if (videoRef.current) {
       videoRef.current.pause();
@@ -112,15 +96,20 @@ function VideoCard({
 
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch((err) => {
-        console.log("Preview play failed:", err);
-      });
+      videoRef.current.play().catch(() => {});
     }
   };
 
   const handleMouseEnter = () => {
     if (isMobile) return;
     triggerPreview();
+
+    hoverTimerRef.current = setTimeout(() => {
+      setShowClickPopup(true);
+      popupTimerRef.current = setTimeout(() => {
+        setShowClickPopup(false);
+      }, 3000);
+    }, 3000);
   };
 
   const handleMouseLeave = () => {
@@ -129,7 +118,7 @@ function VideoCard({
   };
 
   const handleClick = () => {
-    onOpen(fullVideoUrl);
+    onOpen({ url: fullVideoUrl, aspect });
   };
 
   const handleVideoLoaded = () => {
@@ -138,20 +127,15 @@ function VideoCard({
 
     if (isPreviewVisible && videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch((err) => {
-        console.log("Autoplay after load failed:", err);
-      });
+      videoRef.current.play().catch(() => {});
     }
   };
 
-  // IMPORTANT: once video element mounts, force browser to begin loading it
   useEffect(() => {
     if (!hasMountedVideo || !videoRef.current) return;
-
     videoRef.current.load();
   }, [hasMountedVideo]);
 
-  // Mobile autoplay when card is in view
   useEffect(() => {
     if (!isMobile || !containerRef.current) return;
 
@@ -163,13 +147,10 @@ function VideoCard({
           stopPreview();
         }
       },
-      {
-        threshold: 0.55,
-      },
+      { threshold: 0.55 },
     );
 
     observer.observe(containerRef.current);
-
     return () => observer.disconnect();
   }, [isMobile, hasMountedVideo, isPreviewReady]);
 
@@ -185,11 +166,11 @@ function VideoCard({
         onClick={handleClick}
       >
         {/* Thumbnail */}
-        <img
+        <Image
           src={thumbnail}
-          style={{ objectPosition: "center center" }}
           alt="Video thumbnail"
-          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300 ${
+          fill
+          className={`object-cover object-center transition-opacity duration-300 ${
             isPreviewVisible && isPreviewReady ? "opacity-0" : "opacity-100"
           }`}
         />
@@ -242,21 +223,36 @@ function VideoCard({
             />
           </div>
         </div>
+
+        {/* Hover popup — appears after 5s, stays 3s */}
+        <AnimatePresence>
+          {showClickPopup && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute bottom-0 left-0 right-0 z-30 rounded-b-xl bg-black/85 px-4 py-3 text-center text-sm font-medium text-white backdrop-blur-sm pointer-events-none"
+            >
+              Click to watch full video with sound
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </GlowCard>
   );
 }
 
 interface VideoModalProps {
-  videoUrl: string | null;
+  video: ActiveVideo | null;
   onClose: () => void;
 }
 
-function VideoModal({ videoUrl, onClose }: VideoModalProps) {
+function VideoModal({ video, onClose }: VideoModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (!videoUrl) return;
+    if (!video) return;
 
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -269,37 +265,43 @@ function VideoModal({ videoUrl, onClose }: VideoModalProps) {
       document.removeEventListener("keydown", handleEsc);
       document.body.style.overflow = "auto";
     };
-  }, [videoUrl, onClose]);
+  }, [video, onClose]);
 
   useEffect(() => {
-    if (videoRef.current && videoUrl) {
+    if (videoRef.current && video) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {});
     }
-  }, [videoUrl]);
+  }, [video]);
 
-  if (!videoUrl) return null;
+  if (!video) return null;
+
+  const isPortrait = video.aspect === "portrait";
 
   return (
     <div
-      className="fixed inset-0 z-100 bg-black/90 flex items-center justify-center p-4"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl"
+        className={`relative ${isPortrait ? "h-[85vh]" : "w-full max-w-5xl"}`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white text-3xl leading-none hover:opacity-80 transition"
+          className="absolute -top-10 right-0 text-3xl leading-none text-white transition hover:opacity-80"
         >
           ×
         </button>
 
-        <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black">
+        <div
+          className={`relative overflow-hidden rounded-2xl bg-black ${
+            isPortrait ? "h-full aspect-9/16" : "w-full aspect-video"
+          }`}
+        >
           <video
             ref={videoRef}
-            src={videoUrl}
+            src={video.url}
             controls
             autoPlay
             playsInline
@@ -313,7 +315,7 @@ function VideoModal({ videoUrl, onClose }: VideoModalProps) {
 
 export function WorkPageContent() {
   const isMobile = useIsMobile();
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<ActiveVideo | null>(null);
 
   return (
     <main className="min-h-screen">
@@ -330,24 +332,19 @@ export function WorkPageContent() {
               className="text-center max-w-3xl mx-auto"
             >
               <span className="tag">Our Work</span>
-
-              <h1 className="heading">
-                Performance Video Ads That Drive Revenue
-              </h1>
-
+              <h1 className="heading">Performance Video Ads That Drive Revenue</h1>
               <p className="desc">
-                Browse video ads we've created for DTC brands scaling on
-                Facebook, TikTok, and YouTube.
+                Browse video ads we've created for DTC brands scaling on Facebook, TikTok, and YouTube.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Bento Grid */}
-        {/* Work Videos */}
+        {/* Videos */}
         <section className="section-padding pt-0">
           <div className="container-tight">
-            {/* Mobile Linear Layout */}
+
+            {/* Mobile — linear stack */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -355,57 +352,18 @@ export function WorkPageContent() {
               transition={{ duration: 0.5 }}
               className="flex flex-col gap-4 md:hidden"
             >
-              <VideoCard
-                {...workVideos[0]}
-                aspect="landscape"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[1]}
-                aspect="portrait"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[2]}
-                aspect="portrait"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[3]}
-                aspect="landscape"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[4]}
-                aspect="portrait"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[5]}
-                aspect="portrait"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[6]}
-                aspect="portrait"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
-              <VideoCard
-                {...workVideos[7]}
-                aspect="portrait"
-                isMobile={isMobile}
-                onOpen={setActiveVideo}
-              />
+              {workVideos.map((video, i) => (
+                <VideoCard
+                  key={i}
+                  {...video}
+                  aspect={i === 0 || i === 3 ? "landscape" : "portrait"}
+                  isMobile={isMobile}
+                  onOpen={setActiveVideo}
+                />
+              ))}
             </motion.div>
 
-            {/* Desktop Bento Layout */}
+            {/* Desktop Bento */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -413,130 +371,76 @@ export function WorkPageContent() {
               transition={{ duration: 0.5 }}
               className="hidden md:grid grid-cols-3 gap-4 md:gap-5 auto-rows-auto"
             >
-              {/* Row 1 */}
+              {/* Row 1: H V */}
               <div className="col-span-2">
-                <VideoCard
-                  {...workVideos[0]}
-                  aspect="landscape"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[0]} aspect="landscape" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[1]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[1]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
 
-              {/* Row 2 */}
+              {/* Row 2: V H */}
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[2]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[2]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-2">
-                <VideoCard
-                  {...workVideos[3]}
-                  aspect="landscape"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[3]} aspect="landscape" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
 
-              {/* Row 3 */}
+              {/* Row 3: V V V */}
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[4]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[4]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[5]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[5]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[6]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[6]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
 
-              {/* Row 4 */}
+              {/* Row 4: V V V */}
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[7]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[7]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[0]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[8]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[1]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[9]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
 
-              {/* Row 5 */}
+              {/* Row 5: V V V */}
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[2]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[10]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[3]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[11]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
               <div className="col-span-1">
-                <VideoCard
-                  {...workVideos[4]}
-                  aspect="portrait"
-                  isMobile={isMobile}
-                  onOpen={setActiveVideo}
-                />
+                <VideoCard {...workVideos[12]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
+              </div>
+
+              {/* Row 6: V V V */}
+              <div className="col-span-1">
+                <VideoCard {...workVideos[13]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
+              </div>
+              <div className="col-span-1">
+                <VideoCard {...workVideos[14]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
+              </div>
+              <div className="col-span-1">
+                <VideoCard {...workVideos[15]} aspect="portrait" isMobile={isMobile} onOpen={setActiveVideo} />
               </div>
             </motion.div>
+
           </div>
         </section>
 
-        {/* CTA */}
         <CTASection />
       </div>
 
       <Footer />
 
-      <VideoModal videoUrl={activeVideo} onClose={() => setActiveVideo(null)} />
+      <VideoModal video={activeVideo} onClose={() => setActiveVideo(null)} />
     </main>
   );
 }

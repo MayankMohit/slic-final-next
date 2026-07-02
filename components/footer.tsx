@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   Instagram,
@@ -45,7 +46,7 @@ const socialLinks = [
   {
     icon: XIcon,
     href: "https://x.com/slic_media",
-    label: "CustomXIcon",
+    label: "X (formerly Twitter)",
   },
 ];
 
@@ -60,9 +61,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2 md:max-w-[25vw] space-y-4">
             <Link href="/" className="flex items-center gap-1">
-              <img
+              <Image
                 src="/icons/sm_logo.png"
-                alt="Logo"
+                alt="SLIC logo"
+                width={120}
+                height={32}
                 className="md:h-[2.5vh] h-[3.5vh] w-auto"
               />
             </Link>

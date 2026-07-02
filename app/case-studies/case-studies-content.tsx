@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -139,14 +140,14 @@ export function CaseStudiesPageContent() {
                     <div className="flex items-start justify-between mb-6">
                       <div>
                         <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-3 flex items-center justify-center">
-                          <img
+                          <Image
                             src={`/brandLogos/${study.logo}`}
                             alt={`${study.logo.split(".")[0]} logo`}
+                            width={study.logoSize.width}
+                            height={50}
                             className="object-contain pointer-events-none"
-                            draggable="false"
-                            style={{
-                              width: study.logoSize.width,
-                            }}
+                            draggable={false}
+                            style={{ width: study.logoSize.width, height: "auto" }}
                           />
                         </div>
                         <p className="text-xs text-muted-foreground">

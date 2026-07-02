@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about SLIC - a performance-first video content agency helping DTC brands scale with performance video ads. Meet our team and discover our story.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About SLIC | Performance Creative Agency for DTC",
     description:

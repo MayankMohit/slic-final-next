@@ -108,8 +108,6 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                     <Link
                       href={`/blog/${post.slug.current}`}
                       className="block h-full group"
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
                         {post.mainImage && (

@@ -10,8 +10,6 @@ import EtheralBackground from "@/components/etheral-background";
 import MobileBackground from "@/components/mobile-background";
 import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-// import PageTransitionProvider from "@/components/PageTransitionProvider";
-// import RouteLoader from "@/components/RouteLoader";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SanityLive } from "@/lib/sanity.live";
@@ -34,7 +32,7 @@ const sfPro = localFont({
       style: "normal",
     },
     {
-      path: "../fonts/SF-Pro-Display-Semibold.woff",
+      path: "../fonts/SF-Pro-Display-Semibold.woff2",
       weight: "600",
       style: "normal",
     },
@@ -108,7 +106,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  generator: "v0.app",
 };
 
 export const viewport: Viewport = {
@@ -126,6 +123,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sfPro.variable} ${inter.className}`}>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "SLIC",
+              url: "https://slic.agency",
+              logo: "https://slic.agency/icons/sm_logo.png",
+              description:
+                "Performance video ads for DTC brands on Facebook, TikTok, and YouTube. $50M+ revenue generated.",
+              sameAs: [
+                "https://www.linkedin.com/company/slic-media/",
+                "https://x.com/slic_media",
+              ],
+            }),
+          }}
+        />
         <link
           href="https://assets.calendly.com/assets/external/widget.css"
           rel="stylesheet"
@@ -134,8 +149,6 @@ export default function RootLayout({
       <body className="font-sans">
         <EtheralBackground />
         <SmoothScrollProvider>
-          {/* <RouteLoader /> */}
-          {/* <PageTransitionProvider> */}
           <TooltipProvider>
             <MobileBackground />
             <div className="relative z-10">{children}</div>
@@ -144,7 +157,6 @@ export default function RootLayout({
             <Toaster />
             <SonnerToaster />
           </TooltipProvider>
-          {/* </PageTransitionProvider> */}
         </SmoothScrollProvider>
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
