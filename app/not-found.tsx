@@ -28,7 +28,7 @@ export default function NotFound() {
           </p>
           <Button
             asChild
-            size="lg"
+            size="default"
             className="bg-gradient-primary hover:opacity-90"
           >
             <Link href="/">Return to Home</Link>
