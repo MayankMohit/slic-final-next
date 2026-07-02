@@ -58,20 +58,6 @@ const WORK_ITEMS: WorkItem[] = [
     videoSrc: "/homeVideos/vid5.mp4",
     meta: "Paid • Scale",
   },
-  {
-    id: 6,
-    title: "Scroll-Stopping Creative",
-    description: "Designed to stop scroll and drive action.",
-    videoSrc: "/homeVideos/vid6.mp4",
-    meta: "Creative • Performance",
-  },
-  {
-    id: 7,
-    title: "Ad Creative for DTC",
-    description: "Crafted for direct-to-consumer success.",
-    videoSrc: "/homeVideos/vid7.mp4",
-    meta: "DTC • Creative",
-  },
 ];
 
 function wrap(min: number, max: number, v: number) {
@@ -340,7 +326,7 @@ export function WorkSection() {
                       if (el) videoRefs.current[item.id] = el;
                     }}
                     src={Math.abs(offset) <= 1 ? item.videoSrc : undefined}
-                    poster={`/thumbnails/thumb${item.id}.jpg`}
+                    poster={`/thumbnails/thumb${item.id}.webp`}
                     muted
                     playsInline
                     preload={
