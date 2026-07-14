@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
@@ -10,6 +11,41 @@ import AnimatedCounter from "@/components/ui/animated-counter";
 
 export function HeroSection() {
   const { openCalendly } = useCalendly();
+
+  // Safari/iOS can't decode VP9 alpha (webm); Chromium/Firefox can't decode
+  // HEVC alpha (mp4). Detect via UA — source-order fallback is unreliable
+  // because newer Chrome claims HEVC support but drops the alpha channel.
+  const [useMp4, setUseMp4] = useState<boolean | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    const isIOS =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari =
+      /safari/i.test(ua) &&
+      !/chrome|chromium|crios|edg|opr|fxios|firefox|android/i.test(ua);
+    setUseMp4(isIOS || isSafari);
+  }, []);
+
+  // Pause the loop while the hero is scrolled out of view to save CPU/battery.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [useMp4]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center">
@@ -94,12 +130,44 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
+          {/* Laptop Video */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mx-auto md:mt-[4vh] mt-8 w-full max-w-[85vw] md:max-w-[45vw] aspect-video"
+          >
+            {useMp4 !== null && (
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                disablePictureInPicture
+                disableRemotePlayback
+                poster="/landingVideos/landing-poster.webp"
+                aria-hidden="true"
+                className="h-full w-full object-contain pointer-events-none select-none"
+              >
+                <source
+                  src={
+                    useMp4
+                      ? "/landingVideos/landing_safari.mp4"
+                      : "/landingVideos/landing.webm"
+                  }
+                  type={useMp4 ? "video/mp4" : "video/webm"}
+                />
+              </video>
+            )}
+          </motion.div>
+
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] md:mt-[6vh] mt-4 md:pt-[6vh] pt-8 border-t border-border/50"
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] md:mt-[4vh] mt-4 md:pt-[4vh] pt-8 border-t border-border/50"
           >
             {[
               { value: "$50M+", label: "Client Revenue Generated" },
