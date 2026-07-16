@@ -156,7 +156,7 @@ export function HeroSection() {
                       ? "/landingVideos/landing_safari.mp4"
                       : "/landingVideos/landing.webm"
                   }
-                  type={useMp4 ? "video/mp4" : "video/webm"}
+                  type={useMp4 ? 'video/mp4; codecs="hvc1"' : "video/webm"}
                 />
               </video>
             )}
