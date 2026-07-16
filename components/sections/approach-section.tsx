@@ -51,7 +51,7 @@ export function ApproachSection() {
   const { openCalendly } = useCalendly();
   const isMobile = useIsMobile();
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div

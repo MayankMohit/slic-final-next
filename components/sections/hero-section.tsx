@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { preload } from "react-dom";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
@@ -11,6 +12,12 @@ import AnimatedCounter from "@/components/ui/animated-counter";
 
 export function HeroSection() {
   const { openCalendly } = useCalendly();
+
+  // Fetch the hero poster at top priority from the initial HTML head.
+  preload("/landingVideos/landing-poster.webp", {
+    as: "image",
+    fetchPriority: "high",
+  });
 
   // Safari/iOS can't decode VP9 alpha (webm); Chromium/Firefox can't decode
   // HEVC alpha (mp4). Detect via UA — source-order fallback is unreliable
@@ -50,28 +57,14 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       {/* Content */}
-      <div className="container-tight py-10 md:py-[15vh] pt-10 md:pt-20">
-        <div className="md:max-w-[70vw] mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 md:px-[0.8vw] md:py-[0.4vw] p-1.5 rounded-full bg-primary/10 border border-primary/20 md:mb-[5vh] mb-5"
-          >
-            <span className="md:w-[0.4vw] md:h-[0.4vw] w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs md:text-[0.8vw] font-semibold text-primary">
-              {" "}
-              Performance Creative Agency for DTC Brands
-            </span>
-          </motion.div>
-
+      <div className="container-tight py-5 md:py-[5vh] pt-20 md:pt-[15.7vh]">
+        <div className="md:max-w-[80vw] mx-auto text-center">
           {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-sans text-3xl sm:text-5xl md:text-6xl lg:text-[3vw] tracking-tight mb-[3vh] text-balance"
+            className="font-sans text-3xl sm:text-4xl md:text-5xl lg:text-[2.5vw] tracking-tight mb-[2.5vh] text-balance"
           >
             Ad Creative That{" "}
             <span className="text-gradient">Actually Converts</span>
@@ -130,16 +123,32 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Laptop Video */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mx-auto md:mt-[4vh] mt-8 w-full max-w-[85vw] md:max-w-[45vw] aspect-video"
-          >
-            {useMp4 !== null && (
+          {/* Laptop Video — poster ships in the server HTML and is preloaded
+              from the head, so by the time this reveals (after the CTAs in the
+              hero stagger) the image is already in cache; the browser-specific
+              src attaches after hydration. */}
+          {/* Breakout wrapper: container-tight caps the column at max-w-6xl,
+              so the video escapes it to span a true viewport width. */}
+          <div className="relative left-1/2 -translate-x-1/2 w-[96vw] md:w-[75vw] md:mt-[4vh] mt-8">
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="w-full aspect-video"
+            >
               <video
                 ref={videoRef}
+                src={
+                  useMp4 === null
+                    ? undefined
+                    : useMp4
+                      ? "/landingVideos/landing_safari.mp4"
+                      : "/landingVideos/landing.webm"
+                }
                 autoPlay
                 muted
                 loop
@@ -149,25 +158,16 @@ export function HeroSection() {
                 poster="/landingVideos/landing-poster.webp"
                 aria-hidden="true"
                 className="h-full w-full object-contain pointer-events-none select-none"
-              >
-                <source
-                  src={
-                    useMp4
-                      ? "/landingVideos/landing_safari.mp4"
-                      : "/landingVideos/landing.webm"
-                  }
-                  type={useMp4 ? 'video/mp4; codecs="hvc1"' : "video/webm"}
-                />
-              </video>
-            )}
-          </motion.div>
+              />
+            </motion.div>
+          </div>
 
           {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] md:mt-[4vh] mt-4 md:pt-[4vh] pt-8 border-t border-border/50"
+            className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] md:mt-[2vh] mt-2 "
           >
             {[
               { value: "$50M+", label: "Client Revenue Generated" },

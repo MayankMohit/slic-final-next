@@ -185,7 +185,7 @@
   }
 
   .section-padding {
-    @apply py-20 md:py-18 lg:py-22;
+    @apply py-10 md:py-15 lg:py-15;
   }
 
   .container-tight {
