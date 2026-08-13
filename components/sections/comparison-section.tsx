@@ -50,8 +50,8 @@ function CheckBadge() {
 
 function CrossBadge() {
   return (
-    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/5">
-      <X className="h-3 w-3 text-muted-foreground" strokeWidth={3} />
+    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/10">
+      <X className="h-3 w-3 text-foreground/70" strokeWidth={3} />
     </span>
   );
 }
@@ -100,7 +100,7 @@ export function ComparisonSection() {
             i % 2 === 0 ? (
               <div
                 key={`stripe-${row.area}`}
-                className="col-start-1 col-end-4 rounded-xl bg-white/[0.035]"
+                className="col-start-1 col-end-4 rounded-xl bg-white/8"
                 style={{ gridRowStart: i + 2 }}
               />
             ) : null,
@@ -123,7 +123,7 @@ export function ComparisonSection() {
               className="h-[2.6vh] w-auto"
             />
           </div>
-          <div className="relative z-10 col-start-3 row-start-1 flex items-center justify-center py-[1.6vw] text-[0.85vw] font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="relative z-10 col-start-3 row-start-1 flex items-center justify-center py-[1.6vw] text-[0.85vw] font-bold uppercase tracking-wider text-foreground/80">
             Traditional Agency
           </div>
 
@@ -144,7 +144,7 @@ export function ComparisonSection() {
                 <span>{row.slic}</span>
               </div>
               <div
-                className="relative z-10 col-start-3 flex items-start gap-[0.6vw] px-[1.2vw] py-[1vw] text-[0.8vw] font-semibold text-muted-foreground"
+                className="relative z-10 col-start-3 flex items-start gap-[0.6vw] px-[1.2vw] py-[1vw] text-[0.8vw] font-semibold text-foreground/75"
                 style={{ gridRowStart: i + 2 }}
               >
                 <CrossBadge />
@@ -203,10 +203,10 @@ export function ComparisonSection() {
               <div className="flex items-start gap-3 px-4 py-3">
                 <CrossBadge />
                 <div>
-                  <div className="mb-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                  <div className="mb-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground/80">
                     Traditional Agency
                   </div>
-                  <p className="text-xs font-semibold text-muted-foreground">
+                  <p className="text-xs font-semibold text-foreground/75">
                     {row.traditional}
                   </p>
                 </div>

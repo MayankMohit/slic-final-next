@@ -10,9 +10,14 @@ interface PrimaryButtonProps
 // never drift apart.
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   children = "Book A Strategy Call",
+  className,
   ...props
 }) => {
-  return <NavButton {...props}>{children}</NavButton>;
+  return (
+    <NavButton className={`uppercase ${className ?? ""}`} {...props}>
+      {children}
+    </NavButton>
+  );
 };
 
 export default PrimaryButton;

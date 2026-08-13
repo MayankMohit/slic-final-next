@@ -8,11 +8,12 @@ interface NavButtonProps
 
 const NavButton: React.FC<NavButtonProps> = ({
   children = "Book A Call",
+  className,
   ...props
 }) => {
   return (
     <StyledWrapper>
-      <button className="btn-donate" {...props}>
+      <button className={`btn-donate ${className ?? ""}`} {...props}>
         <span>{children}</span>
       </button>
     </StyledWrapper>
