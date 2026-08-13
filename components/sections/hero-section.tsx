@@ -108,7 +108,7 @@ export function HeroSection() {
             </SecondaryButton>
           </motion.div>
 
-          <div className="relative left-1/2 -translate-x-1/2 w-[94vw] md:w-[69vw] md:mt-[4vh] mt-8">
+          <div className="relative left-1/2 -translate-x-1/2 w-[94vw] md:w-[55vw] md:mt-[4vh] mt-8">
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
