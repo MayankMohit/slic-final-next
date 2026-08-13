@@ -106,11 +106,19 @@ export function ComparisonSection() {
             ) : null,
           )}
 
-          {/* Highlighted SLIC column, spanning header through CTA */}
+          {/* Highlighted SLIC column, spanning header through CTA. All glow is
+              inset and the panel clips its own children, so nothing paints
+              outside the column bounds. The inset stack is a lit top edge plus
+              an inner bloom that falls off toward the sides. */}
           <div
-            className="col-start-2 rounded-3xl border border-primary/25 bg-[linear-gradient(180deg,rgba(59,130,246,0.22),rgba(59,130,246,0.04))] shadow-[0_0_60px_rgba(59,130,246,0.15)]"
+            className="relative col-start-2 overflow-hidden rounded-3xl border border-primary/30 bg-[linear-gradient(180deg,rgba(59,130,246,0.22),rgba(59,130,246,0.05))] shadow-[inset_0_1px_0_0_rgba(147,197,253,0.25),inset_0_0_60px_-18px_rgba(59,130,246,0.5)]"
             style={{ gridRow: "1 / -1" }}
-          />
+          >
+            <div
+              aria-hidden
+              className="animate-glow-breathe pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(59,130,246,0.26),transparent_62%)]"
+            />
+          </div>
 
           {/* Header row */}
           <div className="relative z-10 col-start-1 row-start-1" />
@@ -188,7 +196,7 @@ export function ComparisonSection() {
                 {row.area}
               </div>
 
-              <div className="flex items-start gap-3 border-l-2 border-primary bg-primary/10 px-4 py-3">
+              <div className="flex items-start gap-3 border-l-2 border-primary bg-primary/10 px-4 py-3 shadow-[inset_0_0_32px_-12px_rgba(59,130,246,0.4)]">
                 <CheckBadge />
                 <div>
                   <div className="mb-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">

@@ -3,16 +3,14 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { jsonLd } from "@/lib/json-ld";
 import EtheralBackground from "@/components/etheral-background";
 import MobileBackground from "@/components/mobile-background";
 import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SanityLive } from "@/lib/sanity.live";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -126,7 +124,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: jsonLd({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "SLIC",
@@ -149,14 +147,10 @@ export default function RootLayout({
       <body className="font-sans">
         <EtheralBackground />
         <SmoothScrollProvider>
-          <TooltipProvider>
-            <MobileBackground />
-            <div className="relative z-10">{children}</div>
-            <SpeedInsights />
-            <SanityLive />
-            <Toaster />
-            <SonnerToaster />
-          </TooltipProvider>
+          <MobileBackground />
+          <div className="relative z-10">{children}</div>
+          <SpeedInsights />
+          <SonnerToaster />
         </SmoothScrollProvider>
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"

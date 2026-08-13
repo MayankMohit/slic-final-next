@@ -1,15 +1,22 @@
 import { NextResponse } from "next/server";
 import { joinApplicationSchema } from "@/lib/join-schema";
+import { buildJoinEmail } from "@/lib/join-email";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
+// Sending mail costs Resend quota and floods the careers inbox, so cap how
+// often one client can submit. Generous enough that a person correcting a
+// typo and resubmitting never notices.
+const LIMIT = { max: 5, windowMs: 10 * 60 * 1000 };
 
 export async function POST(request: Request) {
+  const throttle = rateLimit(`join:${clientIp(request)}`, LIMIT);
+  if (!throttle.ok) {
+    return NextResponse.json(
+      { error: "Too many applications from this connection. Please try again later." },
+      { status: 429, headers: { "Retry-After": String(throttle.retryAfterSeconds) } },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -39,30 +46,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const { name, email, phone, role, experience, portfolio, message } = parsed.data;
-
-  const rows: [string, string][] = [
-    ["Name", name],
-    ["Email", email],
-    ["Phone", phone || "—"],
-    ["Role", role],
-    ["Experience", experience],
-    ["Portfolio", portfolio || "—"],
-  ];
-
-  const html = `
-    <h2>New application to join SLIC</h2>
-    <table cellpadding="6" style="border-collapse:collapse">
-      ${rows
-        .map(
-          ([label, value]) =>
-            `<tr><td style="font-weight:bold;border:1px solid #ddd">${label}</td><td style="border:1px solid #ddd">${escapeHtml(value)}</td></tr>`,
-        )
-        .join("")}
-    </table>
-    <h3>Message</h3>
-    <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
-  `;
+  const { subject, html, text } = buildJoinEmail(parsed.data);
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -73,9 +57,10 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       from: process.env.JOIN_FROM_EMAIL || "SLIC Careers <onboarding@resend.dev>",
       to: [process.env.JOIN_NOTIFY_EMAIL || "mayankmohitagarwal7@gmail.com"],
-      reply_to: email,
-      subject: `Join application — ${name} (${role})`,
+      reply_to: parsed.data.email,
+      subject,
       html,
+      text,
     }),
   });
 

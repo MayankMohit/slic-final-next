@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity.live";
 import { urlFor } from "@/lib/sanity";
+import { jsonLd } from "@/lib/json-ld";
 import { BlogPostView } from "./BlogPostView";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
@@ -93,7 +94,7 @@ export default async function PostPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(articleSchema) }}
       />
       <BlogPostView post={post} formattedDate={formattedDate} />
     </>
