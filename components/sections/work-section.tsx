@@ -22,41 +22,44 @@ type WorkItem = {
   meta?: string;
 };
 
+// Each card names a distinct ad format and the job it does in the funnel, so
+// the carousel reads as range rather than five variants of the same thing.
 const WORK_ITEMS: WorkItem[] = [
   {
     id: 1,
-    title: "UGC Style Ad",
-    description: "High-converting short-form creative.",
+    title: "Science Story Ad",
+    description: "Hard research softened into a scene parents actually finish.",
     videoSrc: "/homeVideos/vid1.mp4",
-    meta: "UGC • TikTok",
+    meta: "Story • TOF",
   },
   {
     id: 2,
-    title: "Product Hook Ad",
-    description: "Scroll-stopping product storytelling.",
+    title: "Manufacturing Proof Ad",
+    description: "Behind the line footage that justifies the price tag.",
     videoSrc: "/homeVideos/vid2.mp4",
-    meta: "DTC • Paid",
+    meta: "Brand • Trust",
   },
   {
     id: 3,
-    title: "Lifestyle Creative",
-    description: "Native-looking organic ad content.",
+    title: "Testimonial Stack Ad",
+    description:
+      'Stacked parent results that dismantle the "does it work" objection.',
     videoSrc: "/homeVideos/vid3.mp4",
-    meta: "Lifestyle • Ads",
+    meta: "UGC • Proof",
   },
   {
     id: 4,
-    title: "Performance Creative",
-    description: "Hook-driven storytelling.",
+    title: "Villain Character Ad",
+    description: "Turns the ingredient buyers fear into a face they remember.",
     videoSrc: "/homeVideos/vid4.mp4",
-    meta: "Creative • Ads",
+    meta: "3D • Hook",
   },
   {
     id: 5,
-    title: "Conversion Focused Ad",
-    description: "Built for CPA efficiency.",
+    title: "Product Demo Ad",
+    description: "Shows the product working before the pitch starts.",
     videoSrc: "/homeVideos/vid5.mp4",
-    meta: "Paid • Scale",
+    meta: "Demo • Convert",
   },
 ];
 
