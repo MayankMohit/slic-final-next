@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { preload } from "react-dom";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Play } from "lucide-react";
 import PrimaryButton from "@/components/ui/primaryBtn";
+import SecondaryButton from "@/components/ui/secondaryBtn";
 import { useCalendly } from "@/hooks/use-calendly";
 import AnimatedCounter from "@/components/ui/animated-counter";
 
@@ -91,14 +90,6 @@ export function HeroSection() {
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
-              {/* <Button
-                onClick={openCalendly}
-                size="sm"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
-              >
-                Book a Strategy Call
-                <ArrowRight className="ml-[0.5vw]" />
-              </Button> */}
               <PrimaryButton onClick={openCalendly}  />
 
               {/* Hover Popup */}
@@ -111,25 +102,13 @@ export function HeroSection() {
               </div>
             </div>
 
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-            >
-              <Link href="/work">
-                <Play className="mr-1/2 w-5 h-5" />
-                See Our Work
-              </Link>
-            </Button>
+            <SecondaryButton href="/work">
+              <Play className="w-5 h-5" />
+              See Our Work
+            </SecondaryButton>
           </motion.div>
 
-          {/* Laptop Video — poster ships in the server HTML and is preloaded
-              from the head, so by the time this reveals (after the CTAs in the
-              hero stagger) the image is already in cache; the browser-specific
-              src attaches after hydration. */}
-          {/* Breakout wrapper: container-tight caps the column at max-w-6xl,
-              so the video escapes it to span a true viewport width. */}
-          <div className="relative left-1/2 -translate-x-1/2 w-[96vw] md:w-[75vw] md:mt-[4vh] mt-8">
+          <div className="relative left-1/2 -translate-x-1/2 w-[94vw] md:w-[69vw] md:mt-[4vh] mt-8">
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, TrendingUp, Users, DollarSign, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { TrendingUp, Users, DollarSign, Play } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { useCalendly } from "@/hooks/use-calendly";
 import AnimatedCounter from "@/components/ui/animated-counter";
 import PrimaryButton from "../ui/primaryBtn";
+import SecondaryButton from "../ui/secondaryBtn";
 
 const caseStudies = [
   {
@@ -137,14 +136,6 @@ export function CaseStudiesSection() {
 
             <div className="flex items-center flex-col md:flex-row gap-3 md:gap-[4vw]">
               <div className="relative group">
-                {/* <Button
-                  onClick={openCalendly}
-                  size="sm"
-                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
-                >
-                  Book a Strategy Call
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button> */}
                 <PrimaryButton onClick={openCalendly} />
 
                 {/* Hover Popup */}
@@ -158,16 +149,10 @@ export function CaseStudiesSection() {
                 </div>
               </div>
 
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-              >
-                <Link href="/case-studies">
-                  <Play className="mr-2 w-5 h-5" />
-                  <span>See More Case Studies</span>
-                </Link>
-              </Button>
+              <SecondaryButton href="/case-studies">
+                <Play className="w-5 h-5" />
+                <span>See More Case Studies</span>
+              </SecondaryButton>
             </div>
           </div>
         </motion.div>

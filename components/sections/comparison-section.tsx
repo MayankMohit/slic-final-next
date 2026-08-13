@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GlowCard } from "@/components/ui/glow-card";
-import { ArrowRight, Check, X } from "lucide-react";
-import { Button } from "../ui/button";
+import { Check, X } from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
 
@@ -152,14 +151,6 @@ export function ComparisonSection() {
 
           <div className="flex items-center gap-10">
             <div className="relative group">
-              {/* <Button
-                onClick={openCalendly}
-                size="sm"
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
-              >
-                Book a Strategy Call
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button> */}
               <PrimaryButton onClick={openCalendly} />
 
               {/* Hover Popup */}

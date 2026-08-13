@@ -1,19 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
-import {
-  Search,
-  FileText,
-  Film,
-  BarChart3,
-  ArrowRight,
-  Play,
-} from "lucide-react";
+import { Search, FileText, Film, BarChart3, Play } from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
+import SecondaryButton from "../ui/secondaryBtn";
 import { useIsMobile } from "@/hooks/use-isMobile";
 
 const steps = [
@@ -140,14 +132,6 @@ export function ApproachSection() {
 
             <div className="flex items-center flex-col md:flex-row gap-4 md:gap-[4vw]">
               <div className="relative group">
-                {/* <Button
-                  onClick={openCalendly}
-                  size="sm"
-                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
-                >
-                  Book a Strategy Call
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button> */}
                 <PrimaryButton onClick={openCalendly} />
 
                 {/* Hover Popup */}
@@ -161,16 +145,10 @@ export function ApproachSection() {
                 </div>
               </div>
 
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-              >
-                <Link href="/work">
-                  <Play className="mr-2 w-5 h-5" />
-                  <span>See Our Work</span>
-                </Link>
-              </Button>
+              <SecondaryButton href="/work">
+                <Play className="w-5 h-5" />
+                <span>See Our Work</span>
+              </SecondaryButton>
             </div>
           </div>
         </motion.div>

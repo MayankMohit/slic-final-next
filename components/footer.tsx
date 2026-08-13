@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useCalendly } from "@/hooks/use-calendly";
 import { createLucideIcon } from "lucide-react";
+import PrimaryButton from "@/components/ui/primaryBtn";
 
 const footerLinks = {
   explore: [
@@ -137,13 +138,7 @@ export function Footer() {
               Get Started
             </h4>
 
-            {/* Subtle CTA Button */}
-            <button
-              onClick={openCalendly}
-              className=" md:px-[1.4vw] md:pt-[0.7vw] md:pb-[0.8vw] p-3 rounded-sm border border-border hover:bg-white/10 text-muted-foreground transition-all duration-200 inline-flex md:text-[0.8vw] font-bold uppercase hover:text-white"
-            >
-              Book A Strategy Call
-            </button>
+            <PrimaryButton onClick={openCalendly} />
           </div>
         </div>
 

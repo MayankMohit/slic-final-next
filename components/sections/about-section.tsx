@@ -1,12 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { GlowCard } from "@/components/ui/glow-card";
 import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
+import SecondaryButton from "../ui/secondaryBtn";
 
 const team = [
   {
@@ -14,12 +13,17 @@ const team = [
     role: "Founder & Creative Director",
     description:
       "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy, ensuring every ad is backed by research and built to convert.",
+    avatar: "/avatars/vedant.png",
+    avatarClass: "h-24 md:h-28",
   },
   {
     name: "Siddhartha Aryan",
     role: "Head of Production",
     description:
       "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines.",
+    // Narrower source image than Vedant's — sized up so both read equally big.
+    avatar: "/avatars/siddhartha.png",
+    avatarClass: "h-26 md:h-30",
   },
 ];
 
@@ -75,14 +79,6 @@ export function AboutSection() {
               <div className="max-w-4xl mx-auto flex flex-col gap-6 text-center md:text-left">
                 <div className="flex items-center gap-[2vw]">
                   <div className="relative group">
-                    {/* <Button
-                      onClick={openCalendly}
-                      size="sm"
-                      className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-6 py-5 text-base font-semibold"
-                    >
-                      Book a Strategy Call
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button> */}
                     <PrimaryButton onClick={openCalendly} />
 
                     {/* Hover Popup */}
@@ -95,14 +91,7 @@ export function AboutSection() {
                     </div>
                   </div>
 
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center "
-                  >
-                    <Link href="/work">Learn More</Link>
-                  </Button>
+                  <SecondaryButton href="/work">Learn More</SecondaryButton>
                 </div>
               </div>
             </motion.div>
@@ -133,12 +122,21 @@ export function AboutSection() {
                 className="group"
               >
                 <GlowCard className="overflow-hidden h-full">
-                  <div className="p-[2vh] border-b border-slate-600">
-                    <div className="text-xl md:text-[0.8vw] font-sans font-bold text-gradient mt-1 uppercase">
-                      {member.name}
-                    </div>
-                    <div className="text-foreground text-sm md:text-[0.8vw] font-semibold tracking-wider">
-                      {member.role}
+                  <div className="border-b border-slate-600 flex items-center">
+                    <Image
+                      src={member.avatar}
+                      alt={member.name}
+                      width={300}
+                      height={350}
+                      className={`${member.avatarClass} w-auto shrink-0`}
+                    />
+                    <div>
+                      <div className="text-xl md:text-[0.8vw] font-sans font-bold text-gradient mt-1 uppercase">
+                        {member.name}
+                      </div>
+                      <div className="text-foreground text-sm md:text-[0.8vw] font-semibold tracking-wider">
+                        {member.role}
+                      </div>
                     </div>
                   </div>
                   <div className="p-[2vh]">
