@@ -41,15 +41,14 @@ const team = [
     role: "FOUNDER AND CREATIVE DIRECTOR",
     bio: "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy across every client engagement, ensuring every ad is backed by research and built to convert. Obsessed with the intersection of psychology and performance.",
     avatar: "/avatars/vedant.png",
-    avatarClass: "h-48 md:h-50",
+    avatarClass: "h-18 md:h-22",
   },
   {
     name: "Siddhartha Aryan",
     role: "HEAD OF PRODUCTION",
     bio: "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines. The reason SLIC delivers fast without sacrificing quality.",
-    // Narrower source image than Vedant's — sized up so both read equally big.
     avatar: "/avatars/siddhartha.png",
-    avatarClass: "h-52 md:h-54",
+    avatarClass: "h-18 md:h-22",
   },
 ];
 
@@ -234,9 +233,10 @@ export function AboutPageContent() {
                         alt={member.name}
                         width={300}
                         height={350}
+                        loading="eager"
                         className={`${member.avatarClass} w-auto`}
                       />
-                      <h3 className="-mt-2 font-sans text-sm md:text-[0.8vw] font-bold text-foreground uppercase">
+                      <h3 className="mt-4 font-sans text-sm md:text-[0.8vw] font-bold text-foreground uppercase">
                         {member.name}
                       </h3>
                       <p className="text-primary text-sm md:text-[0.8vw] mb-4">{member.role}</p>

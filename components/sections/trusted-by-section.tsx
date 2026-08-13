@@ -102,6 +102,7 @@ export const TrustedBySection = () => {
                   alt={`${logo.name} logo`}
                   width={size.width}
                   height={50}
+                  loading="eager"
                   className="object-contain pointer-events-none"
                   style={{
                     width: isMobile ? size.width / 2 : size.width,

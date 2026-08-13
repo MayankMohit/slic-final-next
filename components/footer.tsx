@@ -68,6 +68,7 @@ export function Footer() {
                 alt="SLIC logo"
                 width={120}
                 height={32}
+                loading="eager"
                 className="md:h-[2.5vh] h-[3.5vh] w-auto"
               />
             </Link>

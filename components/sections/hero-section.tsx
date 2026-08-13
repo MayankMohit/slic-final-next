@@ -86,14 +86,14 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-[3vw]"
+            className="relative z-30 flex flex-col sm:flex-row items-center justify-center gap-[3vw]"
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
               <PrimaryButton onClick={openCalendly}  />
 
               {/* Hover Popup */}
-              <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+              <div className="pointer-events-none absolute z-40 left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
                 <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[0.8vw] text-muted-foreground text-center">
                   30-minute call. No pitch deck. Leave with a creative roadmap.
                   {/* Arrow */}
@@ -108,7 +108,7 @@ export function HeroSection() {
             </SecondaryButton>
           </motion.div>
 
-          <div className="relative left-1/2 -translate-x-1/2 w-[94vw] md:w-[59vw] md:mt-[4vh] mt-8">
+          <div className="relative z-0 left-1/2 -translate-x-1/2 w-[94vw] md:w-[61vw] md:mt-[4vh] mt-8">
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

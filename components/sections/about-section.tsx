@@ -14,16 +14,15 @@ const team = [
     description:
       "Built SLIC after years of producing performance video ads for brands like NEXA, Maybelline, and AJIO. Leads creative strategy, ensuring every ad is backed by research and built to convert.",
     avatar: "/avatars/vedant.png",
-    avatarClass: "h-24 md:h-28",
+    avatarClass: "h-11 md:h-12",
   },
   {
     name: "Siddhartha Aryan",
     role: "Head of Production",
     description:
       "Oversees every project from kickoff to final delivery. Ensures your video ads ship on time, on spec, and ready to test. No bottlenecks, no missed deadlines.",
-    // Narrower source image than Vedant's — sized up so both read equally big.
     avatar: "/avatars/siddhartha.png",
-    avatarClass: "h-26 md:h-30",
+    avatarClass: "h-11 md:h-12",
   },
 ];
 
@@ -122,12 +121,13 @@ export function AboutSection() {
                 className="group"
               >
                 <GlowCard className="overflow-hidden h-full">
-                  <div className="border-b border-slate-600 flex items-center">
+                  <div className="border-b border-slate-600 flex items-center gap-3 px-[1.5vh] py-[1.2vh]">
                     <Image
                       src={member.avatar}
                       alt={member.name}
                       width={300}
                       height={350}
+                      loading="eager"
                       className={`${member.avatarClass} w-auto shrink-0`}
                     />
                     <div>

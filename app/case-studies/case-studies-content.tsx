@@ -145,6 +145,7 @@ export function CaseStudiesPageContent() {
                             alt={`${study.logo.split(".")[0]} logo`}
                             width={study.logoSize.width}
                             height={50}
+                            loading="eager"
                             className="object-contain pointer-events-none"
                             draggable={false}
                             style={{ width: study.logoSize.width, height: "auto" }}
