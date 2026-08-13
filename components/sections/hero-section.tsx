@@ -63,7 +63,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-sans text-3xl sm:text-4xl md:text-5xl lg:text-[2.5vw] tracking-tight mb-[2.5vh] text-balance"
+            className=" heading"
           >
             Ad Creative That{" "}
             <span className="text-gradient">Actually Converts</span>
