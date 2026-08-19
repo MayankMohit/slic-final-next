@@ -11,8 +11,8 @@ import {
   Pause,
   ArrowUpRight,
 } from "lucide-react";
-import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-isMobile";
+import SecondaryButton from "@/components/ui/secondaryBtn";
 
 type WorkItem = {
   id: number;
@@ -388,7 +388,7 @@ export function WorkSection() {
                         min={0}
                         max={100}
                         value={progress}
-                        className="flex-1 h-0.5 accent-blue-500 cursor-pointer"
+                        className="flex-1 h-0.5 accent-(--brand) cursor-pointer"
                         onClick={(e) => e.stopPropagation()}
                         onInput={(e) => {
                           const v = videoRefs.current[item.id];
@@ -469,32 +469,27 @@ export function WorkSection() {
             </div>
 
             <div className="flex flex-row items-center gap-4 md:gap-6">
-              <div className="flex items-center gap-2 rounded-full bg-neutral-900/70 px-2 py-1.5 ring-1 ring-white/10 backdrop-blur-md">
-                <button
-                  onClick={handlePrev}
-                  aria-label="Previous"
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
-                >
-                  <ChevronLeft className="h-5 w-5" />
+              {/* Skin lives in globals.css alongside .tag / .heading / .desc,
+                  so it shares the secondary button's tokens instead of
+                  restating them here. */}
+              <div className="carousel-nav">
+                <button onClick={handlePrev} aria-label="Previous video">
+                  <ChevronLeft className="h-[1.15em] w-[1.15em]" />
                 </button>
-                <span className="px-2 text-xs font-mono tracking-wider text-neutral-400">
+                <span className="carousel-count">
                   {activeIndex + 1} / {count}
                 </span>
-                <button
-                  onClick={handleNext}
-                  aria-label="Next"
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
-                >
-                  <ChevronRight className="h-5 w-5" />
+                <button onClick={handleNext} aria-label="Next video">
+                  <ChevronRight className="h-[1.15em] w-[1.15em]" />
                 </button>
               </div>
-              <Link
-                href="/work"
-                className="group flex items-center gap-2 rounded-full bg-gray-700 px-5 py-3.5 text-sm font-medium text-white transition-all hover:bg-gray-600 active:scale-95"
-              >
-                Explore Work
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </Link>
+              {/* Same component as the approach and case-studies CTAs, so this
+                  inherits buttonBase's sizing instead of restating it in
+                  Tailwind and drifting from every other button on the page. */}
+              <SecondaryButton href="/work">
+                <span>Explore Work</span>
+                <ArrowUpRight className="w-[1.25em] h-[1.25em]" />
+              </SecondaryButton>
             </div>
           </div>
         </div>

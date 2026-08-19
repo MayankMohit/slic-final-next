@@ -6,6 +6,137 @@
 /* SLIC Media Design System - Cinematic Dark Theme with Electric Blue Accent */
 
 :root {
+  /* ============================================================
+     THEME ACCENT — the one knob.
+
+     Every accent colour on the site derives from --brand. Change
+     it and the primary token, focus ring, charts, sidebar accent,
+     all four gradients, both glow shadows, the CTA button sweep,
+     the GlowCard spotlight and the comparison panel all follow.
+
+     Two companions exist because CSS cannot derive them from a hex:
+
+       --brand-hue  The hue angle of --brand in degrees. The
+                    GlowCard spotlight rotates hue with pointer
+                    position, which needs a number to do maths on,
+                    and there is no way to read the hue back out of
+                    a hex. Keep it in step with --brand.
+
+       --brand-alt  The light stop in the CTA button's sweep. It is
+                    a separate hex rather than a tint of --brand
+                    because the sweep reads as washed out when both
+                    stops share a hue. Re-pick it per theme.
+
+       --brand-on   Text and icon colour that sits ON a brand fill:
+                    the CTA button label and the Join form's submit
+                    button. It must flip between near-white and
+                    near-black depending on how light --brand is —
+                    white on a bright accent is unreadable (white on
+                    #6cff3d is 1.31:1). CSS has no portable way to
+                    pick this automatically, so it is set per theme.
+
+     Everything below this block is derived — leave it alone.
+
+     ------------------------------------------------------------
+     SAVED THEMES
+
+     To switch or revert, copy a preset's three values into the
+     three live declarations directly below this comment. Nothing
+     else in the file needs touching.
+
+       [1] ORIGINAL — Electric Blue        (the launch theme)
+           --brand: #3b82f6;
+           --brand-hue: 217;
+           --brand-alt: #61daff;
+           --brand-on: #ffffff;
+
+       [2] Lime Green
+           --brand: #6cff3d;
+           --brand-hue: 105;
+           --brand-alt: #68ffcd;
+           --brand-on: #0d1117;
+
+       [3] Cyan
+           --brand: #22d3ee;
+           --brand-hue: 188;
+           --brand-alt: #6cf5fb;
+           --brand-on: #0d1117;
+
+       [4] Indigo
+           --brand: #818cf8;
+           --brand-hue: 234;
+           --brand-alt: #83c3ff;
+           --brand-on: #ffffff;
+
+       [5] Violet
+           --brand: #7c3aed;
+           --brand-hue: 262;
+           --brand-alt: #a089ff;
+           --brand-on: #ffffff;
+
+       [6] Deep Violet                     (currently applied)
+           --brand: #6e23db;
+           --brand-hue: 264;
+           --brand-alt: #9179ff;
+           --brand-on: #ffffff;
+
+       [7] Magenta / Berry
+           --brand: #9f2b68;
+           --brand-hue: 328;
+           --brand-alt: #d16da6;
+           --brand-on: #ffffff;
+
+       [8] Purple
+           --brand: #800080;
+           --brand-hue: 300;
+           --brand-alt: #c563da;
+           --brand-on: #ffffff;
+           NOTE: darkest of the set (L .421). Reads 1.96:1 against the
+           page ground, so text-primary tags are near-illegible unless
+           they are switched to --brand-alt.
+
+       [9] Dark Plum
+           --brand: #311958;
+           --brand-hue: 263;
+           --brand-alt: #8d70e3;
+           --brand-on: #ffffff;
+           NOTE: L .286, only 2.9x brighter than the page ground itself.
+           At 1.24:1 every text-primary tag, border-primary hairline and
+           bg-primary/10 tint is effectively invisible. Usable only if
+           text/borders are moved onto --brand-alt.
+
+      [10] Purple (lightened)
+           --brand: #6936be;
+           --brand-hue: 263;
+           --brand-alt: #9077fc;
+           --brand-on: #ffffff;
+           Same hue as [9], +0.19 lightness. 2.52:1 on the page ground.
+
+      [11] Crimson
+           --brand: #c30010;
+           --brand-hue: 355;
+           --brand-alt: #ff5c63;
+           --brand-on: #ffffff;
+           L .514 and the highest chroma of the set (.210). The most
+           even split so far: 6.31:1 white on fill and 2.92:1 on the
+           page ground, so the CTA stays crisp without the tags going
+           as dim as they do on [8]-[10].
+
+     Provenance of the original, in case these ever get lost: the
+     accent was #3b82f6 as --primary, hue 217 hardcoded in
+     glow-card.tsx, and the CTA sweep ran hsla(217 100% 56%) to
+     hsla(194 100% 69%) = #1f75ff to #61daff in navButton.tsx.
+     ------------------------------------------------------------
+     ============================================================ */
+  --brand: #6e23db;
+  --brand-hue: 264;
+  --brand-alt: #9179ff;
+  --brand-on: #ffffff;
+
+  /* Tint and shade, used by the gradients and button shadows. */
+  --brand-light: color-mix(in oklch, var(--brand) 55%, white);
+  --brand-deep: color-mix(in oklch, var(--brand) 70%, black);
+
   /* Core palette - Dark cinematic theme */
   --background: oklch(0.13 0.02 250);
   --foreground: oklch(0.98 0 0);
@@ -16,9 +147,9 @@
   --popover: oklch(0.16 0.02 250);
   --popover-foreground: oklch(0.98 0 0);
 
-  /* Primary - Electric Blue for CTAs */
-  --primary: #3b82f6;
-  --primary-foreground: oklch(1 0 0);
+  /* Primary - the brand accent, used for every CTA */
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-on);
 
   /* Secondary - Slate blue accent */
   --secondary: oklch(0.22 0.02 250);
@@ -36,12 +167,12 @@
 
   --border: oklch(0.24 0.015 250);
   --input: oklch(0.26 0.015 250);
-  --ring: oklch(0.65 0.2 250);
+  --ring: var(--brand);
 
   --radius: 0.75rem;
 
   /* Chart colors */
-  --chart-1: oklch(0.65 0.2 250);
+  --chart-1: var(--brand);
   --chart-2: oklch(0.65 0.15 190);
   --chart-3: oklch(0.6 0.2 25);
   --chart-4: oklch(0.7 0.15 140);
@@ -50,20 +181,30 @@
   /* Sidebar tokens */
   --sidebar: oklch(0.14 0.02 250);
   --sidebar-foreground: oklch(0.9 0 0);
-  --sidebar-primary: oklch(0.65 0.2 250);
+  --sidebar-primary: var(--brand);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.22 0.015 250);
   --sidebar-accent-foreground: oklch(0.9 0 0);
   --sidebar-border: oklch(0.2 0.015 250);
-  --sidebar-ring: oklch(0.65 0.2 250);
+  --sidebar-ring: var(--brand);
 
-  /* Custom gradients and shadows */
-  --gradient-primary: linear-gradient(135deg, oklch(0.65 0.2 250), oklch(0.6 0.18 220));
+  /* Custom gradients and shadows.
+
+     --gradient-dark and --gradient-card are the near-black page and
+     card grounds, not accents, so they stay on the slate hue.
+
+     --gradient-primary runs brand -> brand-alt, i.e. toward the lighter
+     cyan end, matching the original #0091ff -> #0094c9 sweep. It must not
+     end on --brand-deep: that reverses the direction into a shade and the
+     gradient text reads as fading out rather than lifting. Using
+     --brand-alt also ties this to the CTA button, which sweeps between the
+     same two colours. */
+  --gradient-primary: linear-gradient(135deg, var(--brand), var(--brand-alt));
   --gradient-dark: linear-gradient(180deg, oklch(0.13 0.02 250), oklch(0.11 0.02 250));
   --gradient-card: linear-gradient(135deg, oklch(0.18 0.02 250), oklch(0.14 0.02 250));
-  --gradient-glow: radial-gradient(ellipse at center, oklch(0.65 0.2 250 / 0.15), transparent 70%);
+  --gradient-glow: radial-gradient(ellipse at center, color-mix(in srgb, var(--brand) 15%, transparent), transparent 70%);
 
-  --shadow-glow: 0 0 60px oklch(0.65 0.2 250 / 0.3);
+  --shadow-glow: 0 0 60px color-mix(in srgb, var(--brand) 30%, transparent);
   --shadow-card: 0 8px 32px oklch(0 0 0 / 0.4);
   --shadow-elevated: 0 20px 60px oklch(0 0 0 / 0.5);
 }
@@ -198,7 +339,120 @@
     @apply font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance leading-8 md:leading-16;
   }
   .desc{
-    @apply text-xs md:text-[0.8vw] text-muted-foreground leading-relaxed font-semibold;
+    @apply text-xs md:text-[0.8vw] text-foreground/80 leading-relaxed font-normal;
+  }
+
+  /* Prev / counter / next cluster for the work carousel.
+
+     It borrows the secondary button's skin verbatim — transparent base, the
+     same 325deg white sheen at 280% width, the white/35 border, the same
+     shadow stack — because it sits directly beside that button and a dark
+     neutral pill read as a stray control from another design.
+
+     Font-size uses buttonBase's clamp and min-height its 44px floor, so the
+     cluster and the button next to it stay the same height at every viewport
+     rather than only at the width they were eyeballed on. */
+  .carousel-nav {
+    --sheen-edge: hsla(0 0% 100% / 0.03);
+    --sheen-peak: hsla(0 0% 100% / 0.18);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15em;
+    padding: 0.2em 0.35em;
+    min-height: 44px;
+
+    border: 1px solid hsla(0 0% 100% / 0.35);
+    border-radius: 0.5em;
+    background-color: transparent;
+    background-size: 280% auto;
+    background-image: linear-gradient(
+      325deg,
+      var(--sheen-edge) 0%,
+      var(--sheen-peak) 55%,
+      var(--sheen-edge) 90%
+    );
+    color: hsla(0 0% 100% / 0.85);
+    box-shadow:
+      0px 0px 20px rgba(255, 255, 255, 0.08),
+      0px 5px 5px -1px rgba(0, 0, 0, 0.25),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.08),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.02);
+
+    font-size: clamp(0.875rem, 0.8vw, 1.125rem);
+    transition: 0.8s;
+  }
+
+  .carousel-nav:hover {
+    background-position: right top;
+    border-color: hsla(0 0% 100% / 0.6);
+    color: hsla(0 0% 100% / 1);
+  }
+
+  .carousel-nav button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 0.35em;
+    color: inherit;
+    opacity: 0.65;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  .carousel-nav button:hover {
+    opacity: 1;
+    background: hsla(0 0% 100% / 0.1);
+  }
+
+  .carousel-nav button:active {
+    transform: scale(0.94);
+  }
+
+  .carousel-nav button:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px hsla(0 0% 100% / 0.85),
+      0 0 0 4px hsla(0 0% 100% / 0.25);
+  }
+
+  /* tabular-nums stops the cluster twitching as the index changes width. */
+  .carousel-nav .carousel-count {
+    padding-inline: 0.45em;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Highlighted SLIC column in the comparison table.
+
+     These live here rather than as Tailwind arbitrary values because
+     color-mix() inside bg-[...] needs every space underscore-escaped, which
+     makes a four-stop shadow unreadable. Same colours as before, now derived
+     from --brand instead of literal rgba(59,130,246,...). */
+  .brand-panel {
+    background-image: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand) 22%, transparent),
+      color-mix(in srgb, var(--brand) 5%, transparent)
+    );
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in srgb, var(--brand-light) 25%, transparent),
+      inset 0 0 60px -18px color-mix(in srgb, var(--brand) 50%, transparent);
+  }
+
+  .brand-panel-bloom {
+    background-image: radial-gradient(
+      ellipse at 50% 0%,
+      color-mix(in srgb, var(--brand) 26%, transparent),
+      transparent 62%
+    );
+  }
+
+  .brand-row-glow {
+    box-shadow: inset 0 0 32px -12px color-mix(in srgb, var(--brand) 40%, transparent);
   }
 }
 
@@ -240,8 +494,8 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px oklch(0.65 0.2 250 / 0.4); }
-    50% { box-shadow: 0 0 40px oklch(0.65 0.2 250 / 0.6); }
+    0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--brand) 40%, transparent); }
+    50% { box-shadow: 0 0 40px color-mix(in srgb, var(--brand) 60%, transparent); }
   }
 
   @keyframes gradient-shift {

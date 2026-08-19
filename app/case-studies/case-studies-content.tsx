@@ -151,7 +151,7 @@ export function CaseStudiesPageContent() {
                             style={{ width: study.logoSize.width, height: "auto" }}
                           />
                         </div>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-foreground/80">
                           {study.client}
                         </p>
                       </div>
@@ -161,7 +161,7 @@ export function CaseStudiesPageContent() {
                             <div className="font-sans text-2xl md:text-3xl font-bold text-gradient leading-none">
                               {metric.value}
                             </div>
-                            <div className="text-xs text-muted-foreground">
+                            <div className="text-xs text-foreground/80">
                               {metric.label}
                             </div>
                           </div>
@@ -179,7 +179,7 @@ export function CaseStudiesPageContent() {
                         <p className="text-xs font-semibold text-primary mb-1">
                           Challenge
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-foreground/80">
                           {study.challenge}
                         </p>
                       </div>
@@ -187,7 +187,7 @@ export function CaseStudiesPageContent() {
                         <p className="text-xs font-semibold text-primary mb-1">
                           Solution
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-foreground/80">
                           {study.solution}
                         </p>
                       </div>
@@ -214,7 +214,7 @@ export function CaseStudiesPageContent() {
                       {study.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 text-xs rounded-full bg-secondary text-muted-foreground"
+                          className="px-3 py-1 text-xs rounded-full bg-secondary text-foreground/80"
                         >
                           {tag}
                         </span>

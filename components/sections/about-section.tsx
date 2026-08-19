@@ -76,13 +76,13 @@ export function AboutSection() {
               className="mt-6"
             >
               <div className="max-w-4xl mx-auto flex flex-col gap-6 text-center md:text-left">
-                <div className="flex items-center gap-[2vw]">
+                <div className="flex items-center gap-4 md:gap-[1.5vw]">
                   <div className="relative group">
                     <PrimaryButton onClick={openCalendly} />
 
                     {/* Hover Popup */}
                     <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                      <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-muted-foreground text-center">
+                      <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-foreground/80 text-center">
                         30-minute call. No pitch deck. Leave with a creative
                         roadmap.
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
@@ -107,7 +107,7 @@ export function AboutSection() {
             <h3 className="text-sm md:text-[0.8vw] uppercase tracking-widest text-foreground mb-1 font-bold">
               Team
             </h3>
-            <p className="text-muted-foreground text-sm md:text-[0.8vw] mb-8 font-semibold">
+            <p className="text-foreground/80 text-sm md:text-[0.8vw] mb-8 font-normal">
               Who You'll Work With
             </p>
 
@@ -140,7 +140,7 @@ export function AboutSection() {
                     </div>
                   </div>
                   <div className="p-[2vh]">
-                    <p className="text-muted-foreground leading-relaxed text-xs md:text-[0.8vw] font-semibold">
+                    <p className="text-foreground/80 leading-relaxed text-xs md:text-[0.8vw] font-normal">
                       {member.description}
                     </p>
                   </div>

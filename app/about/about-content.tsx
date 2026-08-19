@@ -104,7 +104,7 @@ export function AboutPageContent() {
                   Our Story
                 </span>
 
-                <div className="text-xs md:text-[0.8vw] text-muted-foreground space-y-2">
+                <div className="text-xs md:text-[0.8vw] text-foreground/80 space-y-2">
                   <p>
                     SLIC started with one belief: creative should be measured by
                     business outcomes, not impressions.
@@ -146,7 +146,7 @@ export function AboutPageContent() {
                         <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
                           {stat.value}
                         </div>
-                        <div className="text-xs md:text-[0.8vw] text-muted-foreground">
+                        <div className="text-xs md:text-[0.8vw] text-foreground/80">
                           {stat.label}
                         </div>
                       </div>
@@ -189,7 +189,7 @@ export function AboutPageContent() {
                     <h3 className="font-sans text-sm md:text-[0.8vw] font-bold mb-2 text-foreground">
                       {value.title}
                     </h3>
-                    <p className="text-xs md:text-[0.8vw] text-muted-foreground">
+                    <p className="text-xs md:text-[0.8vw] text-foreground/80">
                       {value.description}
                     </p>
                   </GlowCard>
@@ -240,7 +240,7 @@ export function AboutPageContent() {
                         {member.name}
                       </h3>
                       <p className="text-primary text-sm md:text-[0.8vw] mb-4">{member.role}</p>
-                      <p className="text-muted-foreground text-xs md:text-[0.8vw]">
+                      <p className="text-foreground/80 text-xs md:text-[0.8vw]">
                         {member.bio}
                       </p>
                     </div>

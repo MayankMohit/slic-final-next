@@ -28,14 +28,14 @@ export default function TermsPage() {
               <h1 className="font-sans text-4xl md:text-5xl font-bold mb-4 text-foreground">
                 Terms of Service
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/80">
                 Last Updated: March 2026
               </p>
             </div>
 
             {/* Content */}
             <div className="prose prose-invert prose-lg max-w-none">
-              <div className="space-y-10 text-muted-foreground leading-relaxed">
+              <div className="space-y-10 text-foreground/80 leading-relaxed">
 
                 {/* Agreement */}
                 <section>

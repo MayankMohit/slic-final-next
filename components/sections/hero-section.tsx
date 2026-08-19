@@ -74,7 +74,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xs md:text-[0.8vw] text-muted-foreground md:max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-semibold"
+            className="text-xs md:text-[0.8vw] text-foreground/80 md:max-w-[45vw] mx-auto mb-[3vh] leading-relaxed text-pretty font-normal"
           >
             We research, script, and produce performance-driven video ads for
             Meta, TikTok, and YouTube. Built for DTC brands spending $30k+/month
@@ -86,7 +86,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative z-30 flex flex-col sm:flex-row items-center justify-center gap-[3vw]"
+            className="relative z-30 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-[1.5vw]"
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
@@ -94,7 +94,7 @@ export function HeroSection() {
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute z-40 left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[0.8vw] text-muted-foreground text-center">
+                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[0.8vw] text-foreground/80 text-center">
                   30-minute call. No pitch deck. Leave with a creative roadmap.
                   {/* Arrow */}
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
@@ -103,7 +103,7 @@ export function HeroSection() {
             </div>
 
             <SecondaryButton href="/work">
-              <Play className="w-5 h-5" />
+              <Play className="w-[1.25em] h-[1.25em]" />
               See Our Work
             </SecondaryButton>
           </motion.div>
@@ -161,7 +161,7 @@ export function HeroSection() {
                   delay={1000}
                   className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]"
                 />
-                <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
+                <div className="text-xs md:text-[0.8vw] text-foreground font-semibold">
                   {stat.label}
                 </div>
               </div>

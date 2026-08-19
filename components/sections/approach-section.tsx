@@ -71,7 +71,14 @@ export function ApproachSection() {
 
         {/* Steps */}
         <div className="md:max-w-[70vw] mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 md:gap-[2vw] gap-5 justify-items-center mb-[3vh]">
+          {/* Items stretch to fill their tracks. Centring them under a width cap
+              instead made each card shrink-to-fit, which left visible slack at
+              the md breakpoint where the tracks are far wider than the cap.
+              Stretching means the card width is always exactly
+              (wrapper - gaps) / columns, in vw, at every breakpoint.
+              (Class names are deliberately not spelled out here — Tailwind
+              scans comment text and would emit a rule for them.) */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 md:gap-[2vw] gap-5 mb-[3vh]">
             {steps.map((step, index) => (
               <motion.div
               key={step.step}
@@ -85,27 +92,46 @@ export function ApproachSection() {
                 damping: 18,
                 
               }}
-              className="h-full md:max-w-[20vw]"
+              className="h-full w-full"
             >
-                <GlowCard className="h-full md:py-[2vh] md:px-[2vw] p-8 relative group transition-shadow duration-100 hover:shadow-xl hover:shadow-primary/10">
-                  <span className="absolute md:top-4 md:right-4 top-9 right-9 text-5xl md:text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
+                {/* Every dimension at md+ is in vw, including the ones that used
+                    to be rem (the icon box, its margin, the title margin and
+                    padding, the step-number offsets). Browser zoom scales rem
+                    but leaves vw physically fixed, so a mix of the two made the
+                    card grow vertically on zoom while its width held still. The
+                    vw values below are the previous rem sizes converted at a
+                    1900px viewport, so the card looks unchanged at 100% zoom and
+                    now holds that size at every zoom level.
+
+                    Padding is p-6 md:p-[1vw] to match the Results cards. The
+                    2vw side padding this used to carry ate a quarter of a 16vw
+                    card, so the text wrapped into a 12vw column against
+                    Results' 15.67vw and the cards ran noticeably taller. */}
+                <GlowCard className="h-full p-6 md:p-[1vw] relative group transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10">
+                  <span className="absolute md:top-[0.85vw] md:right-[0.85vw] top-6 right-6 text-5xl md:text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
                     {step.step}
                   </span>
 
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <step.icon className="md:w-[1.5vw] md:h-[1.5vw] text-primary" />
+                  {/* Same inner column as the Results cards: the grid stretches
+                      every item to the tallest in the row, and this is what lets
+                      the card fill that height so the description grows into the
+                      slack instead of leaving it below the text. */}
+                  <div className="flex flex-col h-full gap-3 md:gap-0">
+                    <div className="w-12 h-12 md:w-[2.5vw] md:h-[2.5vw] rounded-xl bg-primary/10 flex items-center justify-center mb-4 md:mb-[0.85vw] group-hover:bg-primary/20 transition-colors">
+                      <step.icon className="md:w-[1.5vw] md:h-[1.5vw] text-primary" />
+                    </div>
+
+                    <h3 className="text-sm md:text-[0.8vw] font-bold mb-3 md:mb-[0.6vw] pr-8 md:pr-[1.7vw]">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-foreground/80 text-xs md:text-[0.8vw] grow leading-relaxed font-normal">
+                      {step.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-sm md:text-[0.8vw] font-bold mb-3 pr-8">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-muted-foreground text-sm md:text-[0.8vw] leading-relaxed font-semibold">
-                    {step.description}
-                  </p>
-
                   {index < steps.length - 1 && !isMobile && (
-                    <div className="hidden lg:block absolute top-1/2 -right-4 w-[2vw] h-0.5 bg-linear-to-r from-primary/50 to-transparent" />
+                    <div className="hidden lg:block absolute top-1/2 -right-[0.85vw] w-[2vw] h-0.5 bg-linear-to-r from-primary/50 to-transparent" />
                   )}
                 </GlowCard>
               </motion.div>
@@ -122,7 +148,7 @@ export function ApproachSection() {
           className=""
         >
           <div className="max-w-[70vw] mx-auto flex flex-col items-center justify-between gap-6 text-center md:text-left">
-            <p className="text-muted-foreground text-xs md:text-[0.8vw] font-semibold">
+            <p className="text-foreground/80 text-xs md:text-[0.8vw] font-normal">
               This process has driven{" "}
               <span className=" text-foreground">
                 32% average CPA reduction
@@ -130,13 +156,13 @@ export function ApproachSection() {
               for our clients.
             </p>
 
-            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-[4vw]">
+            <div className="flex items-center flex-col md:flex-row gap-4 md:gap-[1.5vw]">
               <div className="relative group">
                 <PrimaryButton onClick={openCalendly} />
 
                 {/* Hover Popup */}
                 <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                  <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[0.8vw] text-muted-foreground text-center">
+                  <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[0.8vw] text-foreground/80 text-center">
                     30-minute call. No pitch deck. Leave with a creative
                     roadmap.
                     {/* Arrow */}
@@ -146,7 +172,7 @@ export function ApproachSection() {
               </div>
 
               <SecondaryButton href="/work">
-                <Play className="w-5 h-5" />
+                <Play className="w-[1.25em] h-[1.25em]" />
                 <span>See Our Work</span>
               </SecondaryButton>
             </div>

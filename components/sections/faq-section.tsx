@@ -103,7 +103,7 @@ export function FAQSection() {
                     {faq.question}
                   </span>
 
-                  <div className="md:p-[1vw] p-2 text-[0.8vw] font-semibold rounded-full bg-secondary/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                  <div className="md:p-[1vw] p-2 text-[0.8vw] font-normal rounded-full bg-secondary/50 text-foreground/80 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {isOpen ? (
                       <Minus className="w-4 h-4" />
                     ) : (
@@ -122,7 +122,7 @@ export function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="md:px-5 md:pb-5 pb-2 px-2 text-muted-foreground leading-relaxed font-semibold text-xs md:text-[0.8vw] w-[90%]">
+                      <p className="md:px-5 md:pb-5 pb-2 px-2 text-foreground/80 leading-relaxed font-normal text-xs md:text-[0.8vw] w-[90%]">
                         {faq.answer}
                       </p>
                     </motion.div>

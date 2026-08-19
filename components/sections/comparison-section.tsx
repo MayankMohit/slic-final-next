@@ -111,12 +111,12 @@ export function ComparisonSection() {
               outside the column bounds. The inset stack is a lit top edge plus
               an inner bloom that falls off toward the sides. */}
           <div
-            className="relative col-start-2 overflow-hidden rounded-3xl border border-primary/30 bg-[linear-gradient(180deg,rgba(59,130,246,0.22),rgba(59,130,246,0.05))] shadow-[inset_0_1px_0_0_rgba(147,197,253,0.25),inset_0_0_60px_-18px_rgba(59,130,246,0.5)]"
+            className="brand-panel relative col-start-2 overflow-hidden rounded-3xl border border-primary/30"
             style={{ gridRow: "1 / -1" }}
           >
             <div
               aria-hidden
-              className="animate-glow-breathe pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(59,130,246,0.26),transparent_62%)]"
+              className="brand-panel-bloom animate-glow-breathe pointer-events-none absolute inset-0"
             />
           </div>
 
@@ -171,7 +171,7 @@ export function ComparisonSection() {
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-muted-foreground text-center">
+                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-foreground/80 text-center">
                   30-minute call. No pitch deck. Leave with a creative roadmap.
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
                 </div>
@@ -196,7 +196,7 @@ export function ComparisonSection() {
                 {row.area}
               </div>
 
-              <div className="flex items-start gap-3 border-l-2 border-primary bg-primary/10 px-4 py-3 shadow-[inset_0_0_32px_-12px_rgba(59,130,246,0.4)]">
+              <div className="brand-row-glow flex items-start gap-3 border-l-2 border-primary bg-primary/10 px-4 py-3">
                 <CheckBadge />
                 <div>
                   <div className="mb-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
@@ -233,7 +233,7 @@ export function ComparisonSection() {
         className="mt-8"
       >
         <div className="md:max-w-[50vw] max-w-[90vw] mx-auto flex flex-col items-center gap-6">
-          <p className="text-center text-xs md:text-[0.8vw] font-semibold text-muted-foreground">
+          <p className="text-center text-xs md:text-[0.8vw] font-normal text-foreground/80">
             If you're tired of agencies that deliver pretty ads that don't
             perform, let's talk.
           </p>

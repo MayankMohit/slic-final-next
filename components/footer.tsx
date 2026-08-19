@@ -73,7 +73,9 @@ export function Footer() {
               />
             </Link>
 
-            <p className="text-muted-foreground text-xs md:text-[0.8vw] mb-[1vw] md:max-w-[40vw] max-w-[80vw] font-semibold">
+            {/* Capped below the brand column's own md:max-w-[25vw], otherwise
+                the column wins and this value does nothing. */}
+            <p className="text-foreground/80 text-xs md:text-[0.8vw] mb-[1vw] md:max-w-[20vw] max-w-[80vw] font-normal">
               Performance video ads for DTC brands scaling on Facebook, TikTok,
               and YouTube. Research-driven creative that lowers CPA and improves
               ROAS.
@@ -86,7 +88,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+                  className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-foreground/80 hover:text-primary hover:bg-secondary transition-colors"
                   aria-label={label}
                 >
                   <Icon className="w-5 h-5" />
@@ -95,17 +97,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Work */}
-          <div className=" ">
-            <h4 className="font-sans font-bold text-foreground mb-[1vw]">
-              Work
-            </h4>
+          {/* Work — heading dropped, so the list starts at the top of the column. */}
+          <div>
             <ul className="space-y-[0.8vw]">
               {footerLinks.explore.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground/80 hover:text-primary transition-colors font-semibold"
+                    className="text-foreground/80 hover:text-primary transition-colors font-normal"
                   >
                     {link.name}
                   </Link>
@@ -114,17 +113,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
-          <div className="">
-            <h4 className="font-sans font-bold text-foreground mb-[1vw]">
-              Company
-            </h4>
+          {/* Company — heading dropped, so the list starts at the top of the column. */}
+          <div>
             <ul className="space-y-[0.8vw]">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground/80 hover:text-primary transition-colors font-semibold"
+                    className="text-foreground/80 hover:text-primary transition-colors font-normal"
                   >
                     {link.name}
                   </Link>
@@ -144,7 +140,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 md:pt-4 mr-8 md:mr-0 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
+        <div className="mt-8 md:pt-4 mr-8 md:mr-0 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-xs md:text-[0.8vw] text-foreground/80 font-normal">
           <p>
             &copy; {new Date().getFullYear()} SLIC. All rights reserved.
           </p>

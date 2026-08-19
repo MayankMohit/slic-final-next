@@ -38,13 +38,17 @@ const GlowCard: React.FC<GlowCardProps> = ({
   type CSSVars = React.CSSProperties & Record<string, string | number>;
 
   const getInlineStyles = (): CSSVars => {
+    // Hue comes from --brand-hue in globals.css rather than a literal 217, so
+    // the card ground, its border and the spotlight all follow the theme
+    // accent. It has to be a bare number, not a hex, because --hue below does
+    // arithmetic on it to rotate the spotlight with pointer position.
     const baseStyles: CSSVars = {
-      '--base': '217',
+      '--base': 'var(--brand-hue)',
       '--spread': '30',
       '--radius': '16',
       '--border': '1',
-      '--backdrop': 'hsl(217 30% 12% / 0.6)',
-      '--backup-border': 'hsl(217 30% 25% / 0.3)',
+      '--backdrop': 'hsl(var(--brand-hue) 30% 12% / 0.6)',
+      '--backup-border': 'hsl(var(--brand-hue) 30% 25% / 0.3)',
       '--size': '250',
       '--outer': '0.4',
       '--saturation': '70',
@@ -70,7 +74,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         ...baseStyles,
         backgroundImage: `radial-gradient(
           220px 220px at 50% 50%,
-          hsl(217 70% 55% / var(--bg-spot-opacity)),
+          hsl(var(--brand-hue) 70% 55% / var(--bg-spot-opacity)),
           transparent
         )`,
       };
@@ -83,7 +87,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         var(--spotlight-size) var(--spotlight-size) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 217)
+        hsl(var(--hue, var(--brand-hue))
         calc(var(--saturation, 70) * 1%)
         calc(var(--lightness, 55) * 1%)
         / var(--bg-spot-opacity, 0.08)),
@@ -125,7 +129,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         calc(var(--spotlight-size) * 0.75) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
-        hsl(var(--hue, 217)
+        hsl(var(--hue, var(--brand-hue))
         calc(var(--saturation, 70) * 1%)
         calc(var(--lightness, 50) * 1%)
         / var(--border-spot-opacity, 0.5)),
@@ -141,7 +145,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         calc(var(--spotlight-size) * 0.5) at
         calc(var(--x, 0) * 1px)
         calc(var(--y, 0) * 1px),
-        hsl(217 80% 80% /
+        hsl(var(--brand-hue) 80% 80% /
         var(--border-light-opacity, 0.3)),
         transparent 100%
       );

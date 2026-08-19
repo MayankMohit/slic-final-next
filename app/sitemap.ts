@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { client } from "@/lib/sanity";
+import { client, cleanSlug } from "@/lib/sanity";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await client.fetch<{ slug: string; publishedAt: string }[]>(
@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `https://slic.agency/blog/${post.slug}`,
+    url: `https://slic.agency/blog/${cleanSlug(post.slug)}`,
     lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly",
     priority: 0.6,

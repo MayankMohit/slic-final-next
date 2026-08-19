@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
+import { buttonBase } from "./buttonBase";
 
 interface NavButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,18 +23,19 @@ const NavButton: React.FC<NavButtonProps> = ({
 
 const StyledWrapper = styled.div`
  .btn-donate {
-    --clr-font-main: hsla(0 0% 20% / 100);
-    --btn-bg-1: hsla(194 100% 69% / 1);
-    --btn-bg-2: hsla(217 100% 56% / 1);
-    --btn-bg-color: hsla(360 100% 100% / 1);
-    --radii: 0.5em;
-    cursor: pointer;
-    padding: 0.5em 1.7em;
-    min-width: 120px;
-    min-height: 44px;
-    font-size: var(--size, 1rem);
+    ${buttonBase}
 
-    transition: 0.8s;
+    /* Every colour here derives from --brand in globals.css, so the CTA
+       follows the theme instead of pinning its own blue. The four shadow
+       layers used to be literal rgba blues; they are now the same tint and
+       shade the gradient is built from, at the alphas they always had. */
+    --btn-bg-1: var(--brand-alt);
+    --btn-bg-2: var(--brand);
+    /* Label colour follows --brand-on, not a hardcoded white: on a bright
+       accent (a lime green scores 1.31:1) white type disappears entirely. */
+    --btn-bg-color: var(--brand-on);
+    --radii: 0.5em;
+
     background-size: 280% auto;
     background-image: linear-gradient(
       325deg,
@@ -42,13 +44,12 @@ const StyledWrapper = styled.div`
       var(--btn-bg-2) 90%
     );
     border: none;
-    border-radius: var(--radii);
     color: var(--btn-bg-color);
     box-shadow:
-      0px 0px 20px rgba(71, 184, 255, 0.5),
-      0px 5px 5px -1px rgba(58, 125, 233, 0.25),
-      inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-      inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+      0px 0px 20px color-mix(in srgb, var(--brand-alt) 50%, transparent),
+      0px 5px 5px -1px color-mix(in srgb, var(--brand-deep) 30%, transparent),
+      inset 4px 4px 8px color-mix(in srgb, var(--brand-light) 55%, transparent),
+      inset -4px -4px 8px color-mix(in srgb, var(--brand-deep) 40%, transparent);
   }
 
   .btn-donate:hover {

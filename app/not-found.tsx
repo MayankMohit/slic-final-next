@@ -22,7 +22,7 @@ export default function NotFound() {
           <h2 className="font-sans text-2xl md:text-3xl font-semibold text-foreground mb-4">
             Oops! Page not found
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+          <p className="text-foreground/80 mb-8 max-w-md mx-auto">
             The page you&apos;re looking for doesn&apos;t exist or has been
             moved. Let&apos;s get you back on track.
           </p>

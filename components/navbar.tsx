@@ -111,7 +111,7 @@ export function Navbar() {
                   className={`text-md font-semibold py-2 transition-colors hover:text-primary ml-4 ${
                     pathname === link.href
                       ? "text-primary"
-                      : "text-muted-foreground"
+                      : "text-foreground/80"
                   }`}
                 >
                   {link.name}

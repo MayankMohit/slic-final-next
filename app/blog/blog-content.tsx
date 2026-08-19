@@ -8,7 +8,7 @@ import { Clock, ArrowRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
+import { postImageUrl, cleanSlug } from "@/lib/sanity";
 
 // Sanity post type matching your schema
 interface SanityPost {
@@ -106,22 +106,34 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link
-                      href={`/blog/${post.slug.current}`}
+                      href={`/blog/${cleanSlug(post.slug.current)}`}
                       className="block h-full group"
                     >
-                      <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
-                        {post.mainImage && (
-                          <div className="relative h-48 w-full">
-                            <Image
-                              src={urlFor(post.mainImage).width(800).url()}
-                              alt={post.title}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        )}
+                      {/* h-full + flex-col is what makes the cards line up: the
+                          grid already stretches every item to the tallest in the
+                          row, but the card has to fill that height for the
+                          footer to sit at the bottom rather than under the
+                          excerpt. */}
+                      <GlowCard className="overflow-hidden p-0 min-h-[48vh] h-full flex flex-col">
+                        {/* Fixed 12rem strip, and object-contain rather than
+                            object-cover so the whole image is visible instead
+                            of being cropped to fill. The height is on the
+                            container, never the image, so cards stay identical
+                            whatever the source dimensions are. The dark ground
+                            is what the letterboxing falls back to — without it
+                            the gaps beside a portrait image read as a hole in
+                            the card. */}
+                        <div className="relative h-48 w-full shrink-0 bg-black/25">
+                          <Image
+                            src={postImageUrl(post.mainImage, 800)}
+                            alt={post.title}
+                            fill
+                            sizes="(min-width: 768px) 33vw, 100vw"
+                            className="object-contain"
+                          />
+                        </div>
 
-                        <div className="p-6 flex flex-col h-full">
+                        <div className="p-6 flex flex-col grow">
                           {/* Tags */}
                           <div className="flex flex-wrap gap-2 mb-3">
                             {post.categories?.map((cat) => (
@@ -134,18 +146,22 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                             ))}
                           </div>
 
-                          {/* Title */}
-                          <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                          {/* Title — capped at two lines, and always reserving
+                              two lines' worth of space so a one-line title
+                              doesn't leave its card shorter than its
+                              neighbours. min-h-14 is 3.5rem — two lines of
+                              text-lg, whose line-height is 1.75rem. */}
+                          <h3 className="font-semibold text-lg mb-2 line-clamp-2 min-h-14 group-hover:text-primary transition-colors">
                             {post.title}
                           </h3>
 
                           {/* Excerpt */}
-                          <p className="text-sm text-muted-foreground grow leading-relaxed">
+                          <p className="text-sm text-foreground/80 grow leading-relaxed">
                             {getExcerpt(post)}
                           </p>
 
                           {/* Footer */}
-                          <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
+                          <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-foreground/80">
                             <div className="flex items-center gap-2">
                               <Clock className="w-4 h-4" />
                               <span>{getReadTime(post)}</span>
@@ -180,24 +196,26 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Link
-                    href={`/blog/${post.slug.current}`}
+                    href={`/blog/${cleanSlug(post.slug.current)}`}
                     className="block h-full group"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <GlowCard className="overflow-hidden p-0 min-h-[48vh]">
-                      {post.mainImage && (
-                        <div className="relative h-48 w-full">
-                          <Image
-                            src={urlFor(post.mainImage).width(800).url()}
-                            alt={post.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      )}
+                    <GlowCard className="overflow-hidden p-0 min-h-[48vh] h-full flex flex-col">
+                      {/* Fixed strip + object-contain, same as the featured
+                          grid above — full image, never cropped, and the card
+                          height is independent of the source dimensions. */}
+                      <div className="relative h-48 w-full shrink-0 bg-black/25">
+                        <Image
+                          src={postImageUrl(post.mainImage, 800)}
+                          alt={post.title}
+                          fill
+                          sizes="(min-width: 768px) 33vw, 100vw"
+                          className="object-contain"
+                        />
+                      </div>
 
-                      <div className="p-6 flex flex-col h-full">
+                      <div className="p-6 flex flex-col grow">
                         {/* Tags */}
                         <div className="flex flex-wrap gap-2 mb-3">
                           {post.categories?.map((cat) => (
@@ -210,18 +228,19 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                           ))}
                         </div>
 
-                        {/* Title */}
-                        <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                        {/* Title — two lines then truncate, with the two lines
+                            always reserved so card heights match. */}
+                        <h3 className="font-semibold text-lg mb-2 line-clamp-2 min-h-14 group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
 
                         {/* Excerpt */}
-                        <p className="text-sm text-muted-foreground grow leading-relaxed">
+                        <p className="text-sm text-foreground/80 grow leading-relaxed">
                           {getExcerpt(post)}
                         </p>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-muted-foreground">
+                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-foreground/80">
                           <div className="flex items-center gap-2">
                             <Clock className="w-4 h-4" />
                             <span>{getReadTime(post)}</span>

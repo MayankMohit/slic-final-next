@@ -37,7 +37,7 @@ const inputClasses =
   "w-full rounded-lg border border-transparent bg-black/30 px-4 py-3 text-sm md:text-[0.85vw] text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors";
 
 const labelClasses =
-  "block mb-2 text-xs md:text-[0.75vw] font-semibold text-muted-foreground uppercase tracking-wide";
+  "block mb-2 text-xs md:text-[0.75vw] font-normal text-foreground/80 uppercase tracking-wide";
 
 export function JoinPageContent() {
   const {
@@ -118,7 +118,7 @@ export function JoinPageContent() {
                 <h3 className="font-sans text-sm md:text-[0.9vw] font-bold text-foreground mb-1">
                   {perk.title}
                 </h3>
-                <p className="text-xs md:text-[0.75vw] text-muted-foreground font-semibold leading-relaxed">
+                <p className="text-xs md:text-[0.75vw] text-foreground/80 font-normal leading-relaxed">
                   {perk.description}
                 </p>
               </div>

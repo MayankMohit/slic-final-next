@@ -15,24 +15,37 @@ type VideoEntry = {
   fullVideoUrl: string;
 };
 
-// Grid order: [0]=h1(landscape) [1]=v1 [2]=v2 [3]=h2(landscape) [4-15]=v3-v14
+/**
+ * Display order for both layouts.
+ *
+ * Slots [0] and [3] are load-bearing: the desktop bento hands exactly those two
+ * a col-span-2 cell, and the mobile stack decides its aspect with
+ * `i === 0 || i === 3`. The two landscape clips (h1, h2) must therefore stay at
+ * those indices — a portrait clip in either one gets stretched across two
+ * columns. Every other slot is portrait and free to reorder.
+ *
+ * The v-numbers below are deliberately out of sequence: v2, v4, v9, v11 and v13
+ * were moved to the end of the reel.
+ */
 const workVideos: VideoEntry[] = [
   { thumbnail: "/work/thumbnails/h1.webp", previewVideoUrl: "/work/previews/h1.mp4", fullVideoUrl: "/work/full/h1.mp4" },
   { thumbnail: "/work/thumbnails/v1.webp", previewVideoUrl: "/work/previews/v1.mp4", fullVideoUrl: "/work/full/v1.mp4" },
-  { thumbnail: "/work/thumbnails/v2.webp", previewVideoUrl: "/work/previews/v2.mp4", fullVideoUrl: "/work/full/v2.mp4" },
-  { thumbnail: "/work/thumbnails/h2.webp", previewVideoUrl: "/work/previews/h2.mp4", fullVideoUrl: "/work/full/h2.mp4" },
   { thumbnail: "/work/thumbnails/v3.webp", previewVideoUrl: "/work/previews/v3.mp4", fullVideoUrl: "/work/full/v3.mp4" },
-  { thumbnail: "/work/thumbnails/v4.webp", previewVideoUrl: "/work/previews/v4.mp4", fullVideoUrl: "/work/full/v4.mp4" },
+  { thumbnail: "/work/thumbnails/h2.webp", previewVideoUrl: "/work/previews/h2.mp4", fullVideoUrl: "/work/full/h2.mp4" },
   { thumbnail: "/work/thumbnails/v5.webp", previewVideoUrl: "/work/previews/v5.mp4", fullVideoUrl: "/work/full/v5.mp4" },
   { thumbnail: "/work/thumbnails/v6.webp", previewVideoUrl: "/work/previews/v6.mp4", fullVideoUrl: "/work/full/v6.mp4" },
   { thumbnail: "/work/thumbnails/v7.webp", previewVideoUrl: "/work/previews/v7.mp4", fullVideoUrl: "/work/full/v7.mp4" },
   { thumbnail: "/work/thumbnails/v8.webp", previewVideoUrl: "/work/previews/v8.mp4", fullVideoUrl: "/work/full/v8.mp4" },
-  { thumbnail: "/work/thumbnails/v9.webp", previewVideoUrl: "/work/previews/v9.mp4", fullVideoUrl: "/work/full/v9.mp4" },
   { thumbnail: "/work/thumbnails/v10.webp", previewVideoUrl: "/work/previews/v10.mp4", fullVideoUrl: "/work/full/v10.mp4" },
-  { thumbnail: "/work/thumbnails/v11.webp", previewVideoUrl: "/work/previews/v11.mp4", fullVideoUrl: "/work/full/v11.mp4" },
   { thumbnail: "/work/thumbnails/v12.webp", previewVideoUrl: "/work/previews/v12.mp4", fullVideoUrl: "/work/full/v12.mp4" },
-  { thumbnail: "/work/thumbnails/v13.webp", previewVideoUrl: "/work/previews/v13.mp4", fullVideoUrl: "/work/full/v13.mp4" },
   { thumbnail: "/work/thumbnails/v14.webp", previewVideoUrl: "/work/previews/v14.mp4", fullVideoUrl: "/work/full/v14.mp4" },
+
+  // Moved to the back of the reel, in this order.
+  { thumbnail: "/work/thumbnails/v11.webp", previewVideoUrl: "/work/previews/v11.mp4", fullVideoUrl: "/work/full/v11.mp4" },
+  { thumbnail: "/work/thumbnails/v13.webp", previewVideoUrl: "/work/previews/v13.mp4", fullVideoUrl: "/work/full/v13.mp4" },
+  { thumbnail: "/work/thumbnails/v2.webp", previewVideoUrl: "/work/previews/v2.mp4", fullVideoUrl: "/work/full/v2.mp4" },
+  { thumbnail: "/work/thumbnails/v4.webp", previewVideoUrl: "/work/previews/v4.mp4", fullVideoUrl: "/work/full/v4.mp4" },
+  { thumbnail: "/work/thumbnails/v9.webp", previewVideoUrl: "/work/previews/v9.mp4", fullVideoUrl: "/work/full/v9.mp4" },
 ];
 
 type ActiveVideo = { url: string; aspect: "landscape" | "portrait" };

@@ -41,13 +41,13 @@ export function TestimonialsSection() {
   const { openCalendly } = useCalendly();
   return (
     <section className="section-padding">
-      <div className="container-tight">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-[4vh]"
+          className="text-center md:max-w-[57vw] mx-auto mb-[4vh]"
         >
           <span className="tag">
             Testimonials
@@ -61,41 +61,48 @@ export function TestimonialsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.author}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <GlowCard className="h-full p-6">
-                <div className="flex flex-col h-full">
-                  <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                  <p className="text-foreground text-sm md:text-[0.8vw] mb-6 grow leading-relaxed font-semibold">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: testimonial.stars }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-primary text-primary"
-                      />
-                    ))}
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <div className="font-sans font-bold text-foreground text-xs md:text-[0.8vw]">
-                      {testimonial.author}
+        {/* The card body is sized in vw at md+ — padding, margins, gaps and
+            icons, not just the type. Previously only the text was vw while the
+            box around it was fixed px in a px-capped container, so the copy grew
+            with the viewport while its container stayed put. */}
+        <div className="md:max-w-[57vw] mx-auto">
+          <div className="grid md:grid-cols-2 md:gap-[2vw] gap-5">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.author}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full w-full"
+              >
+                <GlowCard className="h-full p-6 md:p-[1vw]">
+                  <div className="flex flex-col h-full">
+                    <Quote className="w-8 h-8 md:w-[1.6vw] md:h-[1.6vw] text-primary/30 mb-4 md:mb-[1vw]" />
+                    <p className="text-foreground text-sm md:text-[0.8vw] mb-6 md:mb-[1.2vw] grow leading-relaxed font-normal">
+                      &ldquo;{testimonial.quote}&rdquo;
+                    </p>
+                    <div className="flex gap-1 md:gap-[0.25vw] mb-4 md:mb-[1vw]">
+                      {Array.from({ length: testimonial.stars }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 md:w-[0.8vw] md:h-[0.8vw] fill-primary text-primary"
+                        />
+                      ))}
                     </div>
-                    <div className="text-xs md:text-[0.8vw] text-muted-foreground font-semibold">
-                      {testimonial.role}
+                    <div className="flex flex-col gap-1 md:gap-[0.25vw]">
+                      <div className="font-sans font-bold text-foreground text-xs md:text-[0.8vw]">
+                        {testimonial.author}
+                      </div>
+                      <div className="text-xs md:text-[0.8vw] text-foreground/80 font-normal">
+                        {testimonial.role}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </GlowCard>
-            </motion.div>
-          ))}
+                </GlowCard>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
       <motion.div
@@ -106,7 +113,7 @@ export function TestimonialsSection() {
         className="mt-6"
       >
         <div className="md:max-w-[50vw] max-w-[90vw] mx-auto flex flex-col items-center justify-between gap-5 md:gap-[1vw] text-center md:text-left">
-          <p className="text-muted-foreground text-xs md:text-[0.8vw] text-center font-semibold">
+          <p className="text-foreground/80 text-xs md:text-[0.8vw] text-center font-normal">
             Ready to see results like these? Book a call and we'll show you
             exactly how we can improve your video ad performance.
           </p>
@@ -117,7 +124,7 @@ export function TestimonialsSection() {
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-muted-foreground text-center">
+                <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-4 py-3 text-[0.8vw] text-foreground/80 text-center">
                   30-minute call. No pitch deck. Leave with a creative roadmap.
                   {/* Arrow */}
                   <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-background border-l border-t border-border/60 rotate-45" />
