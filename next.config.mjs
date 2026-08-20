@@ -33,10 +33,17 @@ const nextConfig = {
     // AVIF first — typically 20-30% smaller than WebP at equal quality, with
     // WebP kept as the fallback for older clients.
     formats: ["image/avif", "image/webp"],
+    // Blog images live in Vercel Blob, whose public host is
+    // <store-id>.public.blob.vercel-storage.com. The single `*` matches that
+    // one label and nothing deeper, so the pattern still pins the domain.
+    //
+    // Unlike Sanity's CDN, Blob does no resizing of its own — every variant
+    // here is produced by Next's own image optimizer, which is why the stored
+    // width and height on each image matter.
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.sanity.io",
+        hostname: "*.public.blob.vercel-storage.com",
       },
     ],
   },

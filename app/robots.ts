@@ -5,7 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/studio/", "/api/"],
+      // /studio is gone with Sanity; /admin replaced it and is also marked
+      // noindex in its own layout metadata.
+      disallow: ["/admin/", "/api/"],
     },
     sitemap: "https://slic.agency/sitemap.xml",
   };

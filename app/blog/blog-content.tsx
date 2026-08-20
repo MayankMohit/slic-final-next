@@ -8,63 +8,15 @@ import { Clock, ArrowRight } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
 import Image from "next/image";
-import { postImageUrl, cleanSlug } from "@/lib/sanity";
-
-// Sanity post type matching your schema
-interface SanityPost {
-  title: string;
-  slug: { current: string };
-  publishedAt: string;
-  body?: any[];
-  mainImage?: any;
-  featured?: boolean;
-  author?: {
-    name: string;
-    image?: any;
-  };
-  categories?: Array<{ title: string }>;
-}
+import { postImageUrl, type Post } from "@/lib/post-types";
 
 interface BlogPageContentProps {
-  posts: SanityPost[];
+  posts: Post[];
 }
 
 export function BlogPageContent({ posts }: BlogPageContentProps) {
   const featuredPosts = posts.filter((post) => post.featured);
   const allPosts = posts;
-
-  const getReadTime = (post: SanityPost) => {
-    if (!post.body) return "1 min read";
-
-    const plainText = post.body
-      .filter((block: any) => block._type === "block" && block.children)
-      .map((block: any) =>
-        block.children
-          .filter((child: any) => child._type === "span")
-          .map((child: any) => child.text)
-          .join(" "),
-      )
-      .join(" ");
-
-    const words = plainText.trim().split(/\s+/).filter(Boolean).length;
-    const minutes = Math.max(1, Math.ceil(words / 200));
-
-    return `${minutes} min read`;
-  };
-
-  const getExcerpt = (post: SanityPost) => {
-    if (!post.body) return "";
-
-    const plainText = post.body
-      .map((block: any) =>
-        block._type === "block"
-          ? block.children.map((child: any) => child.text).join("")
-          : "",
-      )
-      .join(" ");
-
-    return plainText.slice(0, 180) + "...";
-  };
 
   return (
     <main className="min-h-screen">
@@ -99,14 +51,14 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
               <div className="grid md:grid-cols-3 gap-6">
                 {featuredPosts.map((post, index) => (
                   <motion.div
-                    key={post.slug.current}
+                    key={post.slug}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link
-                      href={`/blog/${cleanSlug(post.slug.current)}`}
+                      href={`/blog/${post.slug}`}
                       className="block h-full group"
                     >
                       {/* h-full + flex-col is what makes the cards line up: the
@@ -125,8 +77,8 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                             the card. */}
                         <div className="relative h-48 w-full shrink-0 bg-black/25">
                           <Image
-                            src={postImageUrl(post.mainImage, 800)}
-                            alt={post.title}
+                            src={postImageUrl(post.coverImage)}
+                            alt={post.coverImage?.alt || post.title}
                             fill
                             sizes="(min-width: 768px) 33vw, 100vw"
                             className="object-contain"
@@ -136,12 +88,12 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                         <div className="p-6 flex flex-col grow">
                           {/* Tags */}
                           <div className="flex flex-wrap gap-2 mb-3">
-                            {post.categories?.map((cat) => (
+                            {post.categories.map((category) => (
                               <span
-                                key={cat.title}
+                                key={category}
                                 className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
                               >
-                                {cat.title}
+                                {category}
                               </span>
                             ))}
                           </div>
@@ -157,14 +109,14 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
 
                           {/* Excerpt */}
                           <p className="text-sm text-foreground/80 grow leading-relaxed">
-                            {getExcerpt(post)}
+                            {post.excerpt}
                           </p>
 
                           {/* Footer */}
                           <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-foreground/80">
                             <div className="flex items-center gap-2">
                               <Clock className="w-4 h-4" />
-                              <span>{getReadTime(post)}</span>
+                              <span>{post.readTime}</span>
                             </div>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all" />
                           </div>
@@ -189,14 +141,14 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
             <div className="grid md:grid-cols-3 gap-6">
               {allPosts.map((post, index) => (
                 <motion.div
-                  key={post.slug.current}
+                  key={post.slug}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Link
-                    href={`/blog/${cleanSlug(post.slug.current)}`}
+                    href={`/blog/${post.slug}`}
                     className="block h-full group"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -207,8 +159,8 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                           height is independent of the source dimensions. */}
                       <div className="relative h-48 w-full shrink-0 bg-black/25">
                         <Image
-                          src={postImageUrl(post.mainImage, 800)}
-                          alt={post.title}
+                          src={postImageUrl(post.coverImage)}
+                          alt={post.coverImage?.alt || post.title}
                           fill
                           sizes="(min-width: 768px) 33vw, 100vw"
                           className="object-contain"
@@ -218,12 +170,12 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                       <div className="p-6 flex flex-col grow">
                         {/* Tags */}
                         <div className="flex flex-wrap gap-2 mb-3">
-                          {post.categories?.map((cat) => (
+                          {post.categories.map((category) => (
                             <span
-                              key={cat.title}
+                              key={category}
                               className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
                             >
-                              {cat.title}
+                              {category}
                             </span>
                           ))}
                         </div>
@@ -236,14 +188,14 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
 
                         {/* Excerpt */}
                         <p className="text-sm text-foreground/80 grow leading-relaxed">
-                          {getExcerpt(post)}
+                          {post.excerpt}
                         </p>
 
                         {/* Footer */}
                         <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/50 text-xs text-foreground/80">
                           <div className="flex items-center gap-2">
                             <Clock className="w-4 h-4" />
-                            <span>{getReadTime(post)}</span>
+                            <span>{post.readTime}</span>
                           </div>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all" />
                         </div>

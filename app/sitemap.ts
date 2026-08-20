@@ -1,17 +1,16 @@
 import type { MetadataRoute } from "next";
-import { client, cleanSlug } from "@/lib/sanity";
+import { getPublishedSlugs } from "@/lib/posts";
+
+// Regenerated on the same cadence as the blog, and immediately when a post is
+// saved: savePost calls revalidatePath("/sitemap.xml").
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await client.fetch<{ slug: string; publishedAt: string }[]>(
-    `*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc) {
-      "slug": slug.current,
-      publishedAt
-    }`
-  );
+  const posts = await getPublishedSlugs();
 
   const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `https://slic.agency/blog/${cleanSlug(post.slug)}`,
-    lastModified: new Date(post.publishedAt),
+    url: `https://slic.agency/blog/${post.slug}`,
+    lastModified: post.updatedAt,
     changeFrequency: "monthly",
     priority: 0.6,
   }));

@@ -1,5 +1,5 @@
-import { sanityFetch } from "@/lib/sanity.live";
 import type { Metadata } from "next";
+import { getPublishedPosts } from "@/lib/posts";
 import { BlogPageContent } from "./blog-content";
 
 export const metadata: Metadata = {
@@ -17,25 +17,17 @@ export const metadata: Metadata = {
   },
 };
 
-// Make BlogPage async to fetch data
-export default async function BlogPage() {
-  const {data: posts} = await sanityFetch({
-    query: `*[_type == "post" && defined(publishedAt) && publishedAt < now()]
-  | order(publishedAt desc) {
-    title,
-    slug,
-    publishedAt,
-    body,
-    featured,
-    mainImage,
-    author->{
-      name
-    },
-    categories[]->{
-      title
-    }
-  }`,
-  });
+/**
+ * Rebuilt hourly, and immediately whenever a post is saved.
+ *
+ * Sanity's live subscription used to keep this fresh on its own. Now that the
+ * data is ours, savePost calls revalidatePath("/blog"), so an edit is visible
+ * at once. The hourly window is the safety net that also picks up posts whose
+ * publish date was set in the future and has since passed.
+ */
+export const revalidate = 3600;
 
+export default async function BlogPage() {
+  const posts = await getPublishedPosts();
   return <BlogPageContent posts={posts} />;
 }
