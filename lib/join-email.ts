@@ -66,20 +66,20 @@ function chip(text: string, accent: boolean) {
 }
 
 export function buildJoinEmail(data: JoinApplication, now = new Date()) {
-  const { name, email, phone, role, experience, portfolio, message } = data;
+  const { name, email, phone, role, experience, availability, portfolio, message } =
+    data;
 
   const subject = `New application — ${name} · ${role}`;
 
   // Shown as the preview line in the inbox list, before the body is opened.
-  const preheader = `${role} · ${experience}${phone ? ` · ${phone}` : ""}`;
+  const preheader = `${role} · ${experience} · ${availability}${phone ? ` · ${phone}` : ""}`;
 
   const replyHref = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(
     `Re: your application to SLIC — ${role}`,
   )}`;
 
-  const portfolioHtml = portfolio
-    ? `<a href="${escapeHtml(portfolio)}" style="color:${C.primary};text-decoration:none;border-bottom:1px solid rgba(59,130,246,0.4);">${escapeHtml(portfolio)}</a>`
-    : `<span style="color:${C.faint};font-weight:500;">Not provided</span>`;
+  // Required by the schema, so there is no "not provided" branch here.
+  const portfolioHtml = `<a href="${escapeHtml(portfolio)}" style="color:${C.primary};text-decoration:none;border-bottom:1px solid rgba(59,130,246,0.4);">${escapeHtml(portfolio)}</a>`;
 
   const phoneHtml = phone
     ? `<a href="tel:${escapeHtml(phone.replace(/[^\d+]/g, ""))}" style="color:${C.text};text-decoration:none;">${escapeHtml(phone)}</a>`
@@ -133,7 +133,7 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
                   <td style="padding:32px 32px 0 32px;">
                     <div style="font-family:${FONT};font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:${C.primary};margin-bottom:10px;">New Application</div>
                     <div style="font-family:${FONT};font-size:28px;line-height:1.2;font-weight:700;color:${C.text};margin-bottom:16px;">${escapeHtml(name)}</div>
-                    <div>${chip(role, true)}${chip(experience, false)}</div>
+                    <div>${chip(role, true)}${chip(experience, false)}${chip(availability, false)}</div>
                   </td>
                 </tr>
 
@@ -151,7 +151,7 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
                 <!-- Message -->
                 <tr>
                   <td style="padding:28px 32px 0 32px;">
-                    <div style="font-family:${FONT};font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${C.faint};margin-bottom:12px;">Why they want to join</div>
+                    <div style="font-family:${FONT};font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${C.faint};margin-bottom:12px;">An ad they'd have made better</div>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${C.panel}" style="background-color:${C.panel};border-radius:12px;border-left:3px solid ${C.primary};">
                       <tr>
                         <td style="padding:18px 20px;font-family:${FONT};font-size:14px;line-height:1.65;color:${C.muted};white-space:pre-wrap;word-break:break-word;">${escapeHtml(message)}</td>
@@ -198,13 +198,14 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
   const text = [
     `NEW APPLICATION — ${name}`,
     "",
-    `Role:        ${role}`,
-    `Experience:  ${experience}`,
-    `Email:       ${email}`,
-    `Phone:       ${phone || "Not provided"}`,
-    `Portfolio:   ${portfolio || "Not provided"}`,
+    `Role:         ${role}`,
+    `Experience:   ${experience}`,
+    `Availability: ${availability}`,
+    `Email:        ${email}`,
+    `Phone:        ${phone || "Not provided"}`,
+    `Portfolio:    ${portfolio}`,
     "",
-    "WHY THEY WANT TO JOIN",
+    "AN AD THEY'D HAVE MADE BETTER",
     message,
     "",
     "---",

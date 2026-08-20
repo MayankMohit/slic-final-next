@@ -1,12 +1,13 @@
 import { z } from "zod";
 
+// Listed in pipeline order — research feeds the script, the script feeds the
+// edit, the edit feeds the test — because the Open Roles cards on /join are
+// numbered 01-04 off this array and read as that sequence.
 export const JOIN_ROLES = [
+  "Creative Researcher",
+  "Scriptwriter",
   "Video Editor",
-  "Motion Designer",
   "Creative Strategist",
-  "Copywriter",
-  "Performance Marketer",
-  "Other",
 ] as const;
 
 export const JOIN_EXPERIENCE_LEVELS = [
@@ -14,6 +15,12 @@ export const JOIN_EXPERIENCE_LEVELS = [
   "1-3 years",
   "3-5 years",
   "5+ years",
+] as const;
+
+export const JOIN_AVAILABILITY = [
+  "Full-time",
+  "Part-time",
+  "Project-based",
 ] as const;
 
 // z.string().url() only checks that `new URL()` parses, which happily accepts
@@ -53,17 +60,22 @@ export const joinApplicationSchema = z.object({
   experience: z.enum(JOIN_EXPERIENCE_LEVELS, {
     message: "Please pick your experience level",
   }),
+  availability: z.enum(JOIN_AVAILABILITY, {
+    message: "Please pick your availability",
+  }),
+  // Required, not optional: the page leads with "portfolio first, everything
+  // else second", and an application with no work to look at cannot be read.
   portfolio: z
     .string()
     .trim()
+    .min(1, "Please add a link to your portfolio or reel")
     .max(300)
-    .refine(isHttpUrl, "Please enter a valid link (https://...)")
-    .optional()
-    .or(z.literal("")),
+    .refine(isHttpUrl, "Please enter a valid link (https://...)"),
+  // The "pick an ad you'd have made better" answer.
   message: z
     .string()
     .trim()
-    .min(20, "Tell us a bit more — at least a couple of sentences")
+    .min(20, "Tell us a bit more — a few lines is enough")
     .max(3000),
   // Honeypot — real users never see or fill this field.
   company: z.string().max(0).optional().or(z.literal("")),
