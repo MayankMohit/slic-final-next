@@ -4,6 +4,8 @@ import NavButton from "./navButton";
 interface PrimaryButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
+  /** Render as a link. See the note on NavButton's href. */
+  href?: string;
 }
 
 // Same visual as the navbar CTA — NavButton owns the styling so the two

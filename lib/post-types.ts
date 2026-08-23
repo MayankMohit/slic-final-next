@@ -82,6 +82,42 @@ export function postImageUrl(image: PostImage | null | undefined) {
   return image?.url || BLOG_PLACEHOLDER_IMAGE;
 }
 
+/** Link preview shown when a post has no cover of its own. */
+export const SOCIAL_FALLBACK_IMAGE = {
+  url: "/og-image.jpg",
+  width: 1200,
+  height: 630,
+};
+
+/**
+ * The image a post presents to link-preview crawlers, and to Article schema.
+ *
+ * The dimensions travel with it deliberately. LinkedIn and X read width and
+ * height off the tag to decide whether a share renders as a large card or a
+ * small thumbnail, so a post whose cover is portrait or square has to say so.
+ * Declaring a flat 1200x630 for every post, which is what this used to do,
+ * describes the site card rather than the image actually being served, and a
+ * crawler that finds the mismatch downgrades the card.
+ *
+ * A cover uploaded through the editor already carries its true dimensions —
+ * they are captured at upload time because Blob URLs, unlike Sanity's, do not
+ * encode them in the path.
+ */
+export function postSocialImage(post: Pick<Post, "coverImage" | "title">) {
+  const cover = post.coverImage;
+
+  if (!cover) return { ...SOCIAL_FALLBACK_IMAGE, alt: post.title };
+
+  return {
+    url: cover.url,
+    width: cover.width,
+    height: cover.height,
+    // The author wrote alt text for this image; the title is the last resort,
+    // not the default.
+    alt: cover.alt || post.title,
+  };
+}
+
 /* -------------------------------------------------------------------------- */
 /* Derived text                                                               */
 /* -------------------------------------------------------------------------- */

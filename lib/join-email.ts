@@ -1,4 +1,5 @@
 import type { JoinApplication } from "./join-schema";
+import { SITE_URL } from "./site";
 
 /**
  * Renders the "new application" notification email.
@@ -10,7 +11,6 @@ import type { JoinApplication } from "./join-schema";
  * mail client supports oklch) so it reads as the same brand as the site.
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://slic.agency";
 
 // Site design tokens, converted to hex for mail-client support.
 const C = {
@@ -18,8 +18,17 @@ const C = {
   card: "#0f1520", // --card, lifted slightly for separation
   panel: "#141b28", // --secondary
   border: "#1f2937", // --border, lifted for visibility on dark
-  primary: "#3b82f6", // --primary (already hex in globals.css)
-  primaryDeep: "#2563eb",
+  // --brand / --primary. A FILL colour: button grounds, rules, left borders.
+  // At 2.80:1 on this page ground it fails WCAG AA for text, which is why
+  // primaryText exists rather than this being used for both.
+  primary: "#6e23db",
+  primaryTint: "rgba(110,35,219,0.16)", // --brand at low alpha, for chip grounds
+  primaryEdge: "rgba(110,35,219,0.35)", // --brand at low alpha, for chip borders
+  // --brand-alt. The same hue two steps lighter, 6.11:1 on the page ground.
+  // Every brand-coloured word in this email uses this, per the fill/text split
+  // documented in app/globals.css.
+  primaryText: "#9179ff",
+  primaryTextRule: "rgba(145,121,255,0.4)", // underlines beneath primaryText links
   accent: "#00aba3", // --accent
   text: "#f8f8f8", // --foreground
   muted: "#9aa3b4", // --muted-foreground, lifted for email legibility
@@ -59,9 +68,9 @@ function detailRow(label: string, valueHtml: string, isLast = false) {
 
 /** Small rounded chip, used for role and experience. */
 function chip(text: string, accent: boolean) {
-  const bg = accent ? "rgba(59,130,246,0.16)" : "rgba(0,171,163,0.14)";
-  const fg = accent ? C.primary : C.accent;
-  const bd = accent ? "rgba(59,130,246,0.35)" : "rgba(0,171,163,0.32)";
+  const bg = accent ? C.primaryTint : "rgba(0,171,163,0.14)";
+  const fg = accent ? C.primaryText : C.accent;
+  const bd = accent ? C.primaryEdge : "rgba(0,171,163,0.32)";
   return `<span style="display:inline-block;padding:6px 14px;margin:0 6px 6px 0;border:1px solid ${bd};border-radius:999px;background:${bg};font-family:${FONT};font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:${fg};">${escapeHtml(text)}</span>`;
 }
 
@@ -79,7 +88,7 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
   )}`;
 
   // Required by the schema, so there is no "not provided" branch here.
-  const portfolioHtml = `<a href="${escapeHtml(portfolio)}" style="color:${C.primary};text-decoration:none;border-bottom:1px solid rgba(59,130,246,0.4);">${escapeHtml(portfolio)}</a>`;
+  const portfolioHtml = `<a href="${escapeHtml(portfolio)}" style="color:${C.primaryText};text-decoration:none;border-bottom:1px solid ${C.primaryTextRule};">${escapeHtml(portfolio)}</a>`;
 
   const phoneHtml = phone
     ? `<a href="tel:${escapeHtml(phone.replace(/[^\d+]/g, ""))}" style="color:${C.text};text-decoration:none;">${escapeHtml(phone)}</a>`
@@ -131,7 +140,7 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td style="padding:32px 32px 0 32px;">
-                    <div style="font-family:${FONT};font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:${C.primary};margin-bottom:10px;">New Application</div>
+                    <div style="font-family:${FONT};font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:${C.primaryText};margin-bottom:10px;">New Application</div>
                     <div style="font-family:${FONT};font-size:28px;line-height:1.2;font-weight:700;color:${C.text};margin-bottom:16px;">${escapeHtml(name)}</div>
                     <div>${chip(role, true)}${chip(experience, false)}${chip(availability, false)}</div>
                   </td>
@@ -141,7 +150,7 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
                 <tr>
                   <td style="padding:24px 32px 0 32px;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid ${C.border};">
-                      ${detailRow("Email", `<a href="mailto:${escapeHtml(email)}" style="color:${C.primary};text-decoration:none;border-bottom:1px solid rgba(59,130,246,0.4);">${escapeHtml(email)}</a>`)}
+                      ${detailRow("Email", `<a href="mailto:${escapeHtml(email)}" style="color:${C.primaryText};text-decoration:none;border-bottom:1px solid ${C.primaryTextRule};">${escapeHtml(email)}</a>`)}
                       ${detailRow("Phone", phoneHtml)}
                       ${detailRow("Portfolio", portfolioHtml, true)}
                     </table>
@@ -165,7 +174,7 @@ export function buildJoinEmail(data: JoinApplication, now = new Date()) {
                   <td style="padding:28px 32px 32px 32px;">
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td bgcolor="${C.primary}" style="background-color:${C.primary};background-image:linear-gradient(135deg,${C.primary},${C.primaryDeep});border-radius:10px;">
+                        <td bgcolor="${C.primary}" style="background-color:${C.primary};background-image:linear-gradient(135deg,${C.primary},${C.primaryText});border-radius:10px;">
                           <a href="${replyHref}" style="display:inline-block;padding:14px 28px;font-family:${FONT};font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#ffffff;text-decoration:none;">Reply to ${escapeHtml(name.split(" ")[0] || name)}</a>
                         </td>
                       </tr>

@@ -6,11 +6,25 @@ import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import PrimaryButton from "@/components/ui/primaryBtn";
 import SecondaryButton from "@/components/ui/secondaryBtn";
-import { useCalendly } from "@/hooks/use-calendly";
 import AnimatedCounter from "@/components/ui/animated-counter";
 
+/**
+ * The stat band under the hero.
+ *
+ * `from` is the value the count-up starts at. The two volume figures start at
+ * zero: half of $50M is still a large number and the climb reads as
+ * accumulation. The two ratios are floored, because a mid-animation 0.7x ROAS
+ * or 9% CPA reduction is not a smaller version of the result — it is a bad
+ * result, shown to an audience that reads these figures for a living.
+ */
+const stats: { value: string; from?: number; label: string }[] = [
+  { value: "$50M+", label: "Client Revenue Generated" },
+  { value: "1000+", label: "Performance Ads Delivered" },
+  { value: "32%", from: 20, label: "Avg. CPA Reduction" },
+  { value: "3.2x", from: 2, label: "Avg. ROAS Lift" },
+];
+
 export function HeroSection() {
-  const { openCalendly } = useCalendly();
 
   // Fetch the hero poster at top priority from the initial HTML head.
   preload("/landingVideos/landing-poster.webp", {
@@ -90,7 +104,7 @@ export function HeroSection() {
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
-              <PrimaryButton onClick={openCalendly}  />
+              <PrimaryButton href="/book"  />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute z-40 left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
@@ -148,15 +162,11 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-[5vw] md:mt-[2vh] mt-2 "
           >
-            {[
-              { value: "$50M+", label: "Client Revenue Generated" },
-              { value: "1000+", label: "Performance Ads Delivered" },
-              { value: "32%", label: "Avg. CPA Reduction" },
-              { value: "3.2x", label: "Avg. ROAS Lift" },
-            ].map((stat, index) => (
+            {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <AnimatedCounter
                   value={stat.value}
+                  from={stat.from}
                   duration={1800}
                   delay={1000}
                   className="font-sans text-2xl md:text-[2vw] font-bold text-gradient mb-[1vh]"

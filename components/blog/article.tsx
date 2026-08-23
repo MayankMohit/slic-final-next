@@ -46,7 +46,7 @@ export function Article({ post }: { post: Post }) {
           {post.categories.map((category) => (
             <span
               key={category}
-              className="px-4 py-1 text-sm rounded-full bg-primary/10 text-primary"
+              className="px-4 py-1 text-sm rounded-full bg-primary/10 text-brand-alt"
             >
               {category}
             </span>

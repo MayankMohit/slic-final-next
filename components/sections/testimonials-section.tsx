@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
-import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
 
 const testimonials = [
@@ -38,7 +37,6 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const { openCalendly } = useCalendly();
   return (
     <section className="section-padding">
       <div className="container mx-auto px-4 relative z-10">
@@ -76,9 +74,9 @@ export function TestimonialsSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full w-full"
               >
-                <GlowCard className="h-full p-6 md:p-[1vw]">
+                <GlowCard className="group h-full p-6 md:p-[1vw]">
                   <div className="flex flex-col h-full">
-                    <Quote className="w-8 h-8 md:w-[1.6vw] md:h-[1.6vw] text-primary/30 mb-4 md:mb-[1vw]" />
+                    <Quote className="w-8 h-8 md:w-[1.6vw] md:h-[1.6vw] text-brand-alt/50 group-hover:text-brand-alt/95 transition-colors duration-300 mb-4 md:mb-[1vw]" />
                     <p className="text-foreground text-sm md:text-[0.8vw] mb-6 md:mb-[1.2vw] grow leading-relaxed font-normal">
                       &ldquo;{testimonial.quote}&rdquo;
                     </p>
@@ -120,7 +118,7 @@ export function TestimonialsSection() {
 
           <div className="flex items-center gap-[4vw]">
             <div className="relative group">
-              <PrimaryButton onClick={openCalendly} />
+              <PrimaryButton href="/book" />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">

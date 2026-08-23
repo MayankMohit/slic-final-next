@@ -91,7 +91,7 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                             {post.categories.map((category) => (
                               <span
                                 key={category}
-                                className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
+                                className="text-xs px-3 py-1 rounded-full bg-primary/10 text-brand-alt"
                               >
                                 {category}
                               </span>
@@ -103,7 +103,7 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                               doesn't leave its card shorter than its
                               neighbours. min-h-14 is 3.5rem — two lines of
                               text-lg, whose line-height is 1.75rem. */}
-                          <h3 className="font-semibold text-lg mb-2 line-clamp-2 min-h-14 group-hover:text-primary transition-colors">
+                          <h3 className="font-semibold text-lg mb-2 line-clamp-2 min-h-14 group-hover:text-brand-alt transition-colors">
                             {post.title}
                           </h3>
 
@@ -173,7 +173,7 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
                           {post.categories.map((category) => (
                             <span
                               key={category}
-                              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary"
+                              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-brand-alt"
                             >
                               {category}
                             </span>
@@ -182,7 +182,7 @@ export function BlogPageContent({ posts }: BlogPageContentProps) {
 
                         {/* Title — two lines then truncate, with the two lines
                             always reserved so card heights match. */}
-                        <h3 className="font-semibold text-lg mb-2 line-clamp-2 min-h-14 group-hover:text-primary transition-colors">
+                        <h3 className="font-semibold text-lg mb-2 line-clamp-2 min-h-14 group-hover:text-brand-alt transition-colors">
                           {post.title}
                         </h3>
 

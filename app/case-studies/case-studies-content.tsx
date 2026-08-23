@@ -19,16 +19,16 @@ const caseStudies = [
     title: "Loop Labs: $40M+ in Revenue with Performance Video Ads",
     client: "DTC Toy Brand",
     challenge:
-      "Loop Labs needed a reliable stream of high-performing video ad creative to scale their paid media spend profitably. They were spending aggressively on Facebook and TikTok but hitting creative fatigue and inconsistent ROAS.",
+      "Loop Labs needed a reliable stream of high-performing video ad creative to scale their paid media spend profitably. They were spending aggressively on Meta and TikTok but hitting creative fatigue and inconsistent ROAS.",
     solution:
-      "We became their dedicated performance creative partner, delivering research-backed video ads on a continuous basis. Every ad started with competitor analysis, customer research, and hook testing. We optimized specifically for Facebook and TikTok algorithms, iterating weekly based on performance data.",
+      "We became their dedicated performance creative partner, delivering research-backed video ads on a continuous basis. Every ad started with competitor analysis, customer research, and hook testing. We optimized specifically for Meta and TikTok algorithms, iterating weekly based on performance data.",
     results: [
       "$40M+ in revenue generated over 2 years",
       "Consistent 2.5x ROAS across campaigns",
       "Eliminated creative bottlenecks",
       "Continuous pipeline of winning ad variations",
     ],
-    tags: ["Facebook Ads", "TikTok Ads", "DTC", "Toys"],
+    tags: ["Meta Ads", "TikTok Ads", "DTC", "Toys"],
   },
   {
     logo: "nb.png",
@@ -70,7 +70,7 @@ const caseStudies = [
       "High-converting hook variations identified",
       "Repeatable creative framework established",
     ],
-    tags: ["Facebook Ads", "TikTok Ads", "DTC", "Consumer Tech"],
+    tags: ["Meta Ads", "TikTok Ads", "DTC", "Consumer Tech"],
   },
   {
     logo: "unscrptd.png",
@@ -90,7 +90,7 @@ const caseStudies = [
       "Scalable ad creative system",
       "High engagement with strong conversion",
     ],
-    tags: ["Facebook Ads", "TikTok Ads", "Street Interviews", "Content Agency"],
+    tags: ["Meta Ads", "TikTok Ads", "Street Interviews", "Content Agency"],
   },
 ];
 
@@ -116,7 +116,7 @@ export function CaseStudiesPageContent() {
               <p className="desc">
                 We don't measure success in likes or views. We measure it in
                 revenue, ROAS, and CPA. Here's how our performance video ads
-                have helped DTC brands scale profitably on Facebook, TikTok, and
+                have helped DTC brands scale profitably on Meta, TikTok, and
                 YouTube.
               </p>
             </motion.div>
@@ -176,7 +176,7 @@ export function CaseStudiesPageContent() {
 
                     <div className="space-y-4 mb-6">
                       <div>
-                        <p className="text-xs font-semibold text-primary mb-1">
+                        <p className="text-xs font-semibold text-brand-alt mb-1">
                           Challenge
                         </p>
                         <p className="text-sm text-foreground/80">
@@ -184,7 +184,7 @@ export function CaseStudiesPageContent() {
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-primary mb-1">
+                        <p className="text-xs font-semibold text-brand-alt mb-1">
                           Solution
                         </p>
                         <p className="text-sm text-foreground/80">
@@ -194,7 +194,7 @@ export function CaseStudiesPageContent() {
                     </div>
 
                     <div className="mb-6">
-                      <p className="text-xs font-semibold text-primary mb-3">
+                      <p className="text-xs font-semibold text-brand-alt mb-3">
                         Key Results
                       </p>
                       <ul className="space-y-2">

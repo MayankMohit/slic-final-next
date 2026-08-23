@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPublishedPost, getPublishedSlugs } from "@/lib/posts";
 import { jsonLd } from "@/lib/json-ld";
+import { absoluteUrl } from "@/lib/site";
+import { postSocialImage } from "@/lib/post-types";
 import { BlogPostView } from "./BlogPostView";
 
 // Same contract as the index: instant on save via revalidatePath, hourly
@@ -33,7 +35,11 @@ export async function generateMetadata({
   if (!post) return {};
 
   const description = post.excerpt.slice(0, 160);
-  const ogImage = post.coverImage?.url ?? "/og-image.jpg";
+
+  // The post's own cover when it has one, the site card otherwise. Relative
+  // paths are resolved against metadataBase, so the fallback still emits an
+  // absolute URL — which is the only kind a crawler on another host can fetch.
+  const social = postSocialImage(post);
 
   return {
     title: post.title,
@@ -43,16 +49,17 @@ export async function generateMetadata({
       title: post.title,
       description,
       type: "article",
-      url: `https://slic.agency/blog/${post.slug}`,
+      url: absoluteUrl(`/blog/${post.slug}`),
       publishedTime: post.publishedAt ?? undefined,
+      modifiedTime: post.updatedAt,
       authors: post.authorName ? [post.authorName] : undefined,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      images: [social],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description,
-      images: [ogImage],
+      images: [social.url],
     },
   };
 }
@@ -67,15 +74,38 @@ export default async function PostPage({
 
   if (!post) notFound();
 
-  const ogImage = post.coverImage?.url ?? "https://slic.agency/og-image.jpg";
+  // Same image the link preview uses, so a share and a search result cannot
+  // show different pictures of the same post. Blob URLs are already absolute;
+  // only the local fallback needs the host prefixing, and JSON-LD has no
+  // metadataBase to resolve it for us.
+  const social = postSocialImage(post);
+  const socialImageUrl = social.url.startsWith("http")
+    ? social.url
+    : absoluteUrl(social.url);
 
+  /**
+   * Article is the one schema type on this site that still earns rich
+   * results, which is why it gets the attention FAQPage no longer deserves.
+   *
+   * dateModified matters more than it looks. Without it Google has only the
+   * publish date to go on and treats an updated post as stale; with it, an
+   * edit is visible as an edit. It comes from the same updatedAt the sitemap
+   * uses for lastModified, so the two can never disagree.
+   */
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
+    description: post.excerpt,
     datePublished: post.publishedAt,
-    url: `https://slic.agency/blog/${post.slug}`,
-    image: ogImage,
+    dateModified: post.updatedAt,
+    url: absoluteUrl(`/blog/${post.slug}`),
+    image: {
+      "@type": "ImageObject",
+      url: socialImageUrl,
+      width: social.width,
+      height: social.height,
+    },
     author: {
       "@type": "Person",
       name: post.authorName || "SLIC",
@@ -85,7 +115,7 @@ export default async function PostPage({
       name: "SLIC",
       logo: {
         "@type": "ImageObject",
-        url: "https://slic.agency/icons/sm_logo.png",
+        url: absoluteUrl("/icons/sm_logo.png"),
       },
     },
   };

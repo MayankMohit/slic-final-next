@@ -304,8 +304,8 @@ export function JoinPageContent() {
                       <span
                         className={`absolute top-6 right-6 md:top-[0.85vw] md:right-[0.85vw] text-5xl md:text-[2.5vw] font-bold transition-colors ${
                           isSelected
-                            ? "text-primary"
-                            : "text-primary/50 group-hover:text-primary/20"
+                            ? "text-brand-alt"
+                            : "text-primary/50 group-hover:text-brand-alt/90"
                         }`}
                       >
                         {role.step}

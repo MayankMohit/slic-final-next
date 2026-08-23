@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
-import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
 
 const comparisonData = [
@@ -16,12 +15,12 @@ const comparisonData = [
   {
     area: "Speed",
     traditional: "4 to 8 week creative cycles",
-    slic: "Test-ready variants in 48 to 72 hours",
+    slic: "Week 3 launch, then 48hr iteration",
   },
   {
     area: "Pricing",
     traditional: "Fixed retainers and long lead times",
-    slic: "Flexible packages built for scaling DTC brands",
+    slic: "Month-to-month, cancel any time",
   },
   {
     area: "Measurement",
@@ -57,7 +56,6 @@ function CrossBadge() {
 }
 
 export function ComparisonSection() {
-  const { openCalendly } = useCalendly();
 
   return (
     <section className="section-padding">
@@ -167,7 +165,7 @@ export function ComparisonSection() {
             style={{ gridRowStart: comparisonData.length + 2 }}
           >
             <div className="relative group">
-              <PrimaryButton onClick={openCalendly} />
+              <PrimaryButton href="/book" />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
@@ -199,7 +197,7 @@ export function ComparisonSection() {
               <div className="brand-row-glow flex items-start gap-3 border-l-2 border-primary bg-primary/10 px-4 py-3">
                 <CheckBadge />
                 <div>
-                  <div className="mb-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
+                  <div className="mb-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-alt">
                     SLIC
                   </div>
                   <p className="text-xs font-semibold text-foreground">
@@ -239,7 +237,7 @@ export function ComparisonSection() {
           </p>
 
           <div className="md:hidden">
-            <PrimaryButton onClick={openCalendly} />
+            <PrimaryButton href="/book" />
           </div>
         </div>
       </motion.div>

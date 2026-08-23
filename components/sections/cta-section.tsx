@@ -3,11 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
 
 export function CTASection() {
-  const { openCalendly } = useCalendly();
 
   return (
     <section className="section-padding relative overflow-hidden">
@@ -28,7 +26,7 @@ export function CTASection() {
 
           {/* CTA */}
           <div className="relative inline-block mt-[3vh]">
-            <PrimaryButton onClick={openCalendly} />
+            <PrimaryButton href="/book" />
           </div>
 
           {/* Trust line */}

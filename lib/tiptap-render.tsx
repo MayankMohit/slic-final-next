@@ -75,7 +75,7 @@ function applyMarks(children: ReactNode, marks: TipTapMark[] | undefined, key: s
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="text-brand-alt underline underline-offset-4 hover:text-brand-alt/80 transition-colors"
           >
             {acc}
           </a>

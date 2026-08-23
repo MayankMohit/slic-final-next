@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { LogOut, Plus } from "lucide-react";
+import { KeyRound, LogOut, Plus } from "lucide-react";
 import { isAuthenticated } from "@/lib/auth";
 import { logoutAction } from "../actions";
 
@@ -47,6 +47,14 @@ export default async function DashboardLayout({
           >
             <Plus className="h-3.5 w-3.5" />
             New post
+          </Link>
+          <Link
+            href="/admin/settings"
+            aria-label="Settings"
+            title="Change password"
+            className="grid h-[34px] w-[34px] place-items-center rounded-lg border border-white/15 text-foreground/60 transition-colors hover:border-white/30 hover:text-foreground"
+          >
+            <KeyRound className="h-4 w-4" />
           </Link>
           <form action={logoutAction}>
             <button

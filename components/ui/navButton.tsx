@@ -1,22 +1,51 @@
 import React, { ButtonHTMLAttributes } from "react";
+import Link from "next/link";
 import styled from "styled-components";
 import { buttonBase } from "./buttonBase";
 
-interface NavButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface NavButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
+  /**
+   * Render a link to this route instead of a button.
+   *
+   * Every booking CTA on the site uses this. They used to be buttons that
+   * opened the Calendly popup, which meant the primary conversion action had
+   * no URL: it could not be middle-clicked, bookmarked, linked from an email,
+   * retargeted, or seen in analytics. As a Link it is a real destination, and
+   * Next prefetches /book as soon as the button scrolls into view — so the
+   * booking page is already in cache by the time it is clicked.
+   */
+  href?: string;
 }
 
 const NavButton: React.FC<NavButtonProps> = ({
   children = "Book A Call",
   className,
+  href,
   ...props
 }) => {
+  const classes = `btn-donate ${className ?? ""}`;
+
   return (
     <StyledWrapper>
-      <button className={`btn-donate ${className ?? ""}`} {...props}>
-        <span>{children}</span>
-      </button>
+      {href ? (
+        // The button props and anchor props overlap on everything this site
+        // actually passes (onClick, aria-*, id, title). The cast covers the
+        // handful that differ in their event target type and are never used
+        // here; the alternative is a discriminated union that would make all
+        // ten call sites noisier for no practical gain.
+        <Link
+          href={href}
+          className={classes}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          <span>{children}</span>
+        </Link>
+      ) : (
+        <button className={classes} {...props}>
+          <span>{children}</span>
+        </button>
+      )}
     </StyledWrapper>
   );
 };

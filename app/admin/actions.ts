@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { ObjectId } from "mongodb";
 import {
   assertAdmin,
+  changeAdminPassword,
   clearLoginAttempts,
   endSession,
   registerLoginAttempt,
@@ -60,6 +61,50 @@ export async function loginAction(
 export async function logoutAction() {
   await endSession();
   redirect("/admin/login");
+}
+
+export interface PasswordState {
+  error?: string;
+  success?: boolean;
+}
+
+export async function changePasswordAction(
+  _prev: PasswordState,
+  formData: FormData,
+): Promise<PasswordState> {
+  await assertAdmin();
+
+  const current = String(formData.get("current") ?? "");
+  const next = String(formData.get("next") ?? "");
+  const confirm = String(formData.get("confirm") ?? "");
+
+  if (next !== confirm) return { error: "The new passwords do not match." };
+
+  const ip = await requestIp();
+  try {
+    // Throttled under its own scope: this form takes the current password, so
+    // it is a credential check like the login form and guessable in the same
+    // way. A separate scope means a blocked guesser here cannot also lock the
+    // real admin out of /admin/login, and vice versa.
+    const throttle = await registerLoginAttempt(ip, "password");
+    if (!throttle.ok) {
+      return { error: `Too many attempts. Try again in ${throttle.retryAfterMinutes} minutes.` };
+    }
+  } catch {
+    return { error: "Cannot reach the database. Try again shortly." };
+  }
+
+  const result = await changeAdminPassword(current, next);
+  if (!result.ok) return { error: result.error };
+
+  await clearLoginAttempts(ip, "password");
+
+  // The change just revoked every session issued before now, including this
+  // one. Minting a fresh cookie keeps the person who made the change signed in
+  // while everyone else is turned out.
+  await startSession();
+
+  return { success: true };
 }
 
 /* -------------------------------------------------------------------------- */

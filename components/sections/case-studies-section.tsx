@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { TrendingUp, Users, DollarSign, Play } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
-import { useCalendly } from "@/hooks/use-calendly";
 import AnimatedCounter from "@/components/ui/animated-counter";
 import PrimaryButton from "../ui/primaryBtn";
 import SecondaryButton from "../ui/secondaryBtn";
@@ -12,15 +11,18 @@ const caseStudies = [
   {
     icon: Users,
     metric: "3.5x ROAS",
+    // Ratios count up from a floor, never from zero. See animated-counter.tsx.
+    metricFrom: 2,
     metricLabel: "Return on Ad Spend",
     title: "US Nutrition Brand Relaunch",
     description:
       "Delivered 3.5x ROAS for NeuroBrocc during their US market relaunch. Research-backed video ad creative drove profitable customer acquisition from day one across paid channels.",
-    tags: ["Facebook Ads", "TikTok Ads", "DTC Nutrition"],
+    tags: ["Meta Ads", "TikTok Ads", "DTC Nutrition"],
   },
   {
     icon: TrendingUp,
     metric: "3x",
+    metricFrom: 1.8,
     metricLabel: "Scaled Results",
     title: "TikTok and Applovin Scale",
     description:
@@ -30,6 +32,7 @@ const caseStudies = [
   {
     icon: DollarSign,
     metric: "47%",
+    metricFrom: 30,
     metricLabel: "Average Hold Rate",
     title: "Creative That Holds Attention",
     description:
@@ -39,7 +42,6 @@ const caseStudies = [
 ];
 
 export function CaseStudiesSection() {
-  const { openCalendly } = useCalendly();
   return (
     <section className="section-padding">
       <div className="container mx-auto px-4 relative z-10">
@@ -98,6 +100,7 @@ export function CaseStudiesSection() {
                         <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
                           <AnimatedCounter
                             value={study.metric}
+                            from={study.metricFrom}
                             scrollTrigger
                             duration={3000}
                             className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient"
@@ -141,13 +144,13 @@ export function CaseStudiesSection() {
           <div className="md:max-w-[50vw] mx-auto flex flex-col items-center justify-between gap-5 md:gap-[1vw] text-center md:text-left">
             <p className="text-foreground/80 text-xs md:text-[0.8vw] text-center font-normal">
               These results come from research-first creative, not guesswork. If
-              you're spending $30k+ on Facebook, TikTok, or YouTube ads and want
+              you're spending $30k+ on Meta, TikTok, or YouTube ads and want
               creative that actually performs, let's talk.
             </p>
 
             <div className="flex items-center flex-col md:flex-row gap-3 md:gap-[1.5vw]">
               <div className="relative group">
-                <PrimaryButton onClick={openCalendly} />
+                <PrimaryButton href="/book" />
 
                 {/* Hover Popup */}
                 <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">

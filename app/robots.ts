@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       // noindex in its own layout metadata.
       disallow: ["/admin/", "/api/"],
     },
-    sitemap: "https://slic.agency/sitemap.xml",
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

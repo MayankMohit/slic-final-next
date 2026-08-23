@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { GlowCard } from "@/components/ui/glow-card";
 import { Search, FileText, Film, BarChart3, Play } from "lucide-react";
-import { useCalendly } from "@/hooks/use-calendly";
 import PrimaryButton from "../ui/primaryBtn";
 import SecondaryButton from "../ui/secondaryBtn";
 import { useIsMobile } from "@/hooks/use-isMobile";
@@ -27,7 +26,7 @@ const steps = [
     icon: Film,
     title: "Platform-Native Editing",
     description:
-      "We edit specifically for Meta, TikTok, and YouTube. No one-size-fits-all. Pacing, captions, text overlays, and format variations optimized for each platform's algorithm. All production stays in-house for speed and quality control.",
+      "We edit specifically for Meta, TikTok, and YouTube. No one-size-fits-all. Pacing, captions, text overlays, and format variations optimized for each platform's algorithm. All editing and motion work stays in-house for speed and quality control.",
     step: "03",
   },
   {
@@ -40,10 +39,9 @@ const steps = [
 ];
 
 export function ApproachSection() {
-  const { openCalendly } = useCalendly();
   const isMobile = useIsMobile();
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section className="section-padding relative overflow-x-clip">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
@@ -62,10 +60,11 @@ export function ApproachSection() {
           </h2>
 
           <p className="desc">
-            We don't offer UGC. We don't guess what might work. We research your
-            market, script high-converting video ad concepts, and edit
-            everything in-house for Facebook, Instagram, TikTok, and YouTube.
-            Every creative ships with a testing plan and clear ROAS targets.
+            We don't run shoot days. We don't offer UGC. We don't guess what
+            might work. We research your market, script high-converting video ad
+            concepts, and edit everything in-house for Meta, TikTok, and
+            YouTube. Every creative ships with a testing plan and clear ROAS
+            targets.
           </p>
         </motion.div>
 
@@ -108,7 +107,7 @@ export function ApproachSection() {
                     card, so the text wrapped into a 12vw column against
                     Results' 15.67vw and the cards ran noticeably taller. */}
                 <GlowCard className="h-full p-6 md:p-[1vw] relative group transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10">
-                  <span className="absolute md:top-[0.85vw] md:right-[0.85vw] top-6 right-6 text-5xl md:text-[2.5vw] font-bold text-primary/50 group-hover:text-primary/20 transition-colors">
+                  <span className="absolute md:top-[0.85vw] md:right-[0.85vw] top-6 right-6 text-5xl md:text-[2.5vw] font-bold text-primary/50 group-hover:text-brand-alt/90 transition-colors">
                     {step.step}
                   </span>
 
@@ -158,10 +157,10 @@ export function ApproachSection() {
 
             <div className="flex items-center flex-col md:flex-row gap-4 md:gap-[1.5vw]">
               <div className="relative group">
-                <PrimaryButton onClick={openCalendly} />
+                <PrimaryButton href="/book" />
 
                 {/* Hover Popup */}
-                <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="pointer-events-none absolute z-20 left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
                   <div className="relative bg-background border border-border/60 shadow-xl rounded-xl px-[2vw] py-[1.5vh] text-[0.8vw] text-foreground/80 text-center">
                     30-minute call. No pitch deck. Leave with a creative
                     roadmap.

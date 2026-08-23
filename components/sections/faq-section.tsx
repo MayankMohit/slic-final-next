@@ -1,56 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { faqs } from "./faq-data";
 
-const faqs = [
-  {
-    question: "What type of clients does SLIC work with?",
-    answer:
-      "SLIC works with DTC and ecommerce brands spending $30,000 or more per month on paid media. Our clients typically run video ads on Facebook, Instagram, TikTok, and YouTube and need high-performing creative to scale profitably. If you have product-market fit and a converting funnel but your creative is the bottleneck, we're a good fit.",
-  },
-  {
-    question: "What platforms do you create video ads for?",
-    answer:
-      "We create performance video ads for Facebook, Instagram, TikTok, and YouTube. Each platform has different creative requirements, and we optimize for each. Pacing, hooks, text overlays, and format variations are tailored to how each platform's algorithm rewards content. We don't do one-size-fits-all edits.",
-  },
-  {
-    question: "How long does it take to deliver the first batch of video ads?",
-    answer:
-      "Most clients receive their first batch of video ads within 3 weeks. Week 1 is research and strategy. Week 2 is scripting. Week 3 is production and editing. If you need faster turnaround for urgent campaigns, let us know on our strategy call and we can discuss options.",
-  },
-  {
-    question: "How much does it cost to work with SLIC?",
-    answer:
-      "Pricing depends on volume, platforms, and turnaround needs. We work with DTC brands spending $30k+ on paid media, and our packages are built for teams serious about creative as a growth lever. Book a strategy call and we'll scope out exactly what you need.",
-  },
-  {
-    question: "Do you handle creative strategy, or just production?",
-    answer:
-      "Both. Strategy is where we start. Before we produce anything, we research your competitors, analyze winning ads in your category, and identify the hooks and angles most likely to convert. Then we script and produce based on that research. You're not just getting video ads. You're getting a creative strategy backed by data.",
-  },
-  {
-    question: "What if I don't have a content idea or script yet?",
-    answer:
-      "That's exactly what we do. Most clients come to us without scripts or concepts. We handle the research, develop the creative angles, write the scripts, and produce the final video ads. You just need to share your product, your goals, and access to any existing assets. We take it from there.",
-  },
-  {
-    question: "Do you offer UGC or creator content?",
-    answer:
-      "No. SLIC focuses on research, scripting, and editing. We don't source UGC creators or manage influencer content. Our specialty is building the strategic and production layers that make video ads perform. If you need creator sourcing, we can recommend partners, but that's not our core service.",
-  },
-  {
-    question: "How do you ensure the video ads match our brand?",
-    answer:
-      "We start every engagement with a brand and creative briefing. You share your brand guidelines, tone preferences, past creative that worked, and any constraints. We use that as the foundation for all scripts and edits. You review and approve everything before final delivery. Nothing ships without your sign-off.",
-  },
-  {
-    question: "Why should we choose SLIC over other creative agencies?",
-    answer:
-      "Most agencies start with production. We start with research. Before we shoot or edit anything, we dig into what's actually working in your market. We script every ad based on data, not templates. The result is video ads that win creative tests more consistently. We've generated $50M+ in revenue for brands like NEXA, Maybelline, and AJIO using this approach.",
-  },
-];
+/**
+ * Splits a paragraph on `**bold**` and wraps the marked runs in <strong>.
+ *
+ * String.split with a capturing group interleaves the captures into the
+ * result, so every odd index is the text that was inside the markers.
+ *
+ * This exists because one line of the copy carries emphasis and the answers
+ * are otherwise plain prose. It is not a markdown renderer and should not
+ * grow into one: if the copy ever needs links or lists, the answers should
+ * become structured data rather than strings with more syntax bolted on.
+ */
+function boldParts(text: string) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="font-bold text-foreground">
+        {part}
+      </strong>
+    ) : (
+      part
+    ),
+  );
+}
+
+/**
+ * Two columns on desktop, one stack on mobile.
+ *
+ * The columns are two real elements rather than a grid, and that is the whole
+ * trick: a grid would put question 1 and question 6 in the same row and tie
+ * their heights together, so opening a long answer on the left would leave a
+ * gap under the right-hand question. Independent columns each collapse and
+ * grow on their own.
+ *
+ * It also gets the mobile order right for free. flex-col stacks the first
+ * column then the second, and since they hold 1 to 5 and 6 to 10, that reads
+ * 1 through 10 in order.
+ */
+const columns = [faqs.slice(0, 5), faqs.slice(5)];
 
 export function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -66,71 +57,103 @@ export function FAQSection() {
           transition={{ duration: 0.5 }}
           className="text-center md:mb-16 mb-6"
         >
-          <span className="tag">
-            Got questions?
-          </span>
-          <h2 className="heading">
-            Frequently Asked Questions
-          </h2>
+          <span className="tag">Got questions?</span>
+          <h2 className="heading">Frequently Asked Questions</h2>
           <p className="desc">
             Everything you need to know before working with us.
           </p>
         </motion.div>
 
-        {/* FAQ List */}
+        {/* FAQ columns */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="md:max-w-[50vw] mx-auto max-w-[90vw]"
+          className="md:max-w-[72vw] max-w-[90vw] mx-auto flex flex-col md:flex-row md:gap-[3vw] md:items-start"
         >
-          {faqs.map((faq, index) => {
-            const isOpen = activeIndex === index;
+          {columns.map((column, columnIndex) => (
+            <div key={columnIndex} className="flex-1 md:min-w-0">
+              {column.map((faq, indexInColumn) => {
+                const index = columnIndex * 5 + indexInColumn;
+                const isOpen = activeIndex === index;
+                const panelId = `faq-answer-${index}`;
+                const buttonId = `faq-question-${index}`;
 
-            return (
-              <div
-                key={faq.question}
-                className="border-b border-border last:border-0"
-              >
-                {/* Question */}
-                <button
-                  type="button"
-                  onClick={() => setActiveIndex(isOpen ? -1 : index)}
-                  className="w-full flex items-center justify-between md:px-[1vw] md:py-[0.2vw] p-1.5 text-left group"
-                >
-                  <span className="font-sans text-sm md:text-[0.8vw] font-bold text-foreground group-hover:text-primary transition-colors pr-4">
-                    {faq.question}
-                  </span>
+                // The left column keeps its bottom rule on mobile, where
+                // question 5 sits directly above question 6 and needs the
+                // divider. On desktop it is the foot of the column, so it
+                // goes. The right column's last item never has one.
+                const isLastInColumn = indexInColumn === column.length - 1;
+                const borderClass = !isLastInColumn
+                  ? "border-b border-border"
+                  : columnIndex === 0
+                    ? "border-b border-border md:border-b-0"
+                    : "";
 
-                  <div className="md:p-[1vw] p-2 text-[0.8vw] font-normal rounded-full bg-secondary/50 text-foreground/80 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                    {isOpen ? (
-                      <Minus className="w-4 h-4" />
-                    ) : (
-                      <Plus className="w-4 h-4" />
-                    )}
-                  </div>
-                </button>
+                return (
+                  <div key={faq.question} className={borderClass}>
+                    {/* Question */}
+                    <button
+                      type="button"
+                      id={buttonId}
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => setActiveIndex(isOpen ? -1 : index)}
+                      className="w-full flex items-center justify-between gap-3 md:px-[1vw] md:py-[0.2vw] p-1.5 text-left group"
+                    >
+                      <span className="font-sans text-sm md:text-[0.8vw] font-bold text-foreground group-hover:text-brand-alt transition-colors">
+                        {faq.question}
+                      </span>
 
-                {/* Answer */}
-                <AnimatePresence>
-                  {isOpen && (
+                      <div className="md:p-[1vw] p-2 shrink-0 text-[0.8vw] font-normal rounded-full bg-secondary/50 text-foreground/80 group-hover:bg-primary/10 group-hover:text-brand-alt transition-colors">
+                        {isOpen ? (
+                          <Minus className="w-4 h-4" />
+                        ) : (
+                          <Plus className="w-4 h-4" />
+                        )}
+                      </div>
+                    </button>
+
+                    {/*
+                      Every answer stays mounted, collapsed to height 0 rather
+                      than removed from the tree. This is a hard requirement,
+                      not a nicety: with an AnimatePresence that unmounted
+                      closed answers, nine of the ten answers existed nowhere
+                      in the document, so a crawler saw ten questions and one
+                      answer. All the copy below is only reachable because it
+                      is always rendered.
+
+                      initial={false} skips the mount animation, so the first
+                      answer is simply open on load instead of unfurling.
+                    */}
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      id={panelId}
+                      aria-hidden={!isOpen}
+                      initial={false}
+                      animate={{
+                        height: isOpen ? "auto" : 0,
+                        opacity: isOpen ? 1 : 0,
+                      }}
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="md:px-5 md:pb-5 pb-2 px-2 text-foreground/80 leading-relaxed font-normal text-xs md:text-[0.8vw] w-[90%]">
-                        {faq.answer}
-                      </p>
+                      <div className="md:px-5 md:pb-5 pb-2 px-2 space-y-3">
+                        {faq.answer.map((paragraph, paragraphIndex) => (
+                          <p
+                            key={paragraphIndex}
+                            className="text-foreground/80 leading-relaxed font-normal text-xs md:text-[0.8vw]"
+                          >
+                            {boldParts(paragraph)}
+                          </p>
+                        ))}
+                      </div>
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

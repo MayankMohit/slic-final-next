@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
 import { CaseStudiesPageContent } from "./case-studies-content";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Case Studies | SLIC Performance Creative Results",
     description: "See how SLIC generated $50M+ for DTC brands like Loop Labs, NeuroBrocc, and LOKT. 2x to 3x ROAS. Performance video ads that convert.",
-    url: "https://slic.agency/case-studies",
+    url: absoluteUrl("/case-studies"),
   },
 };
 

@@ -239,7 +239,7 @@ export function AboutPageContent() {
                       <h3 className="mt-4 font-sans text-sm md:text-[0.8vw] font-bold text-foreground uppercase">
                         {member.name}
                       </h3>
-                      <p className="text-primary text-sm md:text-[0.8vw] mb-4">{member.role}</p>
+                      <p className="text-brand-alt text-sm md:text-[0.8vw] mb-4">{member.role}</p>
                       <p className="text-foreground/80 text-xs md:text-[0.8vw]">
                         {member.bio}
                       </p>

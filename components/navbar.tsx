@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCalendly } from "@/hooks/use-calendly";
 import NavButton from "@/components/ui/navButton";
 import { useIsMobile } from "@/hooks/use-isMobile";
 
@@ -20,7 +19,6 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const { openCalendly } = useCalendly();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -65,8 +63,8 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-[1vw] font-semibold transition-colors hover:text-primary ${
-                pathname === link.href ? "text-primary" : "text-foreground"
+              className={`text-[1vw] font-semibold transition-colors hover:text-brand-alt ${
+                pathname === link.href ? "text-brand-alt" : "text-foreground"
               }`}
             >
               {link.name}
@@ -76,7 +74,7 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <NavButton onClick={openCalendly} />
+          <NavButton href="/book" />
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -108,23 +106,22 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-md font-semibold py-2 transition-colors hover:text-primary ml-4 ${
+                  className={`text-md font-semibold py-2 transition-colors hover:text-brand-alt ml-4 ${
                     pathname === link.href
-                      ? "text-primary"
+                      ? "text-brand-alt"
                       : "text-foreground/80"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <Button
-                onClick={() => {
-                  openCalendly();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="bg-gradient-primary w-full text-md"
-              >
-                Book A Call
+              {/* asChild so this is a real anchor: the mobile CTA is the same
+                  destination as the desktop one and should behave like a link,
+                  not a button that happens to navigate. */}
+              <Button asChild className="bg-gradient-primary w-full text-md">
+                <Link href="/book" onClick={() => setIsMobileMenuOpen(false)}>
+                  Book A Call
+                </Link>
               </Button>
             </div>
           </motion.div>

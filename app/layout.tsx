@@ -5,9 +5,9 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { jsonLd } from "@/lib/json-ld";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 import EtheralBackground from "@/components/etheral-background";
 import MobileBackground from "@/components/mobile-background";
-import Script from "next/script";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     template: "%s | SLIC",
   },
   description:
-    "Performance video ads for DTC brands on Facebook, TikTok, and YouTube. We research, script, and produce creative that drives ROAS. $50M+ revenue generated.",
+    "Performance video ads for DTC brands on Meta, TikTok, and YouTube. We research, script, and produce creative that drives ROAS. $50M+ revenue generated.",
   keywords: [
     "video content agency",
     "TikTok ads",
@@ -61,14 +61,14 @@ export const metadata: Metadata = {
   authors: [{ name: "SLIC" }],
   creator: "SLIC",
   publisher: "SLIC",
-  metadataBase: new URL("https://slic.agency"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://slic.agency",
+    url: SITE_URL,
     siteName: "SLIC",
     title: "Performance Creative Agency for DTC Brands | SLIC",
     description:
@@ -128,21 +128,55 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "SLIC",
-              url: "https://slic.agency",
-              logo: "https://slic.agency/icons/sm_logo.png",
+              url: SITE_URL,
+              logo: absoluteUrl("/icons/sm_logo.png"),
               description:
-                "Performance video ads for DTC brands on Facebook, TikTok, and YouTube. $50M+ revenue generated.",
+                "Performance video ad creative for DTC brands scaling on Meta, TikTok, and YouTube.",
+              email: "hello@slic.agency",
+              // The field that does the real work here. It is how Google ties
+              // the site, the LinkedIn page and the X account together as one
+              // entity rather than three unrelated things with a similar name.
+              // Both URLs are the ones the footer links to; a sameAs pointing
+              // somewhere the site does not link is a contradiction, not a hint.
               sameAs: [
                 "https://www.linkedin.com/company/slic-media/",
                 "https://x.com/slic_media",
               ],
+              knowsAbout: [
+                "Performance marketing",
+                "Video ad creative",
+                "Meta Ads",
+                "TikTok Ads",
+                "YouTube Ads",
+              ],
             }),
           }}
         />
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
+        {/*
+          Warms the connection to Calendly on every page, because the booking
+          CTA is on every page.
+
+          A preconnect does the DNS lookup, TCP handshake and TLS negotiation
+          up front, so when someone clicks through to /book the iframe request
+          starts on an open socket instead of paying ~3 round trips first. On a
+          slow connection that is most of the wait.
+
+          What used to be here was a render-blocking <link rel="stylesheet"> to
+          assets.calendly.com — a third-party stylesheet in the critical path of
+          every page on the site, for a widget that is no longer loaded at all.
+          The popup it dressed has been replaced by the inline embed on /book,
+          which needs no Calendly CSS or JavaScript.
+        */}
+        {/*
+          No crossOrigin attribute, deliberately. Browsers key connection reuse
+          on credentials mode, so a `crossorigin` preconnect opens an anonymous
+          CORS socket — the right thing for fonts and scripts, and the wrong
+          thing here. What follows is an iframe document load, which uses the
+          ordinary pool, so an anonymous preconnect would sit unused and the
+          frame would pay for its own handshake anyway.
+        */}
+        <link rel="preconnect" href="https://calendly.com" />
+        <link rel="dns-prefetch" href="https://calendly.com" />
       </head>
       <body className="font-sans">
         <EtheralBackground />
@@ -152,11 +186,6 @@ export default function RootLayout({
           <SpeedInsights />
           <SonnerToaster />
         </SmoothScrollProvider>
-        <Script
-          src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="lazyOnload"
-        />
-
         <Analytics />
       </body>
     </html>

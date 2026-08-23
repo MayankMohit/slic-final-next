@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getPublishedPosts } from "@/lib/posts";
+import { absoluteUrl } from "@/lib/site";
 import { BlogPageContent } from "./blog-content";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     title: "Blog & Insights | SLIC",
     description:
       "Learn video marketing strategies, TikTok ad trends, and content tips from our team.",
-    url: "https://slic.agency/blog",
+    url: absoluteUrl("/blog"),
   },
 };
 

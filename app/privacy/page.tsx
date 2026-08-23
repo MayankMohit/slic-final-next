@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "SLIC Privacy Policy. Learn how we collect, use, and protect your personal information when you visit slic.agency or use our services.",
   alternates: {
-    canonical: "https://slic.agency/privacy",
+    canonical: "/privacy",
   },
   robots: {
     index: true,
@@ -175,7 +175,7 @@ export default function PrivacyPage() {
                     To exercise these rights, contact us at{" "}
                     <a
                       href="mailto:hello@slic.agency"
-                      className="text-primary hover:underline"
+                      className="text-brand-alt hover:underline"
                     >
                       hello@slic.agency
                     </a>
@@ -237,7 +237,7 @@ export default function PrivacyPage() {
                     Questions about this Privacy Policy? Contact us at{" "}
                     <a
                       href="mailto:hello@slic.agency"
-                      className="text-primary hover:underline"
+                      className="text-brand-alt hover:underline"
                     >
                       hello@slic.agency
                     </a>

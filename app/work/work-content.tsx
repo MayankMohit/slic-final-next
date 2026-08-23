@@ -347,7 +347,7 @@ export function WorkPageContent() {
               <span className="tag">Our Work</span>
               <h1 className="heading">Performance Video Ads That Drive Revenue</h1>
               <p className="desc">
-                Browse video ads we've created for DTC brands scaling on Facebook, TikTok, and YouTube.
+                Browse video ads we've created for DTC brands scaling on Meta, TikTok, and YouTube.
               </p>
             </motion.div>
           </div>

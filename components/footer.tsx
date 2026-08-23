@@ -7,7 +7,6 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
-import { useCalendly } from "@/hooks/use-calendly";
 import { createLucideIcon } from "lucide-react";
 import PrimaryButton from "@/components/ui/primaryBtn";
 
@@ -53,7 +52,6 @@ const socialLinks = [
 ];
 
 export function Footer() {
-  const { openCalendly } = useCalendly();
 
   return (
     <footer className="md:rounded-t-6xl relative w-full mx-auto flex flex-col md:items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/18%),theme(backgroundColor.black/68%))]  lg:pt-8">
@@ -76,7 +74,7 @@ export function Footer() {
             {/* Capped below the brand column's own md:max-w-[25vw], otherwise
                 the column wins and this value does nothing. */}
             <p className="text-foreground/80 text-xs md:text-[0.8vw] mb-[1vw] md:max-w-[20vw] max-w-[80vw] font-normal">
-              Performance video ads for DTC brands scaling on Facebook, TikTok,
+              Performance video ads for DTC brands scaling on Meta, TikTok,
               and YouTube. Research-driven creative that lowers CPA and improves
               ROAS.
             </p>
@@ -88,7 +86,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-foreground/80 hover:text-primary hover:bg-secondary transition-colors"
+                  className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-foreground/80 hover:text-brand-alt hover:bg-secondary transition-colors"
                   aria-label={label}
                 >
                   <Icon className="w-5 h-5" />
@@ -104,7 +102,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-foreground/80 hover:text-primary transition-colors font-normal"
+                    className="text-foreground/80 hover:text-brand-alt transition-colors font-normal"
                   >
                     {link.name}
                   </Link>
@@ -120,7 +118,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-foreground/80 hover:text-primary transition-colors font-normal"
+                    className="text-foreground/80 hover:text-brand-alt transition-colors font-normal"
                   >
                     {link.name}
                   </Link>
@@ -135,7 +133,7 @@ export function Footer() {
               Get Started
             </h4>
 
-            <PrimaryButton onClick={openCalendly} />
+            <PrimaryButton href="/book" />
           </div>
         </div>
 
@@ -149,7 +147,7 @@ export function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="hover:text-primary transition-colors"
+                className="hover:text-brand-alt transition-colors"
               >
                 {link.name}
               </Link>

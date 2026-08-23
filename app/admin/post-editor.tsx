@@ -375,6 +375,19 @@ export function PostEditor({
         <div className="rounded-xl border border-white/10 bg-white/2 p-4 space-y-3">
           <span className={labelClasses}>Cover image</span>
 
+          {/*
+            Worth spelling out: the cost of skipping this is invisible from
+            inside the editor. The post looks fine without a cover, and the
+            consequence only shows up months later in someone else's LinkedIn
+            feed as the generic company card.
+          */}
+          <p className={hintClasses}>
+            Used on the blog index, at the top of the post, and as the link
+            preview when the post is shared on LinkedIn or X. Without one,
+            every share falls back to the same generic SLIC card. Landscape,
+            1200px wide or more.
+          </p>
+
           {coverImage ? (
             <div className="space-y-3">
               <div className="relative overflow-hidden rounded-lg ring-1 ring-white/10">

@@ -92,8 +92,8 @@
            --brand-alt: #c563da;
            --brand-on: #ffffff;
            NOTE: darkest of the set (L .421). Reads 1.96:1 against the
-           page ground, so text-primary tags are near-illegible unless
-           they are switched to --brand-alt.
+           page ground. Text is safe — it runs on --brand-alt — but the
+           border-primary hairlines and bg-primary/10 tints go faint.
 
        [9] Dark Plum
            --brand: #311958;
@@ -101,9 +101,10 @@
            --brand-alt: #8d70e3;
            --brand-on: #ffffff;
            NOTE: L .286, only 2.9x brighter than the page ground itself.
-           At 1.24:1 every text-primary tag, border-primary hairline and
-           bg-primary/10 tint is effectively invisible. Usable only if
-           text/borders are moved onto --brand-alt.
+           At 1.24:1 every border-primary hairline and bg-primary/10 tint
+           is effectively invisible, and the icon glyphs still on --brand
+           vanish with them. Text is unaffected (--brand-alt), so this is
+           now a fills-only problem — but it is still one.
 
       [10] Purple (lightened)
            --brand: #6936be;
@@ -136,6 +137,34 @@
   /* Tint and shade, used by the gradients and button shadows. */
   --brand-light: color-mix(in oklch, var(--brand) 55%, white);
   --brand-deep: color-mix(in oklch, var(--brand) 70%, black);
+
+  /* ------------------------------------------------------------
+     FILL vs TEXT — the accent has two jobs and needs two values.
+
+     --brand is a fill colour. Measured against the page ground it
+     reaches 2.80:1, which is fine behind a white button label but
+     fails WCAG AA for text by a wide margin (4.5:1 is the floor,
+     and 3:1 is the floor for meaningful graphics). Purple words on
+     near-black are also simply hard to read on a phone outdoors.
+
+     --brand-alt is the same hue two steps lighter and measures
+     6.11:1 on the page ground, 5.90:1 on a card. So:
+
+       fills   button backgrounds, icon-box tints, the comparison
+               panel, badge grounds            -> --brand / --primary
+       text    eyebrows, highlight spans, stat
+               numbers, accent links, labels   -> --brand-alt
+
+     Exposed to Tailwind as text-brand-alt in the @theme block below.
+     Both derive per theme, so switching presets keeps the split.
+
+     --brand-alt-light is only the far stop of the text gradient. It
+     is mixed from --brand-alt rather than --brand so the gradient
+     lifts in every preset: several of them (Cyan, Lime) have a
+     --brand-alt lighter than a tint of --brand would be, which would
+     otherwise flip the sweep's direction.
+     ------------------------------------------------------------ */
+  --brand-alt-light: color-mix(in oklch, var(--brand-alt) 55%, white);
 
   /* Core palette - Dark cinematic theme */
   --background: oklch(0.13 0.02 250);
@@ -198,8 +227,17 @@
      end on --brand-deep: that reverses the direction into a shade and the
      gradient text reads as fading out rather than lifting. Using
      --brand-alt also ties this to the CTA button, which sweeps between the
-     same two colours. */
+     same two colours.
+
+     --gradient-text is the same sweep shifted one stop lighter, for the
+     numbers and headline words that use background-clip: text. It cannot
+     share --gradient-primary: that gradient starts on --brand, so the first
+     third of every gradient number rendered at 2.80:1 — the widest contrast
+     failure on the site, on the figures we most want read. Starting on
+     --brand-alt puts the darkest pixel of the sweep at 6.11:1. Fills keep
+     --gradient-primary, where a dark stop is correct. */
   --gradient-primary: linear-gradient(135deg, var(--brand), var(--brand-alt));
+  --gradient-text: linear-gradient(135deg, var(--brand-alt), var(--brand-alt-light));
   --gradient-dark: linear-gradient(180deg, oklch(0.13 0.02 250), oklch(0.11 0.02 250));
   --gradient-card: linear-gradient(135deg, oklch(0.18 0.02 250), oklch(0.14 0.02 250));
   --gradient-glow: radial-gradient(ellipse at center, color-mix(in srgb, var(--brand) 15%, transparent), transparent 70%);
@@ -220,6 +258,9 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  /* The accent as text. See the FILL vs TEXT note in :root — text-primary
+     fails contrast on this ground, text-brand-alt is the readable twin. */
+  --color-brand-alt: var(--brand-alt);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -283,6 +324,42 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
+
+    /* Text selection is off site-wide. -webkit- prefix is still required for
+       Safari, including iOS, which has not unprefixed this property. */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* iOS shows a long-press callout even where selection is disabled, so the
+     copy sheet would still appear over a paragraph. Suppressing it at the body
+     costs the long-press menu on links and media too, which is a real loss —
+     that menu is how "Open in New Tab" and "Save Image" are reached on a phone
+     — so those elements are handed it straight back below. */
+  body {
+    -webkit-touch-callout: none;
+  }
+
+  a,
+  img,
+  video {
+    -webkit-touch-callout: default;
+  }
+
+  /* Anything a person types into has to stay selectable. Without this a
+     mistyped answer in the Join form cannot be double-clicked or dragged over
+     to correct — it can only be erased one character at a time — and the admin
+     editor, which is a contenteditable, stops working as a text editor
+     altogether. This is a functional requirement, not an exception to the
+     rule above. */
+  input,
+  textarea,
+  select,
+  [contenteditable],
+  [contenteditable] * {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -294,7 +371,7 @@
 @layer components {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+    background-image: var(--gradient-text);
   }
 
   .bg-gradient-primary {
@@ -333,7 +410,7 @@
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .tag {
-    @apply inline-block text-xs md:text-[0.8vw] font-semibold text-primary mb-[1vh] uppercase tracking-wider;
+    @apply inline-block text-xs md:text-[0.8vw] font-semibold text-brand-alt mb-[1vh] uppercase tracking-wider;
   }
   .heading{
     @apply font-sans text-3xl md:text-4xl lg:text-[3vw] font-bold mb-[2vh] text-balance leading-8 md:leading-16;

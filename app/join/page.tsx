@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/site";
 import { JoinPageContent } from "./join-content";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     title: "Join SLIC | Careers at a Performance Creative Agency",
     description:
       "Work on performance video ads for DTC brands scaling on Meta, TikTok, and YouTube. Tell us about yourself and let's talk.",
-    url: "https://slic.agency/join",
+    url: absoluteUrl("/join"),
   },
 };
 

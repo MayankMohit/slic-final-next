@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "SLIC Terms of Service. Review the terms governing use of slic.agency and our performance creative services.",
   alternates: {
-    canonical: "https://slic.agency/terms",
+    canonical: "/terms",
   },
   robots: {
     index: true,
@@ -29,7 +29,7 @@ export default function TermsPage() {
                 Terms of Service
               </h1>
               <p className="text-foreground/80">
-                Last Updated: March 2026
+                Last Updated: August 2026
               </p>
             </div>
 
@@ -100,10 +100,16 @@ export default function TermsPage() {
                   </p>
 
                   <h3 className="font-semibold text-foreground mt-6 mb-2">
-                    Our Deliverables
+                    Deliverables and Project Files
                   </h3>
                   <p>
-                    Upon full payment, you own the final deliverables we create for you.
+                    Upon full payment, you own the final video deliverables we create for you.
+                  </p>
+                  <p>
+                    Project files, meaning editing timelines, motion graphics source files and layered assets, remain available on request for the duration of our engagement and for 90 days after it ends.
+                  </p>
+                  <p>
+                    Licensed stock, music, and third-party assets used within a deliverable remain subject to their original license terms and are not transferred.
                   </p>
                   <p>
                     We retain the right to showcase completed work in our portfolio and marketing materials unless you request otherwise in writing.
@@ -248,7 +254,7 @@ export default function TermsPage() {
                     Questions about these Terms? Contact us:{" "}
                     <a
                       href="mailto:hello@slic.agency"
-                      className="text-primary hover:underline"
+                      className="text-brand-alt hover:underline"
                     >
                       hello@slic.agency
                     </a>

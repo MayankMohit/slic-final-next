@@ -37,9 +37,16 @@ ADMIN_PASSWORD_HASH=scrypt:<salt>:<key>
 ADMIN_SESSION_SECRET=<48 random bytes>
 ```
 
-The plaintext password is never stored. `ADMIN_SESSION_SECRET` signs the session
-cookie — changing it signs everyone out immediately, which is the fastest way to
-revoke access if the password ever leaks.
+The plaintext password is never stored.
+
+This value is only the **bootstrap** credential. The first time anyone changes
+the password at `/admin/settings`, the new hash is written to the database and
+`ADMIN_PASSWORD_HASH` is ignored from then on — so the client can rotate it
+themselves, with no redeploy and no developer involved.
+
+`ADMIN_SESSION_SECRET` signs the session cookie. Changing it signs everyone out
+immediately, which is the break-glass option if the database is unreachable and
+you need to revoke access anyway.
 
 ### 3. Image storage
 
@@ -74,6 +81,23 @@ Images are the part that does *not* move automatically — they live in whicheve
 Blob store the uploads went to. If the client wants to own those too, create a
 Blob store under their account before any real content is written.
 
+## Changing the password
+
+The client does this themselves: **key icon in the admin header**, or
+`/admin/settings`. It asks for the current password, then the new one twice.
+
+- The current password is required even though they are already signed in.
+  Without it, a borrowed laptop or a copied cookie turns into permanent
+  ownership of the account.
+- Changing it **signs out every other device immediately**. The person making
+  the change stays signed in. This works by comparing each session's issue time
+  against `passwordChangedAt` in the database, so revocation is instant rather
+  than waiting for the 7-day cookie to lapse.
+- Minimum 12 characters. There is no email recovery — if the password is lost,
+  run `scripts/hash-password.mjs` again, put the new hash in
+  `ADMIN_PASSWORD_HASH`, and delete the `admin_settings` document so the
+  bootstrap value takes over again.
+
 ## Writing posts
 
 `/admin` lists everything, drafts included. `/admin/new` opens an empty editor.
@@ -101,7 +125,7 @@ waiting for the hourly window.
 | `lib/post-types.ts` | Types and pure helpers — no `server-only`, safe in the browser |
 | `lib/posts.ts` | Queries; everything that touches the driver |
 | `lib/post-schema.ts` | Zod validation for anything posted back from the editor |
-| `lib/auth.ts` | scrypt password check, JWT session cookie, login throttle |
+| `lib/auth.ts` | scrypt password check, JWT session cookie, login throttle, password rotation |
 | `lib/tiptap-render.tsx` | TipTap JSON to React, whitelisted node by node |
 | `app/admin/**` | The editor |
 | `app/api/admin/upload/route.ts` | Issues Blob upload tokens, admin-only |
