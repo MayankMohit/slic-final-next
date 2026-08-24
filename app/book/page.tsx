@@ -27,9 +27,37 @@ const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL;
  * them here means the iframe is in the served HTML and starts fetching while
  * the parser is still working, instead of waiting for a third-party script to
  * download, execute, and inject it.
+ *
+ * The three colours are the loading state.
+ *
+ * Nothing is painted behind the frame, so between the request starting and
+ * Calendly's first paint the iframe is its default white — a full-height white
+ * slab flashing into the middle of a near-black page. A skeleton underneath is
+ * the usual fix, but that is what was removed here: Calendly draws its own
+ * surface, so anything behind it showed through as a second box around the
+ * widget. Handing Calendly the page's own colours means the frame is dark from
+ * its first frame, which removes the flash instead of covering it.
+ *
+ * Hex without the leading #, which is the format their parameters take. The
+ * values are app/globals.css's --background, --foreground and --brand,
+ * converted out of oklch the same way lib/join-email.ts converts them, because
+ * a URL parameter cannot carry a CSS variable.
+ *
+ * Worth knowing: Calendly only honours these on its paid tiers. On the free
+ * plan they are ignored rather than rejected, so the embed still works and the
+ * white flash simply stays — which is the same behaviour as before this, not a
+ * regression.
  */
+const EMBED_PARAMS = [
+  `embed_domain=${SITE_HOST}`,
+  "embed_type=Inline",
+  "background_color=070b12",
+  "text_color=f8f8f8",
+  "primary_color=6e23db",
+].join("&");
+
 const embedUrl = CALENDLY_URL
-  ? `${CALENDLY_URL}${CALENDLY_URL.includes("?") ? "&" : "?"}embed_domain=${SITE_HOST}&embed_type=Inline`
+  ? `${CALENDLY_URL}${CALENDLY_URL.includes("?") ? "&" : "?"}${EMBED_PARAMS}`
   : null;
 
 export default function BookPage() {
@@ -56,12 +84,46 @@ export default function BookPage() {
             {embedUrl ? (
               <>
                 {/*
-                  Nothing is painted behind the frame. Calendly renders its
-                  own surface, so a bordered card and a skeleton underneath
-                  it only showed through as a second box around the widget.
-                  This div is now purely the sizing box the iframe fills.
+                  The spinner sits BEHIND the frame, not in place of it.
+
+                  The skeleton that used to be here was a sibling that had to
+                  be hidden once the widget arrived, and being a card in its
+                  own right it showed through as a second box around Calendly.
+                  This is the opposite arrangement: one layer, underneath, that
+                  the widget covers by simply painting over it. An iframe
+                  renders nothing until its document arrives, so the spinner is
+                  visible through it for exactly as long as there is nothing to
+                  see, and is occluded the moment there is.
+
+                  No state, no onLoad, no client boundary. The page stays a
+                  Server Component, and the spinner works with JavaScript off.
+
+                  If the frame never loads at all - a blocked third party, an
+                  extension, a corporate proxy - this does keep spinning. That
+                  case is what the "Calendar not loading?" link below is for.
                 */}
-                <div className="h-[78vh] min-h-[640px] max-h-[900px] w-full overflow-hidden rounded-xl">
+                <div className="relative h-[78vh] min-h-[640px] max-h-[900px] w-full overflow-hidden rounded-xl">
+                  {/*
+                    aria-hidden because it stays in the DOM after the widget
+                    covers it. Without it a screen reader would keep offering
+                    "Loading the calendar" long after the calendar had loaded;
+                    the iframe's own title is the accessible name that matters.
+                  */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-4"
+                  >
+                    <div className="h-9 w-9 animate-spin rounded-full border-2 border-white/10 border-t-brand-alt" />
+                    <p className="text-xs text-foreground/40">
+                      Loading the calendar
+                    </p>
+                  </div>
+
+                  {/*
+                    `relative` with no z-index is enough to put the frame over
+                    the spinner: both are positioned, so document order decides,
+                    and the iframe comes second.
+                  */}
                   <iframe
                     src={embedUrl}
                     title="Book a strategy call with SLIC"
@@ -69,7 +131,7 @@ export default function BookPage() {
                     // that the request starts now — worth stating so nobody
                     // "optimises" it to lazy later.
                     loading="eager"
-                    className="h-full w-full border-0"
+                    className="relative h-full w-full border-0"
                   />
                 </div>
 

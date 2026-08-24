@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavButton from "@/components/ui/navButton";
-import { useIsMobile } from "@/hooks/use-isMobile";
 
 const navLinks = [
   { name: "Work", href: "/work" },
@@ -22,8 +21,6 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isMobile = useIsMobile();
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,15 +30,37 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (isMobile === null) return null;
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isMobile
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
-          : "bg-transparent"
+    /*
+      A plain header, not motion.header, and no useIsMobile.
+
+      This component used to open with `if (isMobile === null) return null`.
+      useIsMobile only resolves inside an effect, so on the server it is always
+      null and the entire header - the logo, all five nav links and the booking
+      CTA - was absent from the rendered HTML of every page. The site's primary
+      navigation existed only for clients that ran JavaScript, which on an
+      SEO-driven site is the wrong half of the audience to serve it to.
+
+      The guard was buying one thing: isMobile decided whether the bar carries
+      a solid background. That is a media query, so it is now expressed as one.
+      Below md the bar is always solid; from md up it is transparent until
+      isScrolled flips, which is genuine client state and degrades to "solid"
+      rather than "missing".
+
+      The entrance animation moved to CSS for the same reason. Framer Motion's
+      `initial={{ y: -100 }}` is serialised into the server HTML as an inline
+      transform and only cleared on hydration, so a header that did render
+      would still have been parked above the viewport until the bundle
+      arrived. See .animate-nav-in in app/globals.css.
+
+      border-b is always applied and only its colour changes, so scrolling past
+      the threshold does not add a pixel of height and shift the page under it.
+    */
+    <header
+      className={`animate-nav-in fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 bg-background/80 backdrop-blur-xl border-border/50 ${
+        isScrolled
+          ? ""
+          : "md:bg-transparent md:backdrop-blur-none md:border-transparent"
       }`}
     >
       <nav className="container-tight flex items-center justify-between h-16 md:h-[7.5vh]">
@@ -127,6 +146,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

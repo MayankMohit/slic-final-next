@@ -583,6 +583,12 @@
      The border lifts on hover. white/10 static gives no feedback that a field
      is interactive, which on a dark ground reads as disabled. */
   .field {
+    /* Applies to the parts of a control the browser draws itself and CSS
+       cannot reach: the datetime-local calendar popup, the spinners, the
+       scrollbar inside a long textarea. Without it those render light on a
+       page that is otherwise near-black. It sits here rather than on the one
+       date input that used to carry it, so any field added later inherits it. */
+    color-scheme: dark;
     width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid hsla(0 0% 100% / 0.12);
@@ -760,8 +766,31 @@
     animation: glow-breathe 6s ease-in-out infinite;
   }
 
+  /* The navbar's entrance.
+
+     CSS rather than Framer Motion's `initial={{ y: -100 }}`, because that
+     renders as an inline transform in the server HTML and only gets cleared
+     once the bundle has hydrated - so the header sat 100px above the viewport
+     for anyone whose JavaScript was slow, blocked or off. An animation runs
+     from its keyframes without waiting for anything, and its resting state is
+     the correct one, so the failure mode is "no animation" rather than "no
+     header". */
+  .animate-nav-in {
+    animation: nav-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes nav-in {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .animate-glow-breathe {
+    .animate-glow-breathe,
+    .animate-nav-in {
       animation: none;
     }
   }

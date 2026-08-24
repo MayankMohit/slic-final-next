@@ -18,6 +18,10 @@ yarn-error.log*
 
 # env files
 .env*
+# ...but the example file is the documentation for every variable above,
+# and it holds only empty keys and comments. An exact-name negation, so it
+# cannot widen to .env.local.
+!.env.example
 
 # vercel
 .vercel

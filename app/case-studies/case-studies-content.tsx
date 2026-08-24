@@ -12,6 +12,7 @@ import { brandLogo } from "@/lib/brand-logos";
 const caseStudies = [
   {
     logo: "loop.png" as const,
+    brand: "Loop Labs",
     logoSize: { width: 130 },
     metrics: [
       { value: "$40M+", label: "Revenue Generated" },
@@ -33,6 +34,7 @@ const caseStudies = [
   },
   {
     logo: "nb.png" as const,
+    brand: "NeuroBrocc",
     logoSize: { width: 60 },
     metrics: [
       { value: "$10M+", label: "Revenue Generated" },
@@ -54,6 +56,7 @@ const caseStudies = [
   },
   {
     logo: "lokt.png" as const,
+    brand: "LOKT",
     logoSize: { width: 120 },
     metrics: [
       { value: "3x", label: "ROAS" },
@@ -75,6 +78,7 @@ const caseStudies = [
   },
   {
     logo: "unscrptd.png" as const,
+    brand: "UNSCRPTD",
     logoSize: { width: 140 },
     metrics: [{ value: "2x", label: "ROAS" }],
     title: "UNSCRPTD: 2x ROAS with Street Interview Ad Creative",
@@ -141,7 +145,7 @@ export function CaseStudiesPageContent() {
                         <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-3 flex items-center justify-center">
                           <Image
                             {...brandLogo(study.logo, study.logoSize.width)}
-                            alt={`${study.logo.split(".")[0]} logo`}
+                            alt={`${study.brand} logo`}
                             loading="eager"
                             className="object-contain pointer-events-none"
                             draggable={false}

@@ -6,8 +6,12 @@ import { toast } from "sonner";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { changePasswordAction, type PasswordState } from "../../actions";
 
-const inputClasses =
-  "w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors";
+// The shared field skin from app/globals.css, the same one /join uses. The
+// string that was here focused with ring-primary, which is --brand at 2.80:1
+// against this ground and effectively invisible as a focus indicator, and sat
+// at 14px, below the size at which iOS Safari stops zooming the viewport on
+// focus. .field fixes both and carries the select chevron and hover state too.
+const inputClasses = "field";
 
 const labelClasses =
   "block mb-2 text-xs font-semibold uppercase tracking-wide text-foreground/70";

@@ -23,7 +23,10 @@ function SubmitButton() {
 }
 
 export function LoginForm() {
-  const [state, formAction] = useActionState<LoginState, FormData>(loginAction, {});
+  const [state, formAction] = useActionState<LoginState, FormData>(
+    loginAction,
+    {},
+  );
 
   return (
     <form action={formAction} className="space-y-4">
@@ -41,7 +44,7 @@ export function LoginForm() {
           required
           autoFocus
           autoComplete="current-password"
-          className="w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+          className="field"
         />
       </div>
 

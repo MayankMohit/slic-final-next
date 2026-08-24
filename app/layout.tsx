@@ -102,10 +102,22 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  /*
+    No icons block, deliberately.
+
+    These two lines used to name /favicon.ico and /apple-touch-icon.png, and
+    neither file has ever existed in public/ - so every page shipped two <link>
+    tags pointing at a 404 and the site had no favicon at all.
+
+    Icons now come from Next's file conventions instead: app/favicon.ico and
+    app/apple-icon.png, with the Android sizes declared in app/manifest.ts. That
+    way the tags are generated from files that demonstrably exist, and they get
+    fingerprinted for cache busting, which a hardcoded path does not. Declaring
+    them here as well would emit a second, competing set.
+
+    All four files are produced by scripts/generate-icons.mjs from one source
+    image. See the header there.
+  */
 };
 
 export const viewport: Viewport = {
