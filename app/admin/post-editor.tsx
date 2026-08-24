@@ -5,7 +5,15 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Eye, ExternalLink, Loader2, Pencil, Trash2, Upload, X } from "lucide-react";
+import {
+  Eye,
+  ExternalLink,
+  Loader2,
+  Pencil,
+  Trash2,
+  Upload,
+  X,
+} from "lucide-react";
 import { Article } from "@/components/blog/article";
 import {
   EMPTY_DOC,
@@ -61,11 +69,19 @@ export function PostEditor({
   const [slug, setSlug] = useState(post?.slug ?? "");
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
   const [authorName, setAuthorName] = useState(post?.authorName ?? "SLIC");
-  const [categories, setCategories] = useState<string[]>(post?.categories ?? []);
+  const [categories, setCategories] = useState<string[]>(
+    post?.categories ?? [],
+  );
   const [featured, setFeatured] = useState(post?.featured ?? false);
-  const [status, setStatus] = useState<"draft" | "published">(post?.status ?? "draft");
-  const [publishedAt, setPublishedAt] = useState(toLocalInput(post?.publishedAt ?? null));
-  const [coverImage, setCoverImage] = useState<PostImage | null>(post?.coverImage ?? null);
+  const [status, setStatus] = useState<"draft" | "published">(
+    post?.status ?? "draft",
+  );
+  const [publishedAt, setPublishedAt] = useState(
+    toLocalInput(post?.publishedAt ?? null),
+  );
+  const [coverImage, setCoverImage] = useState<PostImage | null>(
+    post?.coverImage ?? null,
+  );
   const [body, setBody] = useState<TipTapDoc>(post?.body ?? EMPTY_DOC);
 
   // Only mirror the title into the slug until someone edits the slug by hand.
@@ -134,7 +150,25 @@ export function PostEditor({
         categories,
         featured,
         status: effectiveStatus,
-        publishedAt,
+        /**
+         * Converted here, in the browser, rather than sent as the raw input
+         * value.
+         *
+         * A datetime-local input yields a bare "2026-08-24T14:00" with no zone,
+         * and new Date() reads that in whatever timezone it is parsed in. The
+         * server action parses it, and a Vercel function runs in UTC, so an
+         * editor in IST who picked 2pm had it stored as 2pm UTC: half past
+         * seven their time, five and a half hours in the future. The public
+         * query filters on publishedAt <= now, so the post simply did not
+         * appear until then.
+         *
+         * toISOString() resolves it against the editor's own clock, which is
+         * the only place the intended instant is actually known, and sends an
+         * absolute one. It is the same conversion the preview object above has
+         * always done, which is why preview looked right while the live site
+         * disagreed.
+         */
+        publishedAt: publishedAt ? new Date(publishedAt).toISOString() : "",
         coverImage,
         body,
       });
@@ -159,7 +193,8 @@ export function PostEditor({
 
   const remove = () => {
     if (!post) return;
-    if (!window.confirm(`Delete "${post.title}"? This cannot be undone.`)) return;
+    if (!window.confirm(`Delete "${post.title}"? This cannot be undone.`))
+      return;
     startTransition(() => deletePost(post.id));
   };
 
@@ -284,7 +319,9 @@ export function PostEditor({
           </div>
 
           <div className="flex items-center justify-between text-xs">
-            <span className="text-foreground/50 uppercase tracking-wide">Status</span>
+            <span className="text-foreground/50 uppercase tracking-wide">
+              Status
+            </span>
             <span
               className={`rounded-full px-2.5 py-1 font-semibold ${
                 status === "published"
@@ -383,9 +420,9 @@ export function PostEditor({
           */}
           <p className={hintClasses}>
             Used on the blog index, at the top of the post, and as the link
-            preview when the post is shared on LinkedIn or X. Without one,
-            every share falls back to the same generic SLIC card. Landscape,
-            1200px wide or more.
+            preview when the post is shared on LinkedIn or X. Without one, every
+            share falls back to the same generic SLIC card. Landscape, 1200px
+            wide or more.
           </p>
 
           {coverImage ? (

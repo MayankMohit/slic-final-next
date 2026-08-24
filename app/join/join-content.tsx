@@ -17,6 +17,7 @@ import {
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { GlowCard } from "@/components/ui/glow-card";
+import NavButton from "@/components/ui/navButton";
 import {
   JOIN_ROLES,
   JOIN_EXPERIENCE_LEVELS,
@@ -25,7 +26,11 @@ import {
   type JoinApplication,
 } from "@/lib/join-schema";
 
-const heroFacts = ["Remote", "Full-time, part-time & project", "Rolling applications"];
+const heroFacts = [
+  "Remote",
+  "Full-time, part-time & project",
+  "Rolling applications",
+];
 
 const perks = [
   {
@@ -92,18 +97,15 @@ const roles: {
   },
 ];
 
-const inputClasses =
-  "w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm md:text-[0.85vw] text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors";
-
-const labelClasses =
-  "block mb-2 text-xs md:text-[0.75vw] font-normal text-foreground/80 uppercase tracking-wide";
-
-// Sits under a field to explain it. Deliberately dimmer and smaller than the
-// label so it reads as an aside rather than a second instruction.
-const hintClasses =
-  "mt-2 text-xs md:text-[0.7vw] text-foreground/50 leading-relaxed font-normal";
-
-const errorClasses = "mt-2 text-xs md:text-[0.7vw] text-red-400";
+// The field skin lives in app/globals.css as .field / .field-label, beside
+// .carousel-nav and the other component classes. It is real CSS rather than a
+// utility string because the focus ring is a two-layer color-mix() shadow and
+// the type is clamped, neither of which survives being written as a Tailwind
+// arbitrary value with any readability left.
+const inputClasses = "field";
+const labelClasses = "field-label";
+const hintClasses = "field-hint";
+const errorClasses = "field-error";
 
 export function JoinPageContent() {
   const {
@@ -142,7 +144,9 @@ export function JoinPageContent() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        throw new Error(
+          data.error || "Something went wrong. Please try again.",
+        );
       }
       toast.success("Application sent! We'll get back to you soon.");
       reset();
@@ -294,11 +298,13 @@ export function JoinPageContent() {
                     type="button"
                     onClick={() => pickRole(role.title)}
                     aria-pressed={isSelected}
-                    className="h-full w-full text-left rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="h-full w-full text-left rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-alt focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <GlowCard
                       className={`h-full p-6 md:p-[1vw] relative group transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10 ${
-                        isSelected ? "ring-2 ring-primary shadow-lg shadow-primary/20" : ""
+                        isSelected
+                          ? "ring-2 ring-brand-alt shadow-lg shadow-primary/20"
+                          : ""
                       }`}
                     >
                       <span
@@ -393,6 +399,7 @@ export function JoinPageContent() {
                       placeholder="Your name"
                       autoComplete="name"
                       className={inputClasses}
+                      aria-invalid={!!errors.name}
                       {...register("name")}
                     />
                     {errors.name && (
@@ -410,6 +417,7 @@ export function JoinPageContent() {
                       placeholder="you@example.com"
                       autoComplete="email"
                       className={inputClasses}
+                      aria-invalid={!!errors.email}
                       {...register("email")}
                     />
                     {errors.email && (
@@ -438,11 +446,7 @@ export function JoinPageContent() {
                             type="button"
                             aria-pressed={isSelected}
                             onClick={() => pickRole(role.title)}
-                            className={`rounded-full border px-4 py-2 md:px-[1vw] md:py-[0.5vw] text-xs md:text-[0.75vw] font-normal transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                              isSelected
-                                ? "border-transparent bg-gradient-primary text-primary-foreground font-bold"
-                                : "border-white/10 bg-black/30 text-foreground/80 hover:border-primary/50 hover:text-foreground"
-                            }`}
+                            className="field-pill"
                           >
                             {role.title}
                           </button>
@@ -461,7 +465,8 @@ export function JoinPageContent() {
                     <select
                       id="join-experience"
                       defaultValue=""
-                      className={`${inputClasses} appearance-none cursor-pointer [&>option]:bg-neutral-900`}
+                      className={inputClasses}
+                      aria-invalid={!!errors.experience}
                       {...register("experience")}
                     >
                       <option value="" disabled>
@@ -474,7 +479,9 @@ export function JoinPageContent() {
                       ))}
                     </select>
                     {errors.experience && (
-                      <p className={errorClasses}>{errors.experience.message}</p>
+                      <p className={errorClasses}>
+                        {errors.experience.message}
+                      </p>
                     )}
                   </div>
 
@@ -485,7 +492,8 @@ export function JoinPageContent() {
                     <select
                       id="join-availability"
                       defaultValue=""
-                      className={`${inputClasses} appearance-none cursor-pointer [&>option]:bg-neutral-900`}
+                      className={inputClasses}
+                      aria-invalid={!!errors.availability}
                       {...register("availability")}
                     >
                       <option value="" disabled>
@@ -513,6 +521,7 @@ export function JoinPageContent() {
                       type="url"
                       placeholder="https://"
                       className={inputClasses}
+                      aria-invalid={!!errors.portfolio}
                       {...register("portfolio")}
                     />
                     {errors.portfolio ? (
@@ -533,7 +542,8 @@ export function JoinPageContent() {
                       id="join-message"
                       rows={5}
                       placeholder="Link the ad, then tell us what you'd change and why..."
-                      className={`${inputClasses} resize-y min-h-[120px]`}
+                      className={inputClasses}
+                      aria-invalid={!!errors.message}
                       {...register("message")}
                     />
                     {errors.message ? (
@@ -556,6 +566,7 @@ export function JoinPageContent() {
                       placeholder="+91"
                       autoComplete="tel"
                       className={inputClasses}
+                      aria-invalid={!!errors.phone}
                       {...register("phone")}
                     />
                     {errors.phone && (
@@ -564,13 +575,22 @@ export function JoinPageContent() {
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="mt-6 md:mt-[1.5vw] w-full rounded-lg bg-gradient-primary px-6 py-3.5 text-sm md:text-[0.85vw] font-bold uppercase tracking-wide text-primary-foreground transition-opacity hover:opacity-90 disabled:pointer-events-none disabled:opacity-50"
-                >
-                  {isSubmitting ? "Sending..." : "Send Application"}
-                </button>
+                {/* The same button as every other CTA on the site, rather
+                    than a lookalike. It was a flat 135deg gradient with
+                    hover:opacity-90, while every real CTA is NavButtons 325deg
+                    sheen sliding across a 280% background over 0.8s, on the
+                    four-layer brand shadow. Side by side the difference read as
+                    two different sites; importing the component instead of
+                    restating the styles is what stops that recurring. */}
+                <div className="mt-6 md:mt-[1.5vw]">
+                  <NavButton
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    {isSubmitting ? "Sending..." : "Send Application"}
+                  </NavButton>
+                </div>
 
                 <p className="mt-4 md:mt-[1vh] text-center text-xs md:text-[0.7vw] text-foreground/50 font-normal leading-relaxed">
                   Shortlisted applicants get a short paid test brief. We don't

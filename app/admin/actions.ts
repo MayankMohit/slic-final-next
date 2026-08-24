@@ -14,7 +14,12 @@ import {
   verifyPassword,
 } from "@/lib/auth";
 import { postFormSchema } from "@/lib/post-schema";
-import { deriveExcerpt, postsCollection, slugify, type PostDoc } from "@/lib/posts";
+import {
+  deriveExcerpt,
+  postsCollection,
+  slugify,
+  type PostDoc,
+} from "@/lib/posts";
 
 /* -------------------------------------------------------------------------- */
 /* Auth                                                                       */
@@ -88,7 +93,9 @@ export async function changePasswordAction(
     // real admin out of /admin/login, and vice versa.
     const throttle = await registerLoginAttempt(ip, "password");
     if (!throttle.ok) {
-      return { error: `Too many attempts. Try again in ${throttle.retryAfterMinutes} minutes.` };
+      return {
+        error: `Too many attempts. Try again in ${throttle.retryAfterMinutes} minutes.`,
+      };
     }
   } catch {
     return { error: "Cannot reach the database. Try again shortly." };
@@ -112,8 +119,7 @@ export async function changePasswordAction(
 /* -------------------------------------------------------------------------- */
 
 export type SaveResult =
-  | { ok: true; id: string; slug: string }
-  | { ok: false; error: string };
+  { ok: true; id: string; slug: string } | { ok: false; error: string };
 
 /**
  * Rebuilds every cached page whose contents depend on this post.
@@ -130,7 +136,10 @@ function revalidatePost(slug: string, oldSlug?: string) {
   revalidatePath("/sitemap.xml");
 }
 
-export async function savePost(id: string | null, input: unknown): Promise<SaveResult> {
+export async function savePost(
+  id: string | null,
+  input: unknown,
+): Promise<SaveResult> {
   await assertAdmin();
 
   const parsed = postFormSchema.safeParse(input);
@@ -144,38 +153,49 @@ export async function savePost(id: string | null, input: unknown): Promise<SaveR
      * toast alone. The full issue list goes to the server log for the cases
      * where one line is not enough.
      */
-    console.error("savePost validation failed:", JSON.stringify(parsed.error.issues, null, 2));
+    console.error(
+      "savePost validation failed:",
+      JSON.stringify(parsed.error.issues, null, 2),
+    );
 
     const issue = parsed.error.issues[0];
     const field = issue?.path.join(".");
     return {
       ok: false,
-      error: issue
-        ? `${field || "post"}: ${issue.message}`
-        : "Invalid post",
+      error: issue ? `${field || "post"}: ${issue.message}` : "Invalid post",
     };
   }
   const data = parsed.data;
 
   const slug = data.slug || slugify(data.title);
   if (!slug) {
-    return { ok: false, error: "Could not build a slug from that title — set one manually." };
+    return {
+      ok: false,
+      error: "Could not build a slug from that title — set one manually.",
+    };
   }
 
   const collection = await postsCollection();
   const now = new Date();
 
-  const existing = id && ObjectId.isValid(id)
-    ? await collection.findOne({ _id: new ObjectId(id) })
-    : null;
+  const existing =
+    id && ObjectId.isValid(id)
+      ? await collection.findOne({ _id: new ObjectId(id) })
+      : null;
 
-  if (id && !existing) return { ok: false, error: "That post no longer exists." };
+  if (id && !existing)
+    return { ok: false, error: "That post no longer exists." };
 
   /**
    * A published post always carries a date, because the public query filters on
-   * `publishedAt <= now`. A blank field means "publish now"; a filled one is
-   * read as local time, matching what the datetime-local input showed. Moving a
-   * post back to draft keeps the date so re-publishing does not reset it.
+   * `publishedAt <= now`. A blank field means "publish now". Moving a post back
+   * to draft keeps the date so re-publishing does not reset it.
+   *
+   * A filled field arrives as an absolute ISO instant, already resolved against
+   * the editor's clock in post-editor.tsx. It must not be a bare
+   * "2026-08-24T14:00": this runs in a Vercel function, which is UTC, so a
+   * zoneless string would be read five and a half hours adrift of what an
+   * India-based editor meant and the post would stay invisible until then.
    */
   let publishedAt: Date | null = existing?.publishedAt ?? null;
   if (data.publishedAt) {
@@ -218,8 +238,15 @@ export async function savePost(id: string | null, input: unknown): Promise<SaveR
     return { ok: true, id: result.insertedId.toHexString(), slug };
   } catch (error) {
     // 11000 is the unique index on `slug`. Everything else is a real fault.
-    if (typeof error === "object" && error && (error as { code?: number }).code === 11000) {
-      return { ok: false, error: `The slug "${slug}" is already used by another post.` };
+    if (
+      typeof error === "object" &&
+      error &&
+      (error as { code?: number }).code === 11000
+    ) {
+      return {
+        ok: false,
+        error: `The slug "${slug}" is already used by another post.`,
+      };
     }
     throw error;
   }
