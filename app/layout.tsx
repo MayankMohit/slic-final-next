@@ -11,6 +11,8 @@ import MobileBackground from "@/components/mobile-background";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import UmamiAnalytics from "@/components/umami-analytics";
+import { UMAMI_ENABLED } from "@/lib/analytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -187,6 +189,19 @@ export default function RootLayout({
           <SonnerToaster />
         </SmoothScrollProvider>
         <Analytics />
+        {/*
+          Umami, running alongside Vercel Web Analytics rather than replacing
+          it. The two overlap on pageviews; what Umami adds is retention
+          measured in years instead of the plan's window, custom events, and a
+          dashboard that can be shared with the client without handing out a
+          Vercel seat. Drop @vercel/analytics above if that overlap stops
+          earning its bundle size.
+
+          UMAMI_ENABLED is evaluated here rather than inside the component
+          because it reads VERCEL_ENV, which has no NEXT_PUBLIC_ prefix and so
+          only exists on the server.
+        */}
+        {UMAMI_ENABLED && <UmamiAnalytics />}
       </body>
     </html>
   );

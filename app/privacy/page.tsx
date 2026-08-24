@@ -28,15 +28,12 @@ export default function PrivacyPage() {
               <h1 className="font-sans text-4xl md:text-5xl font-bold mb-4 text-foreground">
                 Privacy Policy
               </h1>
-              <p className="text-foreground/80">
-                Last Updated: March 2026
-              </p>
+              <p className="text-foreground/80">Last Updated: August 2026</p>
             </div>
 
             {/* Content */}
             <div className="prose prose-invert prose-lg max-w-none">
               <div className="space-y-10 text-foreground/80 leading-relaxed">
-
                 {/* Introduction */}
                 <section>
                   <p>
@@ -61,7 +58,8 @@ export default function PrivacyPage() {
                     Information You Provide
                   </h3>
                   <p>
-                    When you contact us, book a call, or work with us, we may collect:
+                    When you contact us, book a call, or work with us, we may
+                    collect:
                   </p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Name and email address</li>
@@ -73,9 +71,7 @@ export default function PrivacyPage() {
                   <h3 className="font-semibold text-foreground mt-6 mb-2">
                     Information Collected Automatically
                   </h3>
-                  <p>
-                    When you visit our website, we may collect:
-                  </p>
+                  <p>When you visit our website, we may collect:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>IP address and browser type</li>
                     <li>Pages visited and time spent</li>
@@ -85,7 +81,28 @@ export default function PrivacyPage() {
 
                   <p className="mt-4">
                     We use cookies and similar technologies to improve your
-                    experience and analyze website traffic.
+                    experience.
+                  </p>
+
+                  <h3 className="font-semibold text-foreground mt-6 mb-2">
+                    Analytics
+                  </h3>
+                  <p>
+                    We measure website traffic with{" "}
+                    <a
+                      href="https://umami.is/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-alt hover:underline"
+                    >
+                      Umami
+                    </a>
+                    , a privacy-focused analytics service. Umami sets no
+                    cookies, assigns you no persistent identifier, and does not
+                    follow you across other websites. It records the pages you
+                    view, the site that referred you, and an approximate
+                    location and device type derived from your IP address and
+                    browser. Your IP address itself is not stored.
                   </p>
                 </section>
 
@@ -94,9 +111,7 @@ export default function PrivacyPage() {
                   <h2 className="font-sans text-2xl font-semibold text-foreground mb-4">
                     How We Use Your Information
                   </h2>
-                  <p>
-                    We use the information we collect to:
-                  </p>
+                  <p>We use the information we collect to:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Respond to inquiries and deliver our services</li>
                     <li>Send relevant communications (with your consent)</li>
@@ -117,9 +132,13 @@ export default function PrivacyPage() {
                   <p>Our website uses cookies to:</p>
                   <ul className="list-disc pl-6 space-y-2 mt-2">
                     <li>Remember your preferences</li>
-                    <li>Analyze website traffic</li>
+                    <li>Keep you signed in where relevant</li>
                     <li>Improve our services</li>
                   </ul>
+                  <p className="mt-4">
+                    We do not use advertising or cross-site tracking cookies,
+                    and our analytics does not rely on cookies at all.
+                  </p>
                   <p className="mt-4">
                     You can control cookies through your browser settings.
                     Disabling certain cookies may affect website functionality.
@@ -131,11 +150,12 @@ export default function PrivacyPage() {
                   <h2 className="font-sans text-2xl font-semibold text-foreground mb-4">
                     Data Sharing
                   </h2>
-                  <p>
-                    We may share your information with:
-                  </p>
+                  <p>We may share your information with:</p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>Service providers who help operate our website and services</li>
+                    <li>
+                      Service providers who help operate our website and
+                      services
+                    </li>
                     <li>Legal authorities when required by law</li>
                     <li>Business transfers or acquisitions</li>
                   </ul>
@@ -162,9 +182,7 @@ export default function PrivacyPage() {
                   <h2 className="font-sans text-2xl font-semibold text-foreground mb-4">
                     Your Rights
                   </h2>
-                  <p>
-                    Depending on your location, you may have the right to:
-                  </p>
+                  <p>Depending on your location, you may have the right to:</p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>Access your personal information</li>
                     <li>Correct inaccurate information</li>
@@ -243,7 +261,6 @@ export default function PrivacyPage() {
                     </a>
                   </p>
                 </section>
-
               </div>
             </div>
           </div>

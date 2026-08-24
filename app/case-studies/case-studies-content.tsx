@@ -7,10 +7,11 @@ import { Footer } from "@/components/footer";
 import { Check } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
+import { brandLogo } from "@/lib/brand-logos";
 
 const caseStudies = [
   {
-    logo: "loop.png",
+    logo: "loop.png" as const,
     logoSize: { width: 130 },
     metrics: [
       { value: "$40M+", label: "Revenue Generated" },
@@ -31,7 +32,7 @@ const caseStudies = [
     tags: ["Meta Ads", "TikTok Ads", "DTC", "Toys"],
   },
   {
-    logo: "nb.png",
+    logo: "nb.png" as const,
     logoSize: { width: 60 },
     metrics: [
       { value: "$10M+", label: "Revenue Generated" },
@@ -52,7 +53,7 @@ const caseStudies = [
     tags: ["Meta Ads", "DTC", "Nutrition", "Supplements"],
   },
   {
-    logo: "lokt.png",
+    logo: "lokt.png" as const,
     logoSize: { width: 120 },
     metrics: [
       { value: "3x", label: "ROAS" },
@@ -73,11 +74,9 @@ const caseStudies = [
     tags: ["Meta Ads", "TikTok Ads", "DTC", "Consumer Tech"],
   },
   {
-    logo: "unscrptd.png",
+    logo: "unscrptd.png" as const,
     logoSize: { width: 140 },
-    metrics: [
-      { value: "2x", label: "ROAS" },
-    ],
+    metrics: [{ value: "2x", label: "ROAS" }],
     title: "UNSCRPTD: 2x ROAS with Street Interview Ad Creative",
     client: "Street Interview Content Agency",
     challenge:
@@ -141,14 +140,15 @@ export function CaseStudiesPageContent() {
                       <div>
                         <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-3 flex items-center justify-center">
                           <Image
-                            src={`/brandLogos/${study.logo}`}
+                            {...brandLogo(study.logo, study.logoSize.width)}
                             alt={`${study.logo.split(".")[0]} logo`}
-                            width={study.logoSize.width}
-                            height={50}
                             loading="eager"
                             className="object-contain pointer-events-none"
                             draggable={false}
-                            style={{ width: study.logoSize.width, height: "auto" }}
+                            style={{
+                              width: study.logoSize.width,
+                              height: "auto",
+                            }}
                           />
                         </div>
                         <p className="text-xs text-foreground/80">

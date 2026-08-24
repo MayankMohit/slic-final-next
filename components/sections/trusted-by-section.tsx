@@ -4,19 +4,20 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useIsMobile } from "@/hooks/use-isMobile";
+import { brandLogo, type BrandLogoFile } from "@/lib/brand-logos";
 
 export const TrustedBySection = () => {
-  const logos: { file: string; name: string }[] = [
-    { file: "loop.png",       name: "Loop Labs" },
-    { file: "nb.png",         name: "NeuroBrocc" },
-    { file: "unscrptd.png",   name: "UNSCRPTD" },
-    { file: "lokt.png",       name: "LOKT" },
-    { file: "blackbox.png",   name: "Blackbox" },
+  const logos: { file: BrandLogoFile; name: string }[] = [
+    { file: "loop.png", name: "Loop Labs" },
+    { file: "nb.png", name: "NeuroBrocc" },
+    { file: "unscrptd.png", name: "UNSCRPTD" },
+    { file: "lokt.png", name: "LOKT" },
+    { file: "blackbox.png", name: "Blackbox" },
     { file: "maybelline.png", name: "Maybelline" },
-    { file: "nexa.png",       name: "NEXA" },
+    { file: "nexa.png", name: "NEXA" },
   ];
 
-  const logoSizes: Record<string, { width: number }> = {
+  const logoSizes: Record<BrandLogoFile, { width: number }> = {
     "loop.png": { width: 150 },
     "nb.png": { width: 70 },
     "unscrptd.png": { width: 200 },
@@ -26,7 +27,7 @@ export const TrustedBySection = () => {
     "nexa.png": { width: 200 },
   };
 
-  const logoYOffsets: Record<string, number> = {
+  const logoYOffsets: Record<BrandLogoFile, number> = {
     "loop.png": -4,
     "nb.png": 2,
     "unscrptd.png": 0,
@@ -63,8 +64,6 @@ export const TrustedBySection = () => {
   const handleMouseEnter = () => tweenRef.current?.pause();
   const handleMouseLeave = () => tweenRef.current?.play();
 
-  
-
   return (
     <section className="section-padding md:w-[80%] w-[95%] mx-auto flex flex-col items-center overflow-hidden">
       <h3 className="text-sm md:text-[0.9vw] font-inter font-semibold text-white/80 md:mb-[5vh] mb-4 select-none text-center">
@@ -77,13 +76,16 @@ export const TrustedBySection = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{
-          maskImage: 
+          maskImage:
             "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
           WebkitMaskImage:
             "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
         }}
       >
-        <div ref={marqueeRef} className="flex gap-4 md:gap-14 whitespace-nowrap w-max">
+        <div
+          ref={marqueeRef}
+          className="flex gap-4 md:gap-14 whitespace-nowrap w-max"
+        >
           {repeatedLogos.map((logo, i) => {
             const size = logoSizes[logo.file] || { width: 150 };
             const yOffset = logoYOffsets[logo.file] ?? 0;
@@ -98,10 +100,8 @@ export const TrustedBySection = () => {
                 }}
               >
                 <Image
-                  src={`/brandLogos/${logo.file}`}
+                  {...brandLogo(logo.file, size.width, size.width / 2)}
                   alt={`${logo.name} logo`}
-                  width={size.width}
-                  height={50}
                   loading="eager"
                   className="object-contain pointer-events-none"
                   style={{
