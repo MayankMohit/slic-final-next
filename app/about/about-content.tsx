@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { METRICS } from "@/lib/metrics";
 import { Target, Users, Award, Rocket } from "lucide-react";
 import { GlowCard } from "@/components/ui/glow-card";
 import { CTASection } from "@/components/sections/cta-section";
@@ -52,11 +53,14 @@ const team = [
   },
 ];
 
+// "50+ Brands Scaled" is gone. It was the one figure here with nothing
+// behind it anywhere else on the site, and it sat oddly beside $50M+ earned
+// from a handful of named clients. Three stats, all of which the case
+// studies can substantiate.
 const milestones = [
-  { value: "$50M+", label: "Revenue Generated" },
-  { value: "2.5x to 3.5x+", label: "Average ROAS" },
-  { value: "500+", label: "Performance Ads Delivered" },
-  { value: "50+", label: "Brands Scaled" },
+  { value: METRICS.revenueGenerated, label: "Revenue Generated" },
+  { value: METRICS.peakRoas, label: "Peak ROAS" },
+  { value: METRICS.adsDelivered, label: "Performance Ads Delivered" },
 ];
 
 export function AboutPageContent() {
@@ -100,9 +104,7 @@ export function AboutPageContent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="tag">
-                  Our Story
-                </span>
+                <span className="tag">Our Story</span>
 
                 <div className="text-xs md:text-[0.8vw] text-foreground/80 space-y-2">
                   <p>
@@ -142,7 +144,18 @@ export function AboutPageContent() {
                 <GlowCard className="p-8">
                   <div className="grid grid-cols-2 gap-8">
                     {milestones.map((stat, index) => (
-                      <div key={stat.label} className="text-center">
+                      <div
+                        key={stat.label}
+                        className={`text-center${
+                          // An odd count leaves the last stat alone on its
+                          // row. Spanning both columns centres it rather
+                          // than leaving it under the left-hand one.
+                          milestones.length % 2 === 1 &&
+                          index === milestones.length - 1
+                            ? " col-span-2"
+                            : ""
+                        }`}
+                      >
                         <div className="font-sans text-2xl md:text-[1.5vw] font-bold text-gradient">
                           {stat.value}
                         </div>
@@ -168,9 +181,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <span className="tag">
-                What Drives Us
-              </span>
+              <span className="tag">What Drives Us</span>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -209,9 +220,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
             >
-              <span className="tag">
-                Meet the Team
-              </span>
+              <span className="tag">Meet the Team</span>
               <p className="desc">
                 A focused team combining creativity, strategy, and execution.
               </p>
@@ -239,7 +248,9 @@ export function AboutPageContent() {
                       <h3 className="mt-4 font-sans text-sm md:text-[0.8vw] font-bold text-foreground uppercase">
                         {member.name}
                       </h3>
-                      <p className="text-brand-alt text-sm md:text-[0.8vw] mb-4">{member.role}</p>
+                      <p className="text-brand-alt text-sm md:text-[0.8vw] mb-4">
+                        {member.role}
+                      </p>
                       <p className="text-foreground/80 text-xs md:text-[0.8vw]">
                         {member.bio}
                       </p>

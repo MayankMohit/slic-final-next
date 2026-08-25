@@ -1,6 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
+
+/**
+ * useLayoutEffect on the client, useEffect on the server.
+ *
+ * The distinction is load bearing here, not a lint appeasement. The span now
+ * ships its finished figure in the server HTML (see the return below), so
+ * whatever writes the count-up's starting value has to do it before the browser
+ * paints the hydrated tree - otherwise the number visibly rewinds from "$50M+"
+ * to "$0" in front of the reader. useLayoutEffect runs synchronously after DOM
+ * mutation and before paint, which is exactly that window. useEffect does not.
+ *
+ * React warns that useLayoutEffect does nothing during server rendering, which
+ * is true and harmless, so the server gets useEffect instead. The branch is on
+ * `typeof window`, evaluated once at module scope, so it is constant per
+ * environment and never changes hook order within one.
+ */
+const useIsomorphicLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 interface AnimatedCounterProps {
   /** The figure exactly as it should read when finished: "3.5x ROAS", "$50M+". */
@@ -37,7 +55,7 @@ export default function AnimatedCounter({
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement | null>(null);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 
@@ -95,7 +113,8 @@ export default function AnimatedCounter({
 
     const step = (now: number) => {
       startedAt ??= now;
-      const progress = duration > 0 ? Math.min((now - startedAt) / duration, 1) : 1;
+      const progress =
+        duration > 0 ? Math.min((now - startedAt) / duration, 1) : 1;
 
       if (progress < 1) {
         const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
@@ -142,5 +161,24 @@ export default function AnimatedCounter({
     };
   }, [value, from, duration, delay, scrollTrigger]);
 
-  return <span ref={ref} className={className} />;
+  /**
+   * The figure is rendered as real text, not written in by the effect.
+   *
+   * This span used to be self-closing, which meant every headline number on the
+   * site — $50M+ in revenue, 1000+ ads delivered, 3x peak ROAS — existed only
+   * after hydration. The labels beside them were in the HTML; the numbers were
+   * not. On a site whose entire brief is SEO, and whose own meta description
+   * quotes these figures, the proof was the one part a crawler without a
+   * JavaScript engine could not read, and a reader with JavaScript off saw four
+   * empty gaps where the results should be.
+   *
+   * Rendering {value} makes the finished figure the document's actual content.
+   * The effect above then overwrites it with the count-up, which is the reason
+   * that effect has to run before paint rather than after it.
+   */
+  return (
+    <span ref={ref} className={className}>
+      {value}
+    </span>
+  );
 }

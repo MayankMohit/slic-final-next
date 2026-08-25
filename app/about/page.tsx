@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About SLIC | Performance Creative Agency for DTC",
     description:
-      "SLIC is a performance creative agency producing video ads for DTC brands. $50M+ revenue generated. 2.5x to 3.5x ROAS. Meet the team behind the results.",
+      "SLIC is a performance creative agency producing video ads for DTC brands. $50M+ revenue generated. Up to 3x ROAS. Meet the team behind the results.",
     url: absoluteUrl("/about"),
   },
 };

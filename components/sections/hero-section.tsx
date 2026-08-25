@@ -7,6 +7,7 @@ import { Play } from "lucide-react";
 import PrimaryButton from "@/components/ui/primaryBtn";
 import SecondaryButton from "@/components/ui/secondaryBtn";
 import AnimatedCounter from "@/components/ui/animated-counter";
+import { METRICS } from "@/lib/metrics";
 
 /**
  * The stat band under the hero.
@@ -18,14 +19,15 @@ import AnimatedCounter from "@/components/ui/animated-counter";
  * result, shown to an audience that reads these figures for a living.
  */
 const stats: { value: string; from?: number; label: string }[] = [
-  { value: "$50M+", label: "Client Revenue Generated" },
-  { value: "1000+", label: "Performance Ads Delivered" },
-  { value: "32%", from: 20, label: "Avg. CPA Reduction" },
-  { value: "3.2x", from: 2, label: "Avg. ROAS Lift" },
+  { value: METRICS.revenueGenerated, label: "Client Revenue Generated" },
+  { value: METRICS.adsDelivered, label: "Performance Ads Delivered" },
+  { value: METRICS.cpaReduction, from: 20, label: "Avg. CPA Reduction" },
+  // "Peak", not "Avg.". The four case studies average 2.6x, so an average of
+  // 3x would be contradicted by the page it links to. See lib/metrics.ts.
+  { value: METRICS.peakRoas, from: 2, label: "Peak ROAS" },
 ];
 
 export function HeroSection() {
-
   // Fetch the hero poster at top priority from the initial HTML head.
   preload("/landingVideos/landing-poster.webp", {
     as: "image",
@@ -104,7 +106,7 @@ export function HeroSection() {
           >
             {/* Primary CTA with Hover Popup */}
             <div className="relative group">
-              <PrimaryButton href="/book"  />
+              <PrimaryButton href="/book" />
 
               {/* Hover Popup */}
               <div className="pointer-events-none absolute z-40 left-1/2 -translate-x-1/2 top-full mt-4 w-max max-w-lg opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">

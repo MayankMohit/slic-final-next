@@ -6,32 +6,36 @@ import { GlowCard } from "@/components/ui/glow-card";
 import AnimatedCounter from "@/components/ui/animated-counter";
 import PrimaryButton from "../ui/primaryBtn";
 import SecondaryButton from "../ui/secondaryBtn";
+import { CLIENTS, METRICS } from "@/lib/metrics";
 
 const caseStudies = [
   {
     icon: Users,
-    metric: "3.5x ROAS",
+    metric: `${CLIENTS.neuroBrocc.roas} ROAS`,
     // Ratios count up from a floor, never from zero. See animated-counter.tsx.
     metricFrom: 2,
     metricLabel: "Return on Ad Spend",
     title: "US Nutrition Brand Relaunch",
     description:
-      "Delivered 3.5x ROAS for NeuroBrocc during their US market relaunch. Research-backed video ad creative drove profitable customer acquisition from day one across paid channels.",
+      "Delivered 3x ROAS for NeuroBrocc during their US market relaunch. Research-backed video ad creative drove profitable customer acquisition from day one across paid channels.",
     tags: ["Meta Ads", "TikTok Ads", "DTC Nutrition"],
   },
   {
     icon: TrendingUp,
-    metric: "3x",
+    metric: CLIENTS.loopLabs.lift,
     metricFrom: 1.8,
-    metricLabel: "Scaled Results",
+    // A lift, not a ROAS. Loop Labs returned 2.5x on ad spend and improved 3x
+    // over their previous creative; the old "Scaled Results" label left it
+    // ambiguous enough to read as a ROAS that contradicted the case study.
+    metricLabel: "Performance Lift",
     title: "TikTok and Applovin Scale",
     description:
-      "Scaled Loop Labs across TikTok and Applovin with 3x performance improvement. Organic and paid video content working together to drive consistent acquisition at scale.",
+      "Scaled Loop Labs across TikTok and Applovin with a 3x lift over their previous creative. Organic and paid video content working together to drive consistent acquisition at scale.",
     tags: ["TikTok Ads", "Applovin", "Paid + Organic"],
   },
   {
     icon: DollarSign,
-    metric: "47%",
+    metric: METRICS.avgHoldRate,
     metricFrom: 30,
     metricLabel: "Average Hold Rate",
     title: "Creative That Holds Attention",
@@ -52,9 +56,7 @@ export function CaseStudiesSection() {
           transition={{ duration: 0.5 }}
           className="text-center md:max-w-[57vw] mx-auto mb-[4vh]"
         >
-          <span className="tag">
-            Results
-          </span>
+          <span className="tag">Results</span>
           <h2 className="heading">
             Performance Creative That Delivers Measurable ROAS
           </h2>
