@@ -7,9 +7,16 @@
  * Writes:
  *
  *   app/favicon.ico             16, 32 and 48px, in one multi-resolution file
+ *   app/icon.png                192px, the one Google Search reads
  *   app/apple-icon.png          180px, the iOS home screen icon
  *   public/icons/icon-192.png   Android home screen, referenced by the manifest
  *   public/icons/icon-512.png   splash screens and install prompts
+ *
+ * app/icon.png exists specifically for search results. Google will not show a
+ * favicon beside a listing unless it is square AND a multiple of 48px - 48, 96,
+ * 144, 192 and so on. A 32x32 .ico is under that floor, so Google silently
+ * falls back to the generic globe no matter how correct the markup is. 192 is
+ * 48x4, clears the rule with room to spare, and is sharp on a high-DPI screen.
  *
  * The two files under app/ use Next's file conventions, so the <link> tags are
  * emitted automatically and fingerprinted for cache busting. Nothing needs to
@@ -116,6 +123,7 @@ const icoImages = await Promise.all(
 );
 
 await write("app/favicon.ico", ico(icoImages));
+await write("app/icon.png", await png(192));
 await write("app/apple-icon.png", await png(180));
 await write("public/icons/icon-192.png", await png(192));
 await write("public/icons/icon-512.png", await png(512));
